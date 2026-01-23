@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+/* Montserrat Bold */
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../assets/fonts/Montserrat-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* Satoshi Regular */
+@font-face {
+    font-family: 'Satoshi';
+    src: url('../assets/fonts/Satoshi-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Satoshi Bold */
+@font-face {
+    font-family: 'Satoshi';
+    src: url('../assets/fonts/Satoshi-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+:root {
+    --bg: #fff;
+    --onbg: #000;
+    --bgsecond: #E8E8E8;
+
+    /* fonts */
+    --fprim: 'Satoshi', sans-serif;
+    --fsecond: 'Montserrat', sans-serif;
+
+    /* font sizes */
+    --fs64: 64px;
+    --fs48: 48px;
+    --fs40: 40px;
+    --fs32: 32px;
+    --fs24: 24px;
+    --fs20: 20px;
+    --fs16: 16px;
+    --fs14: 14px;
+
+    /* space */
+    --s100: 100px;
+    --s80: 80px;
+    --s72: 72px;
+    --s55: 55px;
+    --s40: 40px;
+    --s32: 32px;
+    --s24: 24px;
+    --s20: 20px;
+    --s15: 15px;
+    --s8: 8px;
+}
+
+.dark {
+    --bg: #1C1C1C;
+    --onbg: #fff;
+    --bgsecond: #292929;
+}
