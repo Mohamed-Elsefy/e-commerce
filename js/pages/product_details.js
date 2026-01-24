@@ -1,65 +1,15 @@
 
 // get all products
-async function getAllProducts() {
-    const response = await fetch(`./data/product.json`)
-    const products = await response.json()
-    return products
-}
+import * as productServices from '../services/product_services.js';
+import { massage } from '../Utilites/helpers.js';
 
-// get product by id
-async function getProductById(id) {
-    const products = await getAllProducts()
-    const product = products.find(product => product.id == id)
-    return product
-}
-
-// get all reviews
-async function getAllReviews() {
-    const response = await fetch(`./data/reviews.json`)
-    const reviews = await response.json()
-    return reviews
-}
-// get product by count
-async function getProductByCount(start, end) {
-    const products = await getAllProducts()
-    const product = products.slice(start, end)
-    return product
-}
-
-// get product reviews
-async function getProductReviews(productId) {
-    const reviews = await getAllReviews()
-    const productReviews = reviews.filter(review => review.productId == productId)
-    return productReviews
-}
-
-// get discount
-async function getDiscount(productId) {
-    const product = await getProductById(productId)
-    const discount = product.discount
-    return discount
-}
-
-
-//get cart
-async function getCart() {
-    const cart = localStorage.getItem('cart')
-    return cart ? JSON.parse(cart) : []
-}
-
-
-//get product id from url
-function getProductId() {
-    const hash = location.hash.split('?')[1];
-    return new URLSearchParams(hash).get('id');
-}
 
 
 //add to cart
 async function addToCart(qty, color, size) {
-    const cart = await getCart()
-    const productId = getProductId();
-    const product = await getProductById(productId);
+    const cart = await productServices.getCart()
+    const productId = productServices.getProductId();
+    const product = await productServices.getProductById(productId);
     const productCart = {
         productId: productId,
         name: product.name,
@@ -72,9 +22,10 @@ async function addToCart(qty, color, size) {
     }
 
     if (cart.find(p => p.productId == productId)) {
-        cart.find(p => p.productId == productId).qty += qty;
+        massage('Product already in cart', 'error');
     } else {
         cart.push(productCart)
+        massage('Product added to cart', 'success');
     }
     localStorage.setItem('cart', JSON.stringify(cart))
 }
@@ -88,22 +39,21 @@ if (addToCartBtn) {
         let color = document.querySelector('.color-option.selected');
         let size = document.querySelector('.size-option.selected');
         if (!color) {
-            alert('Please select a color');
+            massage('Please select a color', 'error');
             return;
         }
         if (!size) {
-            alert('Please select a size');
+            massage('Please select a size', 'error');
             return;
         }
         addToCart(qty, color.attributes['data-color'].value, size.innerText);
-        alert(`Added ${qty} item(s) to cart!`);
     });
 }
 
 //product details
 async function currentProduct() {
-    const productId = getProductId();
-    const product = await getProductById(productId);
+    const productId = productServices.getProductId();
+    const product = await productServices.getProductById(productId);
     if (product) {
         //image slider
         const imageSlider = document.getElementById('image-slider');
@@ -190,23 +140,22 @@ async function currentProduct() {
 currentProduct();
 
 // Pass dynamic ID
-renderReview(getProductId(), 4);
+renderReview(productServices.getProductId(), 4);
 
 // Bottom products display
 renderProduct(0, 4);
 
 
 async function renderReview(productId, count = 4) {
-    if (!productId) productId = getProductId();
+    if (!productId) productId = productServices.getProductId();
     try {
-        const reviews = await getProductReviews(productId);
+        const reviews = await productServices.getProductReviews(productId);
         const reviewContainer = document.getElementById('review-container');
         if (!reviewContainer) {
             console.error('Review container not found');
             return;
         }
 
-        // Prevent duplicate rendering
         if (reviewContainer.innerText.trim().length > 0) return;
 
         if (!reviews || reviews.length == 0) {
@@ -241,7 +190,7 @@ async function renderReview(productId, count = 4) {
 
 async function renderProduct(start, end) {
     try {
-        const products = await getProductByCount(start, end);
+        const products = await productServices.getProductByCount(start, end);
         const productContainer = document.getElementById('product-container');
 
         if (!productContainer) {
