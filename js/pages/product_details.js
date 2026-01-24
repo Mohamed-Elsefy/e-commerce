@@ -29,7 +29,7 @@ async function getProductByCount(start, end) {
 // get product reviews
 async function getProductReviews(productId) {
     const reviews = await getAllReviews()
-    const productReviews = reviews.filter(review => review.productId === productId)
+    const productReviews = reviews.filter(review => review.productId == productId)
     return productReviews
 }
 
@@ -190,7 +190,7 @@ async function currentProduct() {
 currentProduct();
 
 // Pass dynamic ID
-renderReview(getProductId());
+renderReview(getProductId(), 4);
 
 // Bottom products display
 renderProduct(0, 4);
@@ -201,7 +201,6 @@ async function renderReview(productId, count = 4) {
     try {
         const reviews = await getProductReviews(productId);
         const reviewContainer = document.getElementById('review-container');
-
         if (!reviewContainer) {
             console.error('Review container not found');
             return;
@@ -210,7 +209,7 @@ async function renderReview(productId, count = 4) {
         // Prevent duplicate rendering
         if (reviewContainer.innerText.trim().length > 0) return;
 
-        if (!reviews || reviews.length === 0) {
+        if (!reviews || reviews.length == 0) {
             reviewContainer.innerHTML = '<p class="text-gray-500">No reviews yet.</p>';
             return;
         }
