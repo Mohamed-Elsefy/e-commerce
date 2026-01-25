@@ -3,14 +3,11 @@
 import * as productServices from '../services/product_services.js';
 import { massage } from '../Utilites/helpers.js';
 
-<<<<<<< HEAD
 
-=======
 //thack the id in url
 if (!productServices.getProductId()) {
     window.location.href = '/index.html';
 }
->>>>>>> master
 
 //add to cart
 async function addToCart(qty, color, size) {
@@ -195,10 +192,6 @@ async function renderReview(productId, count = 4) {
     }
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 async function renderProduct(start, end) {
     try {
         const products = await productServices.getProductByCount(start, end);
