@@ -1,22 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="./css/output.css">
-    <link rel="stylesheet" href="./css/main.css">
-    <title> E-Commerce 🛒</title>
+
+    <title>E-Commerce 🛒</title>
 </head>
 
 <body>
-    <div id="toast-container" class="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 space-y-3 w-11/12 max-w-md">
+
+    <!-- Container for toast notifications -->
+    <div id="toast-container"
+        class="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 space-y-3 w-11/12 max-w-md">
     </div>
+
+    <!-- Dynamic header loaded via JavaScript -->
     <header id="header"></header>
+
+    <!-- Main content area (pages rendered here) -->
     <main id="content"></main>
+
+    <!-- Chatbot container -->
     <div id="chatbot"></div>
+
+    <!-- Dynamic footer loaded via JavaScript -->
     <footer id="footer"></footer>
+
     <script type="module" src="./js/main.js"></script>
 </body>
 
