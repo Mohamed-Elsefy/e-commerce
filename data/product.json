@@ -1,0 +1,206 @@
+[
+    {
+        "id": 1,
+        "name": "One Life Graphic T-shirt",
+        "price": 29.99,
+        "description": "A comfortable and stylish graphic T-shirt for men.",
+        "mainImage": "./assets/images/product/main.png",
+        "discount": 20,
+        "slides": [
+            "./assets/images/product/main.png",
+            "./assets/images/product/image1.png",
+            "./assets/images/product/image2.png"
+        ],
+        "colors": [
+            {
+                "name": "Black",
+                "code": "#000000"
+            },
+            {
+                "name": "Navy",
+                "code": "#31344F"
+            },
+            {
+                "name": "Red",
+                "code": "#FF0000"
+            }
+        ],
+        "sizes": [
+            {
+                "name": "S",
+                "stock": 10
+            },
+            {
+                "name": "M",
+                "stock": 20
+            },
+            {
+                "name": "L",
+                "stock": 15
+            },
+            {
+                "name": "XL",
+                "stock": 5
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "One Life Graphic T-shirt",
+        "price": 29.99,
+        "description": "A comfortable and stylish graphic T-shirt for men.",
+        "mainImage": "./assets/images/product/product1.png",
+        "discount": 0,
+        "slides": [
+            "./assets/images/product/product1.png",
+            "./assets/images/product/product2.png",
+            "./assets/images/product/product3.png"
+        ],
+        "colors": [
+            {
+                "name": "Black",
+                "code": "#000000"
+            },
+            {
+                "name": "White",
+                "code": "#FFFFFF"
+            },
+            {
+                "name": "Red",
+                "code": "#FF0000"
+            },
+            {
+                "name": "Blue",
+                "code": "#0000FF"
+            },
+            {
+                "name": "Green",
+                "code": "#00FF00"
+            }
+        ],
+        "sizes": [
+            {
+                "name": "S",
+                "stock": 10
+            },
+            {
+                "name": "M",
+                "stock": 20
+            },
+            {
+                "name": "L",
+                "stock": 15
+            },
+            {
+                "name": "XL",
+                "stock": 5
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "One Life Graphic T-shirt",
+        "price": 29.99,
+        "description": "A comfortable and stylish graphic T-shirt for men.",
+        "mainImage": "./assets/images/product/product2.png",
+        "discount": 0,
+        "slides": [
+            "./assets/images/product/product2.png",
+            "./assets/images/product/product3.png",
+            "./assets/images/product/product4.png"
+        ],
+        "colors": [
+            {
+                "name": "Black",
+                "code": "#000000"
+            },
+            {
+                "name": "White",
+                "code": "#FFFFFF"
+            },
+            {
+                "name": "Red",
+                "code": "#FF0000"
+            },
+            {
+                "name": "Blue",
+                "code": "#0000FF"
+            },
+            {
+                "name": "Green",
+                "code": "#00FF00"
+            }
+        ],
+        "sizes": [
+            {
+                "name": "S",
+                "stock": 10
+            },
+            {
+                "name": "M",
+                "stock": 20
+            },
+            {
+                "name": "L",
+                "stock": 15
+            },
+            {
+                "name": "XL",
+                "stock": 5
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "One Life Graphic T-shirt",
+        "price": 29.99,
+        "description": "A comfortable and stylish graphic T-shirt for men.",
+        "mainImage": "./assets/images/product/product3.png",
+        "discount": 20,
+        "slides": [
+            "./assets/images/product/product3.png",
+            "./assets/images/product/product4.png",
+            "./assets/images/product/product1.png"
+        ],
+        "colors": [
+            {
+                "name": "Black",
+                "code": "#000000"
+            },
+            {
+                "name": "White",
+                "code": "#FFFFFF"
+            },
+            {
+                "name": "Red",
+                "code": "#FF0000"
+            },
+            {
+                "name": "Blue",
+                "code": "#0000FF"
+            },
+            {
+                "name": "Green",
+                "code": "#00FF00"
+            }
+        ],
+        "sizes": [
+            {
+                "name": "S",
+                "stock": 10
+            },
+            {
+                "name": "M",
+                "stock": 20
+            },
+            {
+                "name": "L",
+                "stock": 15
+            },
+            {
+                "name": "XL",
+                "stock": 5
+            }
+        ]
+    }
+]
