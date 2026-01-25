@@ -1,0 +1,171 @@
+<section class="bg-white text-gray-900">
+    <!-- Product Section -->
+    <main class="container mx-auto px-4 py-6 md:py-10 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+
+        <!-- Product slider -->
+        <div class="flex flex-col-reverse md:flex-row gap-4">
+            <div class="flex md:flex-col gap-3 overflow-x-auto md:overflow-visible justify-between md:justify-start"
+                id="image-slider">
+
+            </div>
+
+            <!-- Main Image -->
+            <div class="flex-1 rounded-3xl overflow-hidden bg-[#F0EEED] relative group">
+                <img id="main-image" src="" alt="Product Image"
+                    class="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition duration-500">
+            </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="flex flex-col space-y-6">
+            <div>
+                <h1 class="text-3xl md:text-4xl font-extrabold uppercase leading-tight mb-2" id="product-name"></h1>
+
+                <!-- Rating -->
+                <div class="flex items-center space-x-2 text-yellow-400 mb-3">
+                    <div class="flex text-lg">★★★★/★</div>
+                    <span class="text-sm text-gray-600"><span class="font-medium text-black">4.5</span>/5</span>
+                </div>
+
+                <!-- Price -->
+                <div class="flex items-center space-x-3" id="product-price">
+                </div>
+            </div>
+
+            <p class="text-gray-600 leading-relaxed" id="product-description"></p>
+
+            <hr class="border-gray-200">
+
+            <!-- Colors -->
+            <div>
+                <h3 class="text-gray-500 text-sm mb-3">Select Colors</h3>
+                <div class="flex space-x-3" id="colors">
+                </div>
+            </div>
+
+            <hr class="border-gray-200">
+
+            <!-- Sizes -->
+            <div>
+                <h3 class="text-gray-500 text-sm mb-3">Choose Size</h3>
+                <div class="flex flex-wrap gap-3" id="sizes">
+                </div>
+            </div>
+
+            <hr class="border-gray-200">
+
+            <!-- Actions -->
+            <div class="flex space-x-4">
+                <!-- Quantity -->
+                <div class="flex items-center bg-[#F0F0F0] rounded-full px-4 py-3 space-x-4">
+                    <button id="qty-minus" class="text-xl hover:text-black text-gray-600 font-bold px-2">-</button>
+                    <span id="qty-val" class="font-medium">1</span>
+                    <button id="qty-plus" class="text-xl hover:text-black text-gray-600 font-bold px-2">+</button>
+                </div>
+
+                <!-- Add to Cart -->
+                <button
+                    class="flex-1 bg-black text-white rounded-full py-3 font-medium hover:bg-gray-800 transition shadow-lg transform active:scale-95">Add
+                    to Cart</button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Tabs Section -->
+    <section class="container mx-auto px-4 mt-12 md:mt-16">
+        <div class="flex justify-between md:justify-around border-b border-gray-200">
+            <button class="pb-4 text-gray-500 font-medium md:text-lg hover:text-black transition">Product
+                Details</button>
+            <button class="pb-4 border-b-2 border-black font-medium md:text-lg text-black transition">Rating &
+                Reviews</button>
+            <button class="pb-4 text-gray-500 font-medium md:text-lg hover:text-black transition">FAQs</button>
+        </div>
+
+        <!-- Reviews Header -->
+        <div class="flex items-center justify-between mt-8 mb-6">
+            <h3 class="text-xl md:text-2xl font-bold">All Reviews <span
+                    class="text-gray-500 text-base font-normal">(451)</span></h3>
+            <div class="flex items-center space-x-3">
+                <button
+                    class="bg-[#F0F0F0] hover:bg-gray-200 rounded-full w-10 h-10 flex items-center justify-center transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4">
+                        </path>
+                    </svg>
+                </button>
+                <button
+                    class="hidden md:flex bg-[#F0F0F0] hover:bg-gray-200 rounded-full px-4 py-2 font-medium transition items-center space-x-2">
+                    <span>Latest</span>
+
+                </button>
+                <button id="open-review-modal"
+                    class="bg-black text-white px-6 py-2 rounded-full font-medium hover:bg-gray-800 transition">Write
+                    a Review</button>
+            </div>
+        </div>
+
+        <!-- Reviews  -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6" id="review-container">
+        </div>
+
+        <div class="flex justify-center mt-8">
+            <button
+                class="border border-gray-300 bg-white text-black px-8 py-3 rounded-full font-medium hover:bg-black hover:text-white transition">Load
+                More Reviews</button>
+        </div>
+    </section>
+    <!-- You Might Also Like -->
+    <section class="container mx-auto px-4 mt-16 md:mt-24 mb-20">
+        <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-10 md:mb-14 uppercase">You Might Also Like</h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6" id="product-container">
+        </div>
+    </section>
+
+    <!-- Review Modal -->
+    <div id="review-modal" class="hidden fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-black/70">
+        <!-- Backdrop -->
+        <div class="absolute inset-0" id="modal-backdrop"></div>
+
+        <!-- Modal Content (No Height Limits) -->
+        <div class="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-10">
+            <div class="flex justify-between items-center mb-8">
+                <h3 class="text-3xl font-black uppercase">Add a Review</h3>
+                <button id="close-modal" class="text-4xl">&times;</button>
+            </div>
+
+            <form id="review-form">
+                <!-- Stars -->
+                <div class="mb-8">
+                    <label class="block text-sm font-bold text-gray-400 uppercase tracking-widest mb-3">Your
+                        Rating</label>
+                    <div id="star-rating" class="flex gap-3">
+                        <button type="button" class="star-btn text-5xl text-gray-200" data-rating="1">★</button>
+                        <button type="button" class="star-btn text-5xl text-gray-200" data-rating="2">★</button>
+                        <button type="button" class="star-btn text-5xl text-gray-200" data-rating="3">★</button>
+                        <button type="button" class="star-btn text-5xl text-gray-200" data-rating="4">★</button>
+                        <button type="button" class="star-btn text-5xl text-gray-200" data-rating="5">★</button>
+                    </div>
+                </div>
+
+                <!-- Comment -->
+                <div class="mb-4">
+                    <label for="review-comment"
+                        class="block text-sm font-bold text-gray-400 uppercase tracking-widest mb-3">Your
+                        Thoughts</label>
+                    <textarea id="review-comment" rows="4"
+                        class="w-full border-4 border-gray-100 rounded-2xl p-5 focus:border-black outline-none transition text-lg"
+                        placeholder="What's your experience?"></textarea>
+                </div>
+
+                <button type="button" id="cancel-review"
+                    class="w-full text-gray-400 font-bold uppercase tracking-widest py-4 hover:text-black transition">
+                    Maybe Later
+                </button>
+            </form>
+        </div>
+    </div>
+
+</section>
