@@ -1,17 +1,13 @@
 import { routes } from "./config/routes.js";
-import { initTheme } from './utilites/theme.js';
-import { renderAuthButtons } from './utilites/renderAuthButtons.js';
+import { initTheme } from './Utilites/theme.js';
+import { renderAuthButtons } from './Utilites/renderAuthButtons.js';
 
 // Reference to the currently loaded page script
 let currentScript;
 
 //Loads an HTML component into a specific element by ID
 async function loadComponent(id, file) {
-<<<<<<< HEAD
-    const res = await fetch(file);
-=======
     const res = await fetch(`${file}?t=${Date.now()}`);
->>>>>>> master
     const html = await res.text();
     document.getElementById(id).innerHTML = html;
 }
@@ -46,21 +42,14 @@ async function router() {
 
     // Hide layout elements on auth pages
     if (page === 'login' || page === 'register') {
-<<<<<<< HEAD
-        if (header) header.style.display = 'none';
-        if (footer) footer.style.display = 'none';
-        if (chatbot) chatbot.style.display = 'none';
-    } else {
-        if (header) header.style.display = 'block';
-        if (footer) footer.style.display = 'block';
-=======
+
         // if (header) header.style.display = 'none';
         // if (footer) footer.style.display = 'none';
         if (chatbot) chatbot.style.display = 'none';
     } else {
         // if (header) header.style.display = 'block';
         // if (footer) footer.style.display = 'block';
->>>>>>> master
+
         if (chatbot) chatbot.style.display = 'block';
     }
 
@@ -73,25 +62,15 @@ async function router() {
 }
 
 // Load header and initialize theme
-<<<<<<< HEAD
-loadComponent("header", "/html/header.html").then(() => {
-=======
+
 loadComponent("header", "html/header.html").then(() => {
->>>>>>> master
+    r
     initTheme();
     renderAuthButtons();
 });
 
 // Load footer
-<<<<<<< HEAD
-loadComponent("footer", "/html/footer.html");
 
-// Load chatbot only if not on auth pages
-if (getPage() !== 'login' && getPage() !== 'register') {
-    loadComponent("chatbot", "/html/chatbot.html").then(() => {
-        const script = document.createElement("script");
-        script.src = "/js/pages/chatbot.js?t=" + Date.now();
-=======
 loadComponent("footer", "html/footer.html");
 
 // Load chatbot only if not on auth pages
@@ -99,7 +78,6 @@ if (getPage() !== 'login' && getPage() !== 'register') {
     loadComponent("chatbot", "html/chatbot.html").then(() => {
         const script = document.createElement("script");
         script.src = "js/pages/chatbot.js?t=" + Date.now();
->>>>>>> master
         script.type = "module";
         document.body.appendChild(script);
     });
