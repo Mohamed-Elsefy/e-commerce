@@ -27,40 +27,27 @@
 :root {
     --bg: #fff;
     --onbg: #000;
-    --bgsecond: #E8E8E8;
+    --bgsecond: #dddddd;
 
     /* fonts */
     --fprim: 'Satoshi', sans-serif;
     --fsecond: 'Montserrat', sans-serif;
-
-    /* font sizes */
-    --fs64: 64px;
-    --fs48: 48px;
-    --fs40: 40px;
-    --fs32: 32px;
-    --fs24: 24px;
-    --fs20: 20px;
-    --fs16: 16px;
-    --fs14: 14px;
-
-    /* space */
-    --s100: 100px;
-    --s80: 80px;
-    --s72: 72px;
-    --s55: 55px;
-    --s40: 40px;
-    --s32: 32px;
-    --s24: 24px;
-    --s20: 20px;
-    --s15: 15px;
-    --s8: 8px;
 }
 
 .dark {
     --bg: #1C1C1C;
     --onbg: #fff;
-    --bgsecond: #292929;
+    --bgsecond: #474747;
 }
+
+/* theme setting */
+body {
+    background-color: var(--bg);
+    color: var(--onbg);
+    font-family: var(--fprim);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 
 /* Toast Notifications */
 #toast-container {
@@ -107,4 +94,10 @@
 #toast-container>div.bg-yellow-500 {
     background-color: #eab308 !important;
     opacity: 1 !important;
+}
+
+#eye-icon {
+    width: 20px;
+    text-align: center;
+    transition: all 0.2s ease;
 }

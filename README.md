@@ -24,8 +24,9 @@ Git & GitHub
 
 ecommerce-web/
 │
+├── index.html
+│
 ├── html/
-│   ├── index.html
 │   ├── products.html
 │   ├── product-details.html
 │   ├── cart.html

@@ -1,10 +1,10 @@
 export const routes = {
     home: {
-        html: "/html/pages/home.html",
+        html: "/html/home.html",
         js: "/js/pages/home.js",
     },
     products: {
-        html: "/html/pages/products.html",
+        html: "/html/products.html",
         js: "/js/pages/products.js",
     },
     product: {
