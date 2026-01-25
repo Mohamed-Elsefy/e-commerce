@@ -64,7 +64,6 @@ async function router() {
 // Load header and initialize theme
 
 loadComponent("header", "html/header.html").then(() => {
-    r
     initTheme();
     renderAuthButtons();
 });
