@@ -1,13 +1,13 @@
 import { routes } from "./config/routes.js";
-import { initTheme } from './utilites/theme.js';
-import { renderAuthButtons } from './utilites/renderAuthButtons.js';
+import { initTheme } from './Utilites/theme.js';
+import { renderAuthButtons } from './Utilites/renderAuthButtons.js';
 
 // Reference to the currently loaded page script
 let currentScript;
 
 //Loads an HTML component into a specific element by ID
 async function loadComponent(id, file) {
-    const res = await fetch(file);
+    const res = await fetch(`${file}?t=${Date.now()}`);
     const html = await res.text();
     document.getElementById(id).innerHTML = html;
 }
@@ -42,12 +42,14 @@ async function router() {
 
     // Hide layout elements on auth pages
     if (page === 'login' || page === 'register') {
-        if (header) header.style.display = 'none';
-        if (footer) footer.style.display = 'none';
+
+        // if (header) header.style.display = 'none';
+        // if (footer) footer.style.display = 'none';
         if (chatbot) chatbot.style.display = 'none';
     } else {
-        if (header) header.style.display = 'block';
-        if (footer) footer.style.display = 'block';
+        // if (header) header.style.display = 'block';
+        // if (footer) footer.style.display = 'block';
+
         if (chatbot) chatbot.style.display = 'block';
     }
 
@@ -60,19 +62,21 @@ async function router() {
 }
 
 // Load header and initialize theme
-loadComponent("header", "/html/header.html").then(() => {
+
+loadComponent("header", "html/header.html").then(() => {
     initTheme();
     renderAuthButtons();
 });
 
 // Load footer
-loadComponent("footer", "/html/footer.html");
+
+loadComponent("footer", "html/footer.html");
 
 // Load chatbot only if not on auth pages
 if (getPage() !== 'login' && getPage() !== 'register') {
-    loadComponent("chatbot", "/html/chatbot.html").then(() => {
+    loadComponent("chatbot", "html/chatbot.html").then(() => {
         const script = document.createElement("script");
-        script.src = "/js/pages/chatbot.js?t=" + Date.now();
+        script.src = "js/pages/chatbot.js?t=" + Date.now();
         script.type = "module";
         document.body.appendChild(script);
     });

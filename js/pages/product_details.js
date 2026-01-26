@@ -4,6 +4,10 @@ import * as productServices from '../services/product_services.js';
 import { massage } from '../Utilites/helpers.js';
 
 
+//thack the id in url
+if (!productServices.getProductId()) {
+    window.location.href = '/index.html';
+}
 
 //add to cart
 async function addToCart(qty, color, size) {
