@@ -6,7 +6,13 @@ const closeChat = document.getElementById('closeChat');
 const openChat = document.getElementById('openChat');
 
 function toggleChat() {
-    chatbot.classList.toggle('hidden');
+    if (chatbot.classList.contains('hidden')) {
+        chatbot.classList.remove('hidden');
+        chatbot.classList.add('flex');
+    } else {
+        chatbot.classList.remove('flex');
+        chatbot.classList.add('hidden');
+    }
 }
 
 closeChat.addEventListener('click', toggleChat);

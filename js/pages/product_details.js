@@ -2,6 +2,9 @@
 // get all products
 import * as productServices from '../services/product_services.js';
 import { massage } from '../Utilites/helpers.js';
+import { getCurrentUser } from '../services/auth_services.js';
+
+const currentUser = getCurrentUser();
 
 
 //thack the id in url
@@ -24,6 +27,11 @@ async function addToCart(qty, color, size) {
         color: color,
         size: size
     }
+    if (currentUser) {
+        productCart.userEmail = currentUser.email
+    } else {
+        productCart.userEmail = 'guest'
+    }
 
     if (cart.find(p => p.productId == productId)) {
         massage('Product already in cart', 'error');
@@ -35,13 +43,31 @@ async function addToCart(qty, color, size) {
 }
 
 
-const addToCartBtn = document.querySelector('button.bg-black.text-white.rounded-full.flex-1');
+// DOM Elements
+const qtyMinus = document.getElementById('qty-minus');
+const qtyPlus = document.getElementById('qty-plus');
+const qtyVal = document.getElementById('qty-val');
+const addToCartBtn = document.getElementById('add-to-cart');
+const reviewModal = document.getElementById('review-modal');
+const reviewBtn = document.getElementById('open-review-modal');
+const closeReviewModal = document.getElementById('close-modal');
+const starBtns = document.querySelectorAll('.star-btn');
+const reviewComment = document.getElementById('review-comment');
+const cancelReview = document.getElementById('cancel-review');
+const submitReview = document.getElementById('submit-review');
+const countReviews = document.getElementById('reviews-count');
 
+
+//get reviews count
+const reviewsCount = await productServices.countReviews(productServices.getProductId());
+countReviews.innerText = `(${reviewsCount})`;
+// Add to Cart Logic
 if (addToCartBtn) {
     addToCartBtn.addEventListener('click', () => {
-        const qty = parseInt(qtyVal.innerText);
+        const qty = qtyVal ? parseInt(qtyVal.innerText) : 1;
         let color = document.querySelector('.color-option.selected');
         let size = document.querySelector('.size-option.selected');
+
         if (!color) {
             massage('Please select a color', 'error');
             return;
@@ -50,7 +76,8 @@ if (addToCartBtn) {
             massage('Please select a size', 'error');
             return;
         }
-        addToCart(qty, color.attributes['data-color'].value, size.innerText);
+
+        addToCart(qty, color.getAttribute('data-color'), size.innerText);
     });
 }
 
@@ -157,6 +184,7 @@ loadMoreReviews.addEventListener('click', () => {
 renderProduct(0, 4);
 
 
+
 async function renderReview(productId, count = 4) {
     if (!productId) productId = productServices.getProductId();
     try {
@@ -189,7 +217,7 @@ async function renderReview(productId, count = 4) {
                     </svg>
                 </div>
                 <p class="text-gray-600 mb-4 text-sm md:text-base leading-relaxed">"${review.comment}"</p>
-                <p class="text-gray-500 text-sm font-medium">Posted on August 14, 2023</p>
+                <p class="text-gray-500 text-sm font-medium">Posted on February 5, 2026</p>
             </div>
             `);
         });
@@ -200,7 +228,7 @@ async function renderReview(productId, count = 4) {
 
 async function renderProduct(start, end) {
     try {
-        const products = await productServices.getProductByCount(start, end);
+        // const products = await productServices.getProductByCount(start, end);
         const productContainer = document.getElementById('product-container');
 
         if (!productContainer) {
@@ -209,7 +237,8 @@ async function renderProduct(start, end) {
         }
 
         if (productContainer.children.length > 0) return;
-
+        const category = await productServices.getCategory(productServices.getProductId());
+        const products = await productServices.getProductsByCategory(category, start, end);
         products.forEach(product => {
             productContainer.insertAdjacentHTML('beforeend', `<a href="index.html#product?id=${product.id}">
             <div class="group cursor-pointer">
@@ -237,10 +266,6 @@ async function renderProduct(start, end) {
 
 
 // Quantity Selector
-const qtyMinus = document.getElementById('qty-minus');
-const qtyPlus = document.getElementById('qty-plus');
-const qtyVal = document.getElementById('qty-val');
-
 if (qtyMinus && qtyPlus && qtyVal) {
     qtyMinus.addEventListener('click', () => {
         let val = parseInt(qtyVal.innerText);
@@ -255,29 +280,25 @@ if (qtyMinus && qtyPlus && qtyVal) {
 
 
 // Review Modal
-const reviewModal = document.getElementById('review-modal');
-const reviewBtn = document.getElementById('open-review-modal');
-const closeReviewModal = document.getElementById('close-modal');
-
-if (reviewBtn && closeReviewModal) {
+if (reviewBtn && closeReviewModal && reviewModal) {
     reviewBtn.addEventListener('click', () => {
         reviewModal.classList.toggle('hidden');
+        reviewModal.style.display = reviewModal.classList.contains('hidden') ? 'none' : 'flex';
     });
 
     closeReviewModal.addEventListener('click', () => {
         reviewModal.classList.add('hidden');
+        reviewModal.style.display = 'none';
     });
 }
 
 // Star Rating
-const starBtns = document.querySelectorAll('.star-btn');
 let selectedRating = 0;
-
-if (starBtns) {
+if (starBtns.length > 0) {
     starBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             selectedRating = parseInt(btn.dataset.rating);
-            starBtns.forEach(btn => btn.classList.remove('text-yellow-400'));
+            starBtns.forEach(b => b.classList.remove('text-yellow-400'));
             for (let i = 0; i < selectedRating; i++) {
                 starBtns[i].classList.add('text-yellow-400');
             }
@@ -285,33 +306,48 @@ if (starBtns) {
     });
 }
 
-// Add Review
-const reviewComment = document.getElementById('review-comment');
-const cancelReview = document.getElementById('cancel-review');
-const submitReview = document.getElementById('submit-review');
+// Add Review logic
+if (submitReview && cancelReview && reviewComment) {
+    submitReview.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (selectedRating === 0) {
+            massage('Please select a rating', 'error');
+            return;
+        }
+        if (!reviewComment.value.trim()) {
+            massage('Please enter a comment', 'error');
+            return;
+        }
+        if (!currentUser) {
+            massage('Please login to add a review', 'error');
+            return;
+        }
+        const review = {
+            name: currentUser.fullName,
+            rating: selectedRating,
+            comment: reviewComment.value,
+            productId: productServices.getProductId(),
+            createdAt: new Date().toISOString(),
+        };
+        productServices.addReview(review);
+        if (reviewModal) {
+            reviewModal.classList.add('hidden');
+            reviewModal.style.display = 'none';
+        }
+        reviewComment.value = '';
+        // Refresh reviews
+        renderReview(productServices.getProductId(), 4);
+        // Reset stars
+        selectedRating = 0;
+        starBtns.forEach(btn => btn.classList.remove('text-yellow-400'));
+        massage('Review added successfully', 'success');
+    });
 
-//if (reviewComment && cancelReview && submitReview) {
-submitReview.addEventListener('click', (e) => {
-    e.preventDefault();
-    const review = {
-        name: 'John Doe',
-        rating: selectedRating,
-        comment: reviewComment.value,
-        productId: productServices.getProductId(),
-        createdAt: new Date().toISOString(),
-    };
-    productServices.addReview(review);
-    reviewModal.classList.add('hidden');
-    reviewComment.value = '';
-    // Refresh reviews
-    renderReview(productServices.getProductId(), 4);
-    // Reset stars
-    selectedRating = 0;
-    starBtns.forEach(btn => btn.classList.remove('text-yellow-400'));
-});
-
-cancelReview.addEventListener('click', () => {
-    reviewModal.classList.add('hidden');
-    reviewComment.value = '';
-});
-//}
+    cancelReview.addEventListener('click', () => {
+        if (reviewModal) {
+            reviewModal.classList.add('hidden');
+            reviewModal.style.display = 'none';
+        }
+        reviewComment.value = '';
+    });
+}

@@ -42,7 +42,8 @@
                 "name": "XL",
                 "stock": 5
             }
-        ]
+        ],
+        "category": "T-shirt"
     },
     {
         "id": 2,
@@ -95,7 +96,8 @@
                 "name": "XL",
                 "stock": 5
             }
-        ]
+        ],
+        "category": "T-shirt"
     },
     {
         "id": 3,
@@ -148,7 +150,8 @@
                 "name": "XL",
                 "stock": 5
             }
-        ]
+        ],
+        "category": "T-shirt"
     },
     {
         "id": 4,
@@ -201,6 +204,61 @@
                 "name": "XL",
                 "stock": 5
             }
-        ]
+        ],
+        "category": "T-shirt"
+    },
+    {
+        "id": 5,
+        "name": "One Life Graphic Jacket",
+        "price": 29.99,
+        "description": "A comfortable and stylish graphic Jacket for men.",
+        "mainImage": "./assets/images/product/product3.png",
+        "discount": 20,
+        "slides": [
+            "./assets/images/product/product3.png",
+            "./assets/images/product/product4.png",
+            "./assets/images/product/product1.png"
+        ],
+        "colors": [
+            {
+                "name": "Black",
+                "code": "#000000"
+            },
+            {
+                "name": "White",
+                "code": "#FFFFFF"
+            },
+            {
+                "name": "Red",
+                "code": "#FF0000"
+            },
+            {
+                "name": "Blue",
+                "code": "#0000FF"
+            },
+            {
+                "name": "Green",
+                "code": "#00FF00"
+            }
+        ],
+        "sizes": [
+            {
+                "name": "S",
+                "stock": 10
+            },
+            {
+                "name": "M",
+                "stock": 20
+            },
+            {
+                "name": "L",
+                "stock": 15
+            },
+            {
+                "name": "XL",
+                "stock": 5
+            }
+        ],
+        "category": "Jacket"
     }
 ]
