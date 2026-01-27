@@ -1,6 +1,7 @@
 import { routes } from "./config/routes.js";
 import { initTheme } from './Utilites/theme.js';
 import { renderAuthButtons } from './Utilites/renderAuthButtons.js';
+import * as authService from './services/auth_services.js';
 
 // Reference to the currently loaded page script
 let currentScript;
@@ -33,6 +34,15 @@ function getPage() {
 // Handles page navigation and layout visibility
 async function router() {
     const page = getPage();
+
+    // Redirect based on authentication status
+    if (authService.isAuthenticated()) {
+        if (page === 'login' || page === 'register') {
+            window.location.hash = '#home';
+            return;
+        }
+    }
+
     const route = routes[page] || routes.home;
 
     // Elements that should be hidden on login/register pages
