@@ -1,131 +1,172 @@
-<section class="bg-white text-gray-900">
-    <!-- Product Section -->
+<!-- Main product page section -->
+<section class="bg-(--bg) text-(--onbg) font-(family-name:--fprime) transition-colors duration-300">
+
+    <!-- Main content container: product gallery + product details -->
     <main class="container mx-auto px-4 py-6 md:py-10 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
 
-        <!-- Product slider -->
+        <!-- Product images area -->
         <div class="flex flex-col-reverse md:flex-row gap-4">
+
+            <!-- Thumbnail images slider (filled dynamically with JS) -->
             <div class="flex md:flex-col gap-3 overflow-x-auto md:overflow-visible justify-between md:justify-start"
                 id="image-slider">
-
+                <!-- Thumbnails will be injected here -->
             </div>
 
-            <!-- Main Image -->
-            <div class="flex-1 rounded-3xl overflow-hidden bg-[#F0EEED] relative group">
+            <!-- Main product image -->
+            <div class="flex-1 rounded-3xl overflow-hidden bg-(--bgsecond) relative group border border-(--onbg)/5">
                 <img id="main-image" src="" alt="Product Image"
-                    class="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition duration-500">
+                    class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
             </div>
         </div>
 
-        <!-- Product Info -->
+        <!-- Product information and actions -->
         <div class="flex flex-col space-y-6">
-            <div>
-                <h1 class="text-3xl md:text-4xl font-extrabold uppercase leading-tight mb-2" id="product-name"></h1>
 
-                <!-- Rating -->
-                <div class="flex items-center space-x-2 text-yellow-400 mb-3">
+            <!-- Product title, rating, and price -->
+            <div>
+                <!-- Product name (set dynamically) -->
+                <h1 id="product-name"
+                    class="text-3xl md:text-4xl font-extrabold uppercase leading-tight mb-2 font-(family-name:--fsecond)">
+                </h1>
+
+                <!-- Static rating display -->
+                <div class="flex items-center space-x-2 text-yellow-500 mb-3">
                     <div class="flex text-lg">★★★★/★</div>
-                    <span class="text-sm text-gray-600"><span class="font-medium text-black">4.5</span>/5</span>
+                    <span class="text-sm opacity-70">
+                        <span class="font-medium text-(--onbg)">4.5</span>/5
+                    </span>
                 </div>
 
-                <!-- Price -->
+                <!-- Product price container (supports discounts / variations) -->
                 <div class="flex items-center space-x-3" id="product-price">
+                    <!-- Price injected by JS -->
                 </div>
             </div>
 
-            <p class="text-gray-600 leading-relaxed" id="product-description"></p>
+            <!-- Product description -->
+            <p id="product-description" class="text-(--onbg) opacity-70 leading-relaxed">
+            </p>
 
-            <hr class="border-gray-200">
+            <hr class="border-(--onbg)/10">
 
-            <!-- Colors -->
+            <!-- Color selection -->
             <div>
-                <h3 class="text-gray-500 text-sm mb-3">Select Colors</h3>
+                <h3 class="text-(--onbg) opacity-50 text-sm mb-3 font-bold uppercase tracking-wider">
+                    Select Colors
+                </h3>
+
+                <!-- Available colors rendered dynamically -->
                 <div class="flex space-x-3" id="colors">
                 </div>
             </div>
 
-            <hr class="border-gray-200">
+            <hr class="border-(--onbg)/10">
 
-            <!-- Sizes -->
+            <!-- Size selection -->
             <div>
-                <h3 class="text-gray-500 text-sm mb-3">Choose Size</h3>
+                <h3 class="text-(--onbg) opacity-50 text-sm mb-3 font-bold uppercase tracking-wider">
+                    Choose Size
+                </h3>
+
+                <!-- Available sizes rendered dynamically -->
                 <div class="flex flex-wrap gap-3" id="sizes">
                 </div>
             </div>
 
-            <hr class="border-gray-200">
+            <hr class="border-(--onbg)/10">
 
-            <!-- Actions -->
+            <!-- Quantity selector and Add to Cart button -->
             <div class="flex space-x-4">
-                <!-- Quantity -->
-                <div class="flex items-center bg-[#F0F0F0] rounded-full px-4 py-3 space-x-4">
-                    <button id="qty-minus" class="text-xl hover:text-black text-gray-600 font-bold px-2">-</button>
-                    <span id="qty-val" class="font-medium">1</span>
-                    <button id="qty-plus" class="text-xl hover:text-black text-gray-600 font-bold px-2">+</button>
+
+                <!-- Quantity control -->
+                <div
+                    class="flex items-center bg-(--bgsecond) rounded-full px-4 py-3 space-x-4 border border-(--onbg)/5">
+                    <button id="qty-minus"
+                        class="text-xl hover:text-(--onbg) opacity-60 hover:opacity-100 transition font-bold px-2">
+                        -
+                    </button>
+
+                    <!-- Current quantity value -->
+                    <span id="qty-val" class="font-bold min-w-5 text-center">1</span>
+
+                    <button id="qty-plus"
+                        class="text-xl hover:text-(--onbg) opacity-60 hover:opacity-100 transition font-bold px-2">
+                        +
+                    </button>
                 </div>
 
-                <!-- Add to Cart -->
-                <button
-                    class="flex-1 bg-black text-white rounded-full py-3 font-medium hover:bg-gray-800 transition shadow-lg transform active:scale-95">Add
-                    to Cart</button>
+                <!-- Add product to cart -->
+                <button id="add-to-cart"
+                    class="flex-1 bg-(--onbg) text-(--bg) rounded-full py-4 font-bold hover:opacity-90 transition shadow-lg transform active:scale-95 uppercase tracking-wide">
+                    Add to Cart
+                </button>
             </div>
         </div>
-
     </main>
 
-    <!-- Tabs Section -->
+    <!-- Reviews and tabs section -->
     <section class="container mx-auto px-4 mt-12 md:mt-16">
-        <div class="flex justify-between md:justify-around border-b border-gray-200">
-            <button class="pb-4 text-gray-500 font-medium md:text-lg hover:text-black transition">Product
-                Details</button>
-            <button class="pb-4 border-b-2 border-black font-medium md:text-lg text-black transition">Rating &
-                Reviews</button>
-            <button class="pb-4 text-gray-500 font-medium md:text-lg hover:text-black transition">FAQs</button>
+
+        <!-- Tabs navigation -->
+        <div class="flex justify-between md:justify-around border-b border-(--onbg)/10">
+            <button class="pb-4 border-b-2 border-(--onbg) font-bold md:text-lg text-(--onbg) transition">
+                Rating & Reviews
+            </button>
         </div>
 
-        <!-- Reviews Header -->
+        <!-- Reviews header and actions -->
         <div class="flex items-center justify-between mt-8 mb-6">
-            <h3 class="text-xl md:text-2xl font-bold">All Reviews <span
-                    class="text-gray-500 text-base font-normal">(451)</span></h3>
-            <div class="flex items-center space-x-3">
-                <button
-                    class="bg-[#F0F0F0] hover:bg-gray-200 rounded-full w-10 h-10 flex items-center justify-center transition">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4">
-                        </path>
-                    </svg>
-                </button>
-                <button
-                    class="hidden md:flex bg-[#F0F0F0] hover:bg-gray-200 rounded-full px-4 py-2 font-medium transition items-center space-x-2">
-                    <span>Latest</span>
+            <h3 class="text-xl md:text-2xl font-bold font-(family-name:--fsecond)">
+                All Reviews
+                <span id="reviews-count" class="opacity-40 text-base font-normal">(451)</span>
+            </h3>
 
+            <!-- Review filters and actions -->
+            <div class="flex items-center space-x-3">
+                <!-- Filter icon -->
+                <button
+                    class="bg-(--bgsecond) hover:bg-(--onbg)/10 rounded-full w-10 h-10 flex items-center justify-center transition border border-(--onbg)/5">
+                    <i class="fa-solid fa-sliders"></i>
                 </button>
+
+
+
+                <!-- Write review button -->
                 <button id="open-review-modal"
-                    class="bg-black text-white px-6 py-2 rounded-full font-medium hover:bg-gray-800 transition">Write
+                    class="bg-(--onbg) text-(--bg) px-6 py-2 rounded-full font-bold hover:bg-gray-800 transition">Write
                     a Review</button>
             </div>
         </div>
 
-        <!-- Reviews  -->
+        <!-- Reviews list -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6" id="review-container">
+            <!-- Reviews injected dynamically -->
         </div>
 
         <div class="flex justify-center mt-8">
-            <button
-                class="border border-gray-300 bg-white text-black px-8 py-3 rounded-full font-medium hover:bg-black hover:text-white transition">Load
-                More Reviews</button>
+            <button id="load_more"
+                class="border border-(--onbg)/20 bg-(--bg) text-(--onbg) px-10 py-3 rounded-full font-bold hover:bg-(--onbg) hover:text-(--bg) transition-all duration-300">
+                Load More Reviews
+            </button>
         </div>
     </section>
-    <!-- You Might Also Like -->
-    <section class="container mx-auto px-4 mt-16 md:mt-24 mb-20">
-        <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-10 md:mb-14 uppercase">You Might Also Like</h2>
 
+    <!-- Related products section -->
+    <section class="container mx-auto px-4 mt-16 md:mt-24 mb-20">
+        <h2
+            class="text-3xl md:text-5xl font-extrabold text-center mb-10 md:mb-14 uppercase font-(family-name:--fsecond)">
+            You Might Also Like
+        </h2>
+
+        <!-- Related products grid -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6" id="product-container">
+            <!-- Products injected dynamically -->
         </div>
     </section>
 
     <!-- Review Modal -->
-    <div id="review-modal" class="hidden fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-black/70">
+    <div id="review-modal" class="hidden fixed inset-0 z-1000 items-center justify-center p-4 bg-black/70">
         <!-- Backdrop -->
         <div class="absolute inset-0" id="modal-backdrop"></div>
 
@@ -163,6 +204,10 @@
                 <button type="button" id="cancel-review"
                     class="w-full text-gray-400 font-bold uppercase tracking-widest py-4 hover:text-black transition">
                     Maybe Later
+                </button>
+                <button type="submit" id="submit-review"
+                    class="w-full bg-black text-white font-bold uppercase rounded-full tracking-widest py-4 hover:bg-gray-800 transition">
+                    Submit Review
                 </button>
             </form>
         </div>
