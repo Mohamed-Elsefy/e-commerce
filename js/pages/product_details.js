@@ -144,8 +144,15 @@ async function currentProduct() {
 currentProduct();
 
 // Pass dynamic ID
-renderReview(productServices.getProductId(), 4);
+renderReview(productServices.getProductId(), 2);
 
+// Load more reviews
+const loadMoreReviews = document.getElementById('load_more');
+loadMoreReviews.addEventListener('click', () => {
+    renderReview(productServices.getProductId(), 4);
+    loadMoreReviews.classList.add('hidden');
+
+});
 // Bottom products display
 renderProduct(0, 4);
 
@@ -160,13 +167,12 @@ async function renderReview(productId, count = 4) {
             return;
         }
 
-        if (reviewContainer.innerText.trim().length > 0) return;
-
         if (!reviews || reviews.length == 0) {
             reviewContainer.innerHTML = '<p class="text-gray-500">No reviews yet.</p>';
             return;
         }
 
+        reviewContainer.innerHTML = '';
         reviews.slice(0, count).forEach(review => {
             reviewContainer.insertAdjacentHTML('beforeend', `
             <div class="border border-gray-200 rounded-3xl p-6 md:p-8">
@@ -246,3 +252,66 @@ if (qtyMinus && qtyPlus && qtyVal) {
         qtyVal.innerText = val + 1;
     });
 }
+
+
+// Review Modal
+const reviewModal = document.getElementById('review-modal');
+const reviewBtn = document.getElementById('open-review-modal');
+const closeReviewModal = document.getElementById('close-modal');
+
+if (reviewBtn && closeReviewModal) {
+    reviewBtn.addEventListener('click', () => {
+        reviewModal.classList.toggle('hidden');
+    });
+
+    closeReviewModal.addEventListener('click', () => {
+        reviewModal.classList.add('hidden');
+    });
+}
+
+// Star Rating
+const starBtns = document.querySelectorAll('.star-btn');
+let selectedRating = 0;
+
+if (starBtns) {
+    starBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            selectedRating = parseInt(btn.dataset.rating);
+            starBtns.forEach(btn => btn.classList.remove('text-yellow-400'));
+            for (let i = 0; i < selectedRating; i++) {
+                starBtns[i].classList.add('text-yellow-400');
+            }
+        });
+    });
+}
+
+// Add Review
+const reviewComment = document.getElementById('review-comment');
+const cancelReview = document.getElementById('cancel-review');
+const submitReview = document.getElementById('submit-review');
+
+//if (reviewComment && cancelReview && submitReview) {
+submitReview.addEventListener('click', (e) => {
+    e.preventDefault();
+    const review = {
+        name: 'John Doe',
+        rating: selectedRating,
+        comment: reviewComment.value,
+        productId: productServices.getProductId(),
+        createdAt: new Date().toISOString(),
+    };
+    productServices.addReview(review);
+    reviewModal.classList.add('hidden');
+    reviewComment.value = '';
+    // Refresh reviews
+    renderReview(productServices.getProductId(), 4);
+    // Reset stars
+    selectedRating = 0;
+    starBtns.forEach(btn => btn.classList.remove('text-yellow-400'));
+});
+
+cancelReview.addEventListener('click', () => {
+    reviewModal.classList.add('hidden');
+    reviewComment.value = '';
+});
+//}

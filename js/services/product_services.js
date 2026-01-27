@@ -14,8 +14,12 @@ export async function getProductById(id) {
 // get all reviews
 export async function getAllReviews() {
     const response = await fetch(`./data/reviews.json`)
-    const reviews = await response.json()
-    return reviews
+    const fileReviews = await response.json()
+    let localReviews = JSON.parse(localStorage.getItem('reviews') || '[]')
+    if (!Array.isArray(localReviews)) {
+        localReviews = [];
+    }
+    return [...fileReviews, ...localReviews]
 }
 // get product by count
 export async function getProductByCount(start, end) {
@@ -50,4 +54,14 @@ export async function getCart() {
 export function getProductId() {
     const hash = location.hash.split('?')[1];
     return new URLSearchParams(hash).get('id');
+}
+
+//add review
+export function addReview(review) {
+    let reviews = JSON.parse(localStorage.getItem('reviews') || '[]');
+    if (!Array.isArray(reviews)) {
+        reviews = [];
+    }
+    reviews.push(review);
+    localStorage.setItem('reviews', JSON.stringify(reviews));
 }
