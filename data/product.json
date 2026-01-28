@@ -1,208 +1,831 @@
 [
     {
-        "id": 1,
-        "name": "One Life Graphic T-shirt",
-        "price": 29.99,
-        "description": "A comfortable and stylish graphic T-shirt for men.",
-        "mainImage": "./assets/images/product/main.png",
-        "discount": 20,
-        "slides": [
-            "./assets/images/product/main.png",
-            "./assets/images/product/image1.png",
-            "./assets/images/product/image2.png"
-        ],
-        "colors": [
-            {
-                "name": "Black",
-                "code": "#000000"
-            },
-            {
-                "name": "Navy",
-                "code": "#31344F"
-            },
-            {
-                "name": "Red",
-                "code": "#FF0000"
-            }
+        "id": 101,
+        "name": "Basic White T-Shirt",
+        "slug": "basic-white-t-shirt",
+        "description": "Basic cotton T-shirt for everyday wear",
+        "categoryId": 1,
+        "price": 299,
+        "discountPercentage": 17,
+        "mainImage": "assets\\images\\product\\Basic White T-Shirt.jpg",
+        "images": [
+            "assets\\images\\product\\Basic White T-Shirt1.jpeg",
+            "assets\\images\\product\\Basic White T-Shirt2.jpeg"
         ],
         "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "style": "casual",
+        "rating": 4.5,
+        "stock": 50,
+        "isActive": true,
+        "reviews": [
             {
-                "name": "S",
-                "stock": 10
+                "id": 1,
+                "productId": 101,
+                "userName": "Ahmed",
+                "rating": 4,
+                "comment": "Very good quality",
+                "createdAt": "2026-01-22T14:30:00Z"
             },
             {
-                "name": "M",
-                "stock": 20
+                "id": 2,
+                "productId": 101,
+                "userName": "Mohamed",
+                "rating": 5,
+                "comment": "Perfect fit and comfortable",
+                "createdAt": "2026-01-20T10:15:00Z"
             },
             {
-                "name": "L",
-                "stock": 15
-            },
-            {
-                "name": "XL",
-                "stock": 5
+                "id": 3,
+                "productId": 101,
+                "userName": "Youssef",
+                "rating": 4,
+                "comment": "Good value for money",
+                "createdAt": "2026-01-18T16:45:00Z"
             }
         ],
         "category": "T-shirt"
     },
     {
-        "id": 2,
-        "name": "One Life Graphic T-shirt",
-        "price": 29.99,
-        "description": "A comfortable and stylish graphic T-shirt for men.",
-        "mainImage": "./assets/images/product/product1.png",
-        "discount": 0,
-        "slides": [
-            "./assets/images/product/product1.png",
-            "./assets/images/product/product2.png",
-            "./assets/images/product/product3.png"
-        ],
-        "colors": [
-            {
-                "name": "Black",
-                "code": "#000000"
-            },
-            {
-                "name": "White",
-                "code": "#FFFFFF"
-            },
-            {
-                "name": "Red",
-                "code": "#FF0000"
-            },
-            {
-                "name": "Blue",
-                "code": "#0000FF"
-            },
-            {
-                "name": "Green",
-                "code": "#00FF00"
-            }
+        "id": 102,
+        "name": "TEXTURE SS T-SHIRT-BLACK",
+        "slug": "black-cotton-tshirt",
+        "description": "Crafted from textured-knit cotton, this T-shirt offers a refined take on a wardrobe staple. Designed for a regular fit, it features ribbed detailing at the cuffs, collar, and hem. The ribbed crew neck is accented with yarn-dyed stripes, adding interest to your casual outfits. The look is finished with an embroidered GANT logo on the left chest for a signature touch.",
+        "categoryId": 1,
+        "price": 319,
+        "discountPercentage": 13,
+        "mainImage": "../assets/images/product/TEXTURE SS T-SHIRT-BLACK.webp",
+        "images": [
+            "../assets/images/product/TEXTURE SS T-SHIRT-BLACK1.webp",
+            "../assets/images/product/TEXTURE SS T-SHIRT-BLACK2.webp",
+            "../assets/images/product/TEXTURE SS T-SHIRT-BLACK3.webp"
         ],
         "sizes": [
+            "M",
+            "L",
+            "XL"
+        ],
+        "style": "casual",
+        "rating": 4.4,
+        "stock": 40,
+        "isActive": true,
+        "reviews": [
             {
-                "name": "S",
-                "stock": 10
+                "id": 4,
+                "productId": 102,
+                "userName": "Omar",
+                "rating": 5,
+                "comment": "Excellent quality and design",
+                "createdAt": "2026-01-21T11:20:00Z"
             },
             {
-                "name": "M",
-                "stock": 20
-            },
-            {
-                "name": "L",
-                "stock": 15
-            },
-            {
-                "name": "XL",
-                "stock": 5
+                "id": 5,
+                "productId": 102,
+                "userName": "Khaled",
+                "rating": 4,
+                "comment": "Nice texture and comfortable",
+                "createdAt": "2026-01-19T09:30:00Z"
             }
         ],
         "category": "T-shirt"
     },
     {
-        "id": 3,
-        "name": "One Life Graphic T-shirt",
-        "price": 29.99,
-        "description": "A comfortable and stylish graphic T-shirt for men.",
-        "mainImage": "./assets/images/product/product2.png",
-        "discount": 0,
-        "slides": [
-            "./assets/images/product/product2.png",
-            "./assets/images/product/product3.png",
-            "./assets/images/product/product4.png"
-        ],
-        "colors": [
-            {
-                "name": "Black",
-                "code": "#000000"
-            },
-            {
-                "name": "White",
-                "code": "#FFFFFF"
-            },
-            {
-                "name": "Red",
-                "code": "#FF0000"
-            },
-            {
-                "name": "Blue",
-                "code": "#0000FF"
-            },
-            {
-                "name": "Green",
-                "code": "#00FF00"
-            }
+        "id": 103,
+        "name": "Printed T-Shirt",
+        "slug": "printed-tshirt",
+        "description": "Modern printed T-shirt",
+        "categoryId": 1,
+        "price": 349,
+        "discountPercentage": 14,
+        "mainImage": "../assets/images/product/Printed T-Shirt.webp",
+        "images": [
+            "../assets/images/product/Printed T-Shirt1.webp",
+            "../assets/images/product/Printed T-Shirt2.webp",
+            "../assets/images/product/Printed T-Shirt3.webp"
         ],
         "sizes": [
+            "S",
+            "M",
+            "L"
+        ],
+        "style": "casual",
+        "rating": 4.3,
+        "stock": 35,
+        "isActive": true,
+        "reviews": [
             {
-                "name": "S",
-                "stock": 10
+                "id": 6,
+                "productId": 103,
+                "userName": "Ali",
+                "rating": 4,
+                "comment": "Nice design, good quality",
+                "createdAt": "2026-01-23T13:10:00Z"
             },
             {
-                "name": "M",
-                "stock": 20
-            },
-            {
-                "name": "L",
-                "stock": 15
-            },
-            {
-                "name": "XL",
-                "stock": 5
+                "id": 7,
+                "productId": 103,
+                "userName": "Hassan",
+                "rating": 3,
+                "comment": "Print quality could be better",
+                "createdAt": "2026-01-17T15:45:00Z"
             }
         ],
         "category": "T-shirt"
     },
     {
-        "id": 4,
-        "name": "One Life Graphic T-shirt",
-        "price": 29.99,
-        "description": "A comfortable and stylish graphic T-shirt for men.",
-        "mainImage": "./assets/images/product/product3.png",
-        "discount": 20,
-        "slides": [
-            "./assets/images/product/product3.png",
-            "./assets/images/product/product4.png",
-            "./assets/images/product/product1.png"
-        ],
-        "colors": [
-            {
-                "name": "Black",
-                "code": "#000000"
-            },
-            {
-                "name": "White",
-                "code": "#FFFFFF"
-            },
-            {
-                "name": "Red",
-                "code": "#FF0000"
-            },
-            {
-                "name": "Blue",
-                "code": "#0000FF"
-            },
-            {
-                "name": "Green",
-                "code": "#00FF00"
-            }
+        "id": 104,
+        "name": "Oversized T-Shirt",
+        "slug": "oversized-tshirt",
+        "description": "Oversized fit trendy T-shirt",
+        "categoryId": 1,
+        "price": 379,
+        "discountPercentage": 13,
+        "mainImage": "../assets/images/product/Oversized T-Shirt.avif",
+        "images": [
+            "../assets/images/product/Oversized T-Shirt1.avif",
+            "../assets/images/product/Oversized T-Shirt2.avif",
+            "../assets/images/product/Oversized T-Shirt3.avif"
         ],
         "sizes": [
+            "M",
+            "L",
+            "XL"
+        ],
+        "style": "street",
+        "rating": 4.6,
+        "stock": 30,
+        "isActive": true,
+        "reviews": [
             {
-                "name": "S",
-                "stock": 10
+                "id": 8,
+                "productId": 104,
+                "userName": "Amr",
+                "rating": 5,
+                "comment": "Perfect oversized fit, very trendy",
+                "createdAt": "2026-01-24T12:00:00Z"
             },
             {
-                "name": "M",
-                "stock": 20
+                "id": 9,
+                "productId": 104,
+                "userName": "Tarek",
+                "rating": 4,
+                "comment": "Comfortable for daily wear",
+                "createdAt": "2026-01-16T14:20:00Z"
+            }
+        ]
+    },
+    {
+        "id": 105,
+        "name": "V-Neck T-Shirt",
+        "slug": "v-neck-tshirt",
+        "description": "Classic V-neck T-shirt",
+        "categoryId": 1,
+        "price": 289,
+        "discountPercentage": 10,
+        "mainImage": "../assets/images/product/V-Neck T-Shirt.webp",
+        "images": [
+            "../assets/images/product/V-Neck T-Shirt1.webp",
+            "../assets/images/product/V-Neck T-Shirt2.webp",
+            "../assets/images/product/V-Neck T-Shirt3.webp"
+        ],
+        "sizes": [
+            "S",
+            "M",
+            "L"
+        ],
+        "style": "casual",
+        "rating": 4.2,
+        "stock": 45,
+        "isActive": true,
+        "reviews": [
+            {
+                "id": 10,
+                "productId": 105,
+                "userName": "Ramy",
+                "rating": 4,
+                "comment": "Good classic design",
+                "createdAt": "2026-01-22T10:30:00Z"
+            }
+        ]
+    },
+    {
+        "id": 106,
+        "name": "Striped T-Shirt",
+        "slug": "striped-tshirt",
+        "description": "Striped casual T-shirt",
+        "categoryId": 1,
+        "price": 359,
+        "discountPercentage": 11,
+        "mainImage": "assets\\images\\product\\Striped T-Shirt.webp",
+        "images": [
+            "assets\\images\\product\\Striped T-Shirt1.webp",
+            "assets\\images\\product\\Striped T-Shirt2.webp",
+            "assets\\images\\product\\Striped T-Shirt3.webp"
+        ],
+        "sizes": [
+            "M",
+            "L"
+        ],
+        "style": "casual",
+        "rating": 4.1,
+        "stock": 25,
+        "isActive": true,
+        "reviews": [
+            {
+                "id": 11,
+                "productId": 106,
+                "userName": "Sherif",
+                "rating": 4,
+                "comment": "Nice stripes, good material",
+                "createdAt": "2026-01-21T16:15:00Z"
             },
             {
-                "name": "L",
-                "stock": 15
+                "id": 12,
+                "productId": 106,
+                "userName": "Nader",
+                "rating": 3,
+                "comment": "Stripes could be more vibrant",
+                "createdAt": "2026-01-15T11:45:00Z"
+            }
+        ]
+    },
+    {
+        "id": 107,
+        "name": "Sport T-Shirt",
+        "slug": "sport-tshirt",
+        "description": "Breathable sport T-shirt",
+        "categoryId": 1,
+        "price": 399,
+        "discountPercentage": 13,
+        "mainImage": "../assets/images/product/Sport T-Shirt.webp",
+        "images": [
+            "../assets/images/product/Sport T-Shirt1.webp",
+            "../assets/images/product/Sport T-Shirt2.webp",
+            "../assets/images/product/Sport T-Shirt3.webp"
+        ],
+        "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "style": "sport",
+        "rating": 4.7,
+        "stock": 60,
+        "isActive": true,
+        "reviews": [
+            {
+                "id": 13,
+                "productId": 107,
+                "userName": "Karim",
+                "rating": 5,
+                "comment": "Excellent for sports, very breathable",
+                "createdAt": "2026-01-25T08:20:00Z"
             },
             {
-                "name": "XL",
-                "stock": 5
+                "id": 14,
+                "productId": 107,
+                "userName": "Wael",
+                "rating": 5,
+                "comment": "Best sport t-shirt I've owned",
+                "createdAt": "2026-01-19T17:30:00Z"
+            },
+            {
+                "id": 15,
+                "productId": 107,
+                "userName": "Hany",
+                "rating": 4,
+                "comment": "Good quality, dries quickly",
+                "createdAt": "2026-01-14T13:10:00Z"
+            }
+        ]
+    },
+    {
+        "id": 108,
+        "name": "Long Sleeve T-Shirt",
+        "slug": "long-sleeve-tshirt",
+        "description": "Long sleeve cotton T-shirt",
+        "categoryId": 1,
+        "price": 369,
+        "discountPercentage": 11,
+        "mainImage": "../assets/images/product/Long Sleeve T-Shirt.avif",
+        "images": [
+            "../assets/images/product/Long Sleeve T-Shirt1.avif",
+            "../assets/images/product/Long Sleeve T-Shirt2.avif",
+            "../assets/images/product/Long Sleeve T-Shirt3.avif"
+        ],
+        "sizes": [
+            "M",
+            "L",
+            "XL"
+        ],
+        "style": "casual",
+        "rating": 4.3,
+        "stock": 28,
+        "isActive": true,
+        "reviews": [
+            {
+                "id": 16,
+                "productId": 108,
+                "userName": "Fady",
+                "rating": 4,
+                "comment": "Perfect for cool weather",
+                "createdAt": "2026-01-23T09:45:00Z"
+            }
+        ]
+    },
+    {
+        "id": 109,
+        "name": "GRAPHIC T-SHIRT-EVENING BLUE",
+        "slug": "graphic-tshirt",
+        "description": "Graphic design T-shirt",
+        "categoryId": 1,
+        "price": 389,
+        "discountPercentage": 10,
+        "mainImage": "../assets/images/product/GRAPHIC T-SHIRT-EVENING BLUE.webp",
+        "images": [
+            "../assets/images/product/GRAPHIC T-SHIRT-EVENING BLUE1.webp"
+        ],
+        "sizes": [
+            "S",
+            "M",
+            "L"
+        ],
+        "style": "street",
+        "rating": 4.4,
+        "stock": 32,
+        "isActive": true,
+        "reviews": [
+            {
+                "id": 17,
+                "productId": 109,
+                "userName": "Bassem",
+                "rating": 5,
+                "comment": "Love the graphic design!",
+                "createdAt": "2026-01-24T15:20:00Z"
+            },
+            {
+                "id": 18,
+                "productId": 109,
+                "userName": "Hesham",
+                "rating": 4,
+                "comment": "Unique design, good quality",
+                "createdAt": "2026-01-18T12:10:00Z"
+            }
+        ]
+    },
+    {
+        "id": 110,
+        "name": "Cotton T-shirt Regular Fit",
+        "slug": "premium-cotton-tshirt",
+        "description": "T-shirt in soft cotton jersey. Regular Fit.",
+        "categoryId": 1,
+        "price": 429,
+        "discountPercentage": 12,
+        "mainImage": "../assets/images/product/Cotton T-shirt Regular Fit.avif",
+        "images": [
+            "../assets/images/product/Cotton T-shirt Regular Fit1.avif",
+            "../assets/images/product/Cotton T-shirt Regular Fit2.avif",
+            "../assets/images/product/Cotton T-shirt Regular Fit3.avif"
+        ],
+        "sizes": [
+            "M",
+            "L",
+            "XL"
+        ],
+        "style": "casual",
+        "rating": 4.8,
+        "stock": 20,
+        "isActive": true,
+        "reviews": [
+            {
+                "id": 19,
+                "productId": 110,
+                "userName": "Mostafa",
+                "rating": 5,
+                "comment": "Premium quality, worth every penny",
+                "createdAt": "2026-01-25T14:00:00Z"
+            },
+            {
+                "id": 20,
+                "productId": 110,
+                "userName": "Hamdy",
+                "rating": 5,
+                "comment": "Super soft and comfortable",
+                "createdAt": "2026-01-20T11:25:00Z"
+            },
+            {
+                "id": 21,
+                "productId": 110,
+                "userName": "Samir",
+                "rating": 4,
+                "comment": "Great fit and material",
+                "createdAt": "2026-01-16T09:15:00Z"
+            }
+        ]
+    },
+    {
+        "id": 201,
+        "name": "SLIM CLASSIC POPLIN SHIRT-WHITE",
+        "slug": "SLIM CLASSIC POPLIN SHIRT-WHITE",
+        "description": "Crafted in a durable poplin weave, this classic shirt is essential to any preppy wardrobe. Cut for a slim fit, it features a button-down collar, curved hem and an 80s-inspired GANT shield graphic embroidered at the chest.",
+        "categoryId": 2,
+        "price": 499,
+        "discountPercentage": 10,
+        "mainImage": "../assets/images/product/Slim Fit Easy-iron shirt.avif",
+        "images": [
+            "../assets/images/product/Slim Fit Easy-iron shirt1.avif",
+            "../assets/images/product/Slim Fit Easy-iron shirt2.avif",
+            "../assets/images/product/Slim Fit Easy-iron shirt3.avif"
+        ],
+        "sizes": [
+            "M",
+            "L",
+            "XL"
+        ],
+        "style": "formal",
+        "rating": 4.6,
+        "stock": 40,
+        "isActive": true,
+        "reviews": [
+            {
+                "id": 22,
+                "productId": 201,
+                "userName": "Ashraf",
+                "rating": 5,
+                "comment": "Perfect formal shirt",
+                "createdAt": "2026-01-22T16:40:00Z"
+            },
+            {
+                "id": 23,
+                "productId": 201,
+                "userName": "Magdy",
+                "rating": 4,
+                "comment": "Good quality fabric",
+                "createdAt": "2026-01-19T14:50:00Z"
+            }
+        ]
+    },
+    {
+        "id": 202,
+        "name": "Denim shirt",
+        "slug": "blue-denim-shirt",
+        "description": "Shirt in denim with a collar and press-studs down the front. Patch chest pockets with a flap and press-stud, a V-shaped yoke at the back and long sleeves with press-studs at the cuffs. Gently rounded hem.",
+        "categoryId": 2,
+        "price": 549,
+        "discountPercentage": 9,
+        "mainImage": "../assets/images/product/Denim shirt.avif",
+        "images": [
+            "../assets/images/product/Denim shirt1.avif",
+            "../assets/images/product/Denim shirt2.avif",
+            "../assets/images/product/Denim shirt3.avif"
+        ],
+        "sizes": [
+            "M",
+            "L"
+        ],
+        "style": "casual",
+        "rating": 4.4,
+        "stock": 30,
+        "isActive": true,
+        "reviews": [
+            {
+                "id": 24,
+                "productId": 202,
+                "userName": "Raafat",
+                "rating": 4,
+                "comment": "Great denim quality",
+                "createdAt": "2026-01-23T12:30:00Z"
+            }
+        ]
+    },
+    {
+        "id": 203,
+        "name": "Loose Fit Flannel shirt",
+        "slug": "Loose Fit Flannel shirt",
+        "description": "Shirt in soft cotton flannel with a turn-down collar, classic front, yoke at the back and an open chest pocket. Long sleeves with buttoned cuffs and a sleeve placket, and a gently rounded hem. Loose fit for a generous but not oversized silhouette.",
+        "categoryId": 2,
+        "price": 529,
+        "discountPercentage": 9,
+        "mainImage": "../assets/images/product/Loose Fit Flannel shirt.avif",
+        "images": [
+            "../assets/images/product/Loose Fit Flannel shirt1.avif",
+            "../assets/images/product/Loose Fit Flannel shirt2.avif",
+            "../assets/images/product/Loose Fit Flannel shirt3.avif"
+        ],
+        "sizes": [
+            "S",
+            "M",
+            "L"
+        ],
+        "style": "casual",
+        "rating": 4.3,
+        "stock": 35,
+        "isActive": true,
+        "reviews": [
+            {
+                "id": 25,
+                "productId": 203,
+                "userName": "Nagy",
+                "rating": 4,
+                "comment": "Very comfortable flannel",
+                "createdAt": "2026-01-24T10:20:00Z"
+            },
+            {
+                "id": 26,
+                "productId": 203,
+                "userName": "Sayed",
+                "rating": 3,
+                "comment": "Fit is too loose for me",
+                "createdAt": "2026-01-17T15:30:00Z"
+            }
+        ]
+    },
+    {
+        "id": 204,
+        "name": "Formal Black Shirt",
+        "slug": "formal-black-shirt",
+        "description": "Elegant black formal shirt",
+        "categoryId": 2,
+        "price": 579,
+        "discountPercentage": 9,
+        "mainImage": "../assets/images/product/Formal Black Shirt.avif",
+        "images": [
+            "../assets/images/product/Formal Black Shirt1.avif",
+            "../assets/images/product/Formal Black Shirt2.avif",
+            "../assets/images/product/Formal Black Shirt3.avif"
+        ],
+        "sizes": [
+            "M",
+            "L",
+            "XL"
+        ],
+        "style": "formal",
+        "rating": 4.7,
+        "stock": 25,
+        "isActive": true,
+        "reviews": [
+            {
+                "id": 27,
+                "productId": 204,
+                "userName": "Lotfy",
+                "rating": 5,
+                "comment": "Perfect for formal occasions",
+                "createdAt": "2026-01-25T18:15:00Z"
+            },
+            {
+                "id": 28,
+                "productId": 204,
+                "userName": "Adel",
+                "rating": 4,
+                "comment": "Elegant and professional",
+                "createdAt": "2026-01-21T13:45:00Z"
+            }
+        ]
+    },
+    {
+        "id": 205,
+        "name": "Linen-blend grandad shirt",
+        "slug": "Linen-blend grandad shirt",
+        "description": "Short-sleeved shirt in an airy weave made from a cotton and linen blend. Loose fit with a grandad collar, buttons down the front, a yoke at the back and an open chest pocket.",
+        "categoryId": 2,
+        "price": 599,
+        "discountPercentage": 8,
+        "mainImage": "../assets/images/product/Linen-blend grandad shirt.avif",
+        "images": [
+            "../assets/images/product/Linen-blend grandad shirt1.avif",
+            "../assets/images/product/Linen-blend grandad shirt2.avif",
+            "../assets/images/product/Linen-blend grandad shirt3.avif"
+        ],
+        "sizes": [
+            "M",
+            "L"
+        ],
+        "style": "casual",
+        "rating": 4.5,
+        "stock": 20,
+        "isActive": true,
+        "reviews": [
+            {
+                "id": 29,
+                "productId": 205,
+                "userName": "Fouad",
+                "rating": 4,
+                "comment": "Great summer shirt",
+                "createdAt": "2026-01-22T11:10:00Z"
+            }
+        ]
+    },
+    {
+        "id": 206,
+        "name": "Slim Fit Shirt",
+        "slug": "slim-fit-shirt",
+        "description": "Shirt in a cotton weave with a cut-away collar, classic front and a yoke at the back. Long sleeves with adjustable buttoning at the cuffs and a sleeve placket with a link button. Gently rounded hem. Slim fit that hugs the contours of your body, creating a fitted silhouette.",
+        "categoryId": 2,
+        "price": 559,
+        "discountPercentage": 9,
+        "mainImage": "../assets/images/product/Slim Fit Easy-iron shirt.avif",
+        "images": [
+            "../assets/images/product/Slim Fit Easy-iron shirt1.avif",
+            "../assets/images/product/Slim Fit Easy-iron shirt2.avif",
+            "../assets/images/product/Slim Fit Easy-iron shirt3.avif"
+        ],
+        "sizes": [
+            "S",
+            "M",
+            "L"
+        ],
+        "style": "formal",
+        "rating": 4.4,
+        "stock": 22,
+        "isActive": true,
+        "reviews": [
+            {
+                "id": 30,
+                "productId": 206,
+                "userName": "Gamal",
+                "rating": 4,
+                "comment": "Perfect slim fit",
+                "createdAt": "2026-01-23T14:25:00Z"
+            },
+            {
+                "id": 31,
+                "productId": 206,
+                "userName": "Ibrahim",
+                "rating": 3,
+                "comment": "A bit tight in the shoulders",
+                "createdAt": "2026-01-18T16:40:00Z"
+            }
+        ]
+    },
+    {
+        "id": 207,
+        "name": "Loose Fit Short-sleeved linen-blend shirt",
+        "slug": "Loose Fit Short-sleeved linen-blend shirt",
+        "description": "Short-sleeved shirt in an airy linen and viscose blend with a turn-down collar, French front and a yoke at the back. Straight-cut hem. Loose fit for a generous but not oversized silhouette.",
+        "categoryId": 2,
+        "price": 499,
+        "discountPercentage": 8,
+        "mainImage": "../assets/images/product/Loose Fit Flannel shirt.avif",
+        "images": [
+            "../assets/images/product/Loose Fit Flannel shirt1.avif",
+            "../assets/images/product/Loose Fit Flannel shirt2.avif",
+            "../assets/images/product/Loose Fit Flannel shirt3.avif"
+        ],
+        "sizes": [
+            "M",
+            "L"
+        ],
+        "style": "casual",
+        "rating": 4.2,
+        "stock": 28,
+        "isActive": true,
+        "reviews": [
+            {
+                "id": 32,
+                "productId": 207,
+                "userName": "Kamal",
+                "rating": 4,
+                "comment": "Very comfortable in hot weather",
+                "createdAt": "2026-01-24T17:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": 208,
+        "name": "Regular Fit Oxford shirt",
+        "slug": "Regular Fit Oxford shirt",
+        "description": "Shirt in Oxford cotton with a button-down collar, classic front, yoke at the back and an open chest pocket. Long sleeves with buttoned cuffs and a sleeve placket with a link button. Gently rounded hem. Regular fit for comfortable wear and a classic silhouette.",
+        "categoryId": 2,
+        "price": 589,
+        "discountPercentage": 8,
+        "mainImage": "../assets/images/product/Regular Fit Oxford shirt.avif",
+        "images": [
+            "../assets/images/product/Regular Fit Oxford shirt1.avif",
+            "../assets/images/product/Regular Fit Oxford shirt2.avif",
+            "../assets/images/product/Regular Fit Oxford shirt3.avif"
+        ],
+        "sizes": [
+            "M",
+            "L",
+            "XL"
+        ],
+        "style": "formal",
+        "rating": 4.6,
+        "stock": 26,
+        "isActive": true,
+        "reviews": [
+            {
+                "id": 33,
+                "productId": 208,
+                "userName": "Mounir",
+                "rating": 5,
+                "comment": "Classic Oxford shirt, excellent quality",
+                "createdAt": "2026-01-25T19:30:00Z"
+            },
+            {
+                "id": 34,
+                "productId": 208,
+                "userName": "Samih",
+                "rating": 4,
+                "comment": "Good regular fit",
+                "createdAt": "2026-01-20T12:15:00Z"
+            }
+        ]
+    },
+    {
+        "id": 209,
+        "name": "Regular Fit Patterned resort shirt",
+        "slug": "Regular Fit Patterned resort shirt",
+        "description": "Short-sleeved shirt in an airy weave with a printed pattern. Resort collar, French front, and a straight-cut hem. Regular fit for comfortable wear and a classic silhouette.",
+        "categoryId": 2,
+        "price": 519,
+        "discountPercentage": 10,
+        "mainImage": "../assets/images/product/Regular Fit Oxford shirt.avif",
+        "images": [
+            "../assets/images/product/Regular Fit Oxford shirt1.avif",
+            "../assets/images/product/Regular Fit Oxford shirt2.avif",
+            "../assets/images/product/Regular Fit Oxford shirt3.avif"
+        ],
+        "sizes": [
+            "S",
+            "M",
+            "L"
+        ],
+        "style": "casual",
+        "rating": 4.1,
+        "stock": 24,
+        "isActive": true,
+        "reviews": [
+            {
+                "id": 35,
+                "productId": 209,
+                "userName": "Nabil",
+                "rating": 4,
+                "comment": "Nice pattern for vacation",
+                "createdAt": "2026-01-22T15:50:00Z"
+            },
+            {
+                "id": 36,
+                "productId": 209,
+                "userName": "Farid",
+                "rating": 3,
+                "comment": "Pattern faded after first wash",
+                "createdAt": "2026-01-17T10:20:00Z"
+            }
+        ]
+    },
+    {
+        "id": 210,
+        "name": "Slim Fit Easy-iron shirt",
+        "slug": "Slim Fit Easy-iron shirt",
+        "description": "Shirt in woven fabric with an easy-iron finish. Turn-down collar, a classic front and a yoke at the back. Long sleeves with adjustable buttoning at the cuffs and a sleeve placket with a link button. Gently rounded hem. Slim fit that hugs the contours of your body, creating a fitted silhouette.",
+        "categoryId": 2,
+        "price": 649,
+        "discountPercentage": 8,
+        "mainImage": "../assets/images/product/Slim Fit Easy-iron shirt.avif",
+        "images": [
+            "../assets/images/product/Slim Fit Easy-iron shirt1.avif",
+            "../assets/images/product/Slim Fit Easy-iron shirt2.avif",
+            "../assets/images/product/Slim Fit Easy-iron shirt3.avif"
+        ],
+        "sizes": [
+            "M",
+            "L",
+            "XL"
+        ],
+        "style": "formal",
+        "rating": 4.8,
+        "stock": 18,
+        "isActive": true,
+        "reviews": [
+            {
+                "id": 37,
+                "productId": 210,
+                "userName": "Hussein",
+                "rating": 5,
+                "comment": "Best easy-iron shirt I've tried",
+                "createdAt": "2026-01-26T09:45:00Z"
+            },
+            {
+                "id": 38,
+                "productId": 210,
+                "userName": "Mahmoud",
+                "rating": 5,
+                "comment": "Saves so much time on ironing",
+                "createdAt": "2026-01-21T17:30:00Z"
+            },
+            {
+                "id": 39,
+                "productId": 210,
+                "userName": "Zaki",
+                "rating": 4,
+                "comment": "Great for business travel",
+                "createdAt": "2026-01-19T08:15:00Z"
             }
         ],
         "category": "T-shirt"

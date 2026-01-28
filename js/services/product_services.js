@@ -1,16 +1,23 @@
+
 export async function getAllProducts() {
     const response = await fetch(`./data/product.json`)
     const products = await response.json()
     return products
 }
-
 // get product by id
 export async function getProductById(id) {
     const products = await getAllProducts()
     const product = products.find(product => product.id == id)
     return product
 }
-
+export async function GetProductsByCategory(categoryId) {
+    const allProducts = await getAllProducts();
+    let filterProducts = allProducts.filter(p => p.categoryId == categoryId);
+    if (filterProducts.length != 0) {
+        return filterProducts;
+    }
+    return allProducts;
+}
 // get all reviews
 export async function getAllReviews() {
     const response = await fetch(`./data/reviews.json`)
@@ -18,6 +25,12 @@ export async function getAllReviews() {
     const localReviews = JSON.parse(localStorage.getItem('reviews') || '[]')
     return [...fileReviews, ...localReviews]
 }
+// get all reviews
+// export async function getAllReviews() {
+//     const response = await fetch(`./data/reviews.json`)
+//     const reviews = await response.json()
+//     return reviews
+// }
 // get product by count
 export async function getProductByCount(start, end) {
     const products = await getAllProducts()
@@ -37,6 +50,12 @@ export async function countReviews(productId) {
     return reviews.length
 }
 
+export async function getReviewsByProductId(productId) {
+    const product = await getProductById(productId);
+    console.log(product.reviews);
+
+    return product ? product.reviews || [] : [];
+}
 // get discount
 export async function getDiscount(productId) {
     const product = await getProductById(productId)
@@ -50,10 +69,10 @@ export async function getCategory(productId) {
     return category
 }
 // get products by category
-export async function getProductsByCategory(category,start,end) {
+export async function getProductsByCategory(category, start, end) {
     const products = await getAllProducts()
     const product = products.filter(product => product.category == category)
-    return product.slice(start,end)
+    return product.slice(start, end)
 }
 
 
