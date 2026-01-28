@@ -2,102 +2,112 @@
 
 /* Montserrat Bold */
 @font-face {
-    font-family: 'Montserrat';
-    src: url('../assets/fonts/Montserrat-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
+  font-family: "Montserrat";
+  src: url("../assets/fonts/Montserrat-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
 }
 
 /* Satoshi Regular */
 @font-face {
-    font-family: 'Satoshi';
-    src: url('../assets/fonts/Satoshi-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
+  font-family: "Satoshi";
+  src: url("../assets/fonts/Satoshi-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
 }
 
 /* Satoshi Bold */
 @font-face {
-    font-family: 'Satoshi';
-    src: url('../assets/fonts/Satoshi-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
+  font-family: "Satoshi";
+  src: url("../assets/fonts/Satoshi-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
 }
 
 :root {
-    --bg: #fff;
-    --onbg: #000;
-    --bgsecond: #dddddd;
+  --bg: #fff;
+  --onbg: #000;
+  --bgsecond: #dddddd;
 
-    /* fonts */
-    --fprim: 'Satoshi', sans-serif;
-    --fsecond: 'Montserrat', sans-serif;
+  /* Updated color */
+  --main-text: #000;
+  --sec-text: #5a5a5a;
+  --main-bg: #fff;
+  --sec-bg: #eee;
+
+  /* fonts */
+  --fprim: "Satoshi", sans-serif;
+  --fsecond: "Montserrat", sans-serif;
 }
 
 .dark {
-    --bg: #1C1C1C;
-    --onbg: #fff;
-    --bgsecond: #474747;
+  --bg: #000000;
+  --onbg: #fff;
+  --bgsecond: #474747;
+  /* Updated color */
+  --main-text: #fff;
+  --sec-text: #d8d8d8;
+  --main-bg: #000;
+  --sec-bg: #000;
 }
 
 /* theme setting */
 body {
-    background-color: var(--bg);
-    color: var(--onbg);
-    font-family: var(--fprim);
-    transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: var(--bg);
+  color: var(--onbg);
+  font-family: var(--fprim);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
-
 
 /* Toast Notifications */
 #toast-container {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 90%;
-    max-width: 500px;
-    pointer-events: none;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 90%;
+  max-width: 500px;
+  pointer-events: none;
 }
 
-#toast-container>div {
-    pointer-events: auto;
-    padding: 16px 24px;
-    border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    color: white;
-    font-weight: 500;
-    text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(8px);
-    transition: all 0.3s ease-in-out;
+#toast-container > div {
+  pointer-events: auto;
+  padding: 16px 24px;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: white;
+  font-weight: 500;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease-in-out;
 }
 
-#toast-container>div.bg-green-500 {
-    background-color: #22c55e !important;
-    opacity: 1 !important;
+#toast-container > div.bg-green-500 {
+  background-color: #22c55e !important;
+  opacity: 1 !important;
 }
 
-#toast-container>div.bg-red-500 {
-    background-color: #ef4444 !important;
-    opacity: 1 !important;
+#toast-container > div.bg-red-500 {
+  background-color: #ef4444 !important;
+  opacity: 1 !important;
 }
 
-#toast-container>div.bg-yellow-500 {
-    background-color: #eab308 !important;
-    opacity: 1 !important;
+#toast-container > div.bg-yellow-500 {
+  background-color: #eab308 !important;
+  opacity: 1 !important;
 }
 
 #eye-icon {
-    width: 20px;
-    text-align: center;
-    transition: all 0.2s ease;
+  width: 20px;
+  text-align: center;
+  transition: all 0.2s ease;
 }
