@@ -1,18 +1,31 @@
-<nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-    <a href="#home" class="text-3xl font-bold uppercase font-(family-name:--fsecond) text-(--onbg)">Shop.co</a>
+<!-- Main navigation bar -->
+<nav class="container mx-auto px-4 py-4 flex justify-between items-center border-b border-(--onbg)">
 
+    <!-- Logo / Brand name (navigates to home page) -->
+    <a href="#home" class="text-3xl font-bold uppercase font-(family-name:--fsecond) text-(--onbg)">
+        Shop.co
+    </a>
+
+    <!-- Right-side navigation actions -->
     <div class="flex items-center gap-4">
+
+        <!-- Theme toggle button (light / dark mode) -->
         <button id="theme-toggle" class="p-2 rounded-xl bg-(--bgsecond) text-(--onbg) transition-all active:scale-95">
+
+            <!-- Sun icon (shown in dark mode) -->
             <span id="sun-icon" class="hidden">☀️</span>
+
+            <!-- Moon icon (shown in light mode) -->
             <span id="moon-icon">🌙</span>
         </button>
-        <button class="hover:text-gray-600 transition">
-            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
-                </path>
-            </svg>
-        </button>
+
+        <!-- Cart page link -->
+        <a href="#cart" class="text-(--onbg)">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </a>
+
+        <!-- Authentication buttons container (Login / Logout rendered via JavaScript) -->
         <div id="auth-buttons"></div>
+
     </div>
 </nav>

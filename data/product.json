@@ -47,7 +47,8 @@
                 "comment": "Good value for money",
                 "createdAt": "2026-01-18T16:45:00Z"
             }
-        ]
+        ],
+        "category": "T-shirt"
     },
     {
         "id": 102,
@@ -89,7 +90,8 @@
                 "comment": "Nice texture and comfortable",
                 "createdAt": "2026-01-19T09:30:00Z"
             }
-        ]
+        ],
+        "category": "T-shirt"
     },
     {
         "id": 103,
@@ -131,7 +133,8 @@
                 "comment": "Print quality could be better",
                 "createdAt": "2026-01-17T15:45:00Z"
             }
-        ]
+        ],
+        "category": "T-shirt"
     },
     {
         "id": 104,
@@ -824,6 +827,61 @@
                 "comment": "Great for business travel",
                 "createdAt": "2026-01-19T08:15:00Z"
             }
-        ]
+        ],
+        "category": "T-shirt"
+    },
+    {
+        "id": 5,
+        "name": "One Life Graphic Jacket",
+        "price": 29.99,
+        "description": "A comfortable and stylish graphic Jacket for men.",
+        "mainImage": "./assets/images/product/product3.png",
+        "discount": 20,
+        "slides": [
+            "./assets/images/product/product3.png",
+            "./assets/images/product/product4.png",
+            "./assets/images/product/product1.png"
+        ],
+        "colors": [
+            {
+                "name": "Black",
+                "code": "#000000"
+            },
+            {
+                "name": "White",
+                "code": "#FFFFFF"
+            },
+            {
+                "name": "Red",
+                "code": "#FF0000"
+            },
+            {
+                "name": "Blue",
+                "code": "#0000FF"
+            },
+            {
+                "name": "Green",
+                "code": "#00FF00"
+            }
+        ],
+        "sizes": [
+            {
+                "name": "S",
+                "stock": 10
+            },
+            {
+                "name": "M",
+                "stock": 20
+            },
+            {
+                "name": "L",
+                "stock": 15
+            },
+            {
+                "name": "XL",
+                "stock": 5
+            }
+        ],
+        "category": "Jacket"
     }
 ]

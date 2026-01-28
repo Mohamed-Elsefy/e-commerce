@@ -17,7 +17,13 @@ export async function GetProductsByCategory(categoryId) {
         return filterProducts;
     }
     return allProducts;
-
+}
+// get all reviews
+export async function getAllReviews() {
+    const response = await fetch(`./data/reviews.json`)
+    const fileReviews = await response.json()
+    const localReviews = JSON.parse(localStorage.getItem('reviews') || '[]')
+    return [...fileReviews, ...localReviews]
 }
 // get all reviews
 // export async function getAllReviews() {
@@ -33,11 +39,16 @@ export async function getProductByCount(start, end) {
 }
 
 // get product reviews
-// export async function getProductReviews(productId) {
-//     const products = await getAllProducts()
-//     const productReviews = products.filter(product => product.productId == productId)
-//     return productReviews
-// }
+export async function getProductReviews(productId) {
+    const reviews = await getAllReviews()
+    const productReviews = reviews.filter(review => review.productId == productId)
+    return productReviews
+}
+//count reviews
+export async function countReviews(productId) {
+    const reviews = await getProductReviews(productId)
+    return reviews.length
+}
 
 export async function getReviewsByProductId(productId) {
     const product = await getProductById(productId);
@@ -50,6 +61,18 @@ export async function getDiscount(productId) {
     const product = await getProductById(productId)
     const discount = product.discount
     return discount
+}
+// get category
+export async function getCategory(productId) {
+    const product = await getProductById(productId)
+    const category = product.category
+    return category
+}
+// get products by category
+export async function getProductsByCategory(category, start, end) {
+    const products = await getAllProducts()
+    const product = products.filter(product => product.category == category)
+    return product.slice(start, end)
 }
 
 
@@ -64,4 +87,14 @@ export async function getCart() {
 export function getProductId() {
     const hash = location.hash.split('?')[1];
     return new URLSearchParams(hash).get('id');
+}
+
+//add review
+export function addReview(review) {
+    let reviews = JSON.parse(localStorage.getItem('reviews') || '[]');
+    if (!Array.isArray(reviews)) {
+        reviews = [];
+    }
+    reviews.push(review);
+    localStorage.setItem('reviews', JSON.stringify(reviews));
 }
