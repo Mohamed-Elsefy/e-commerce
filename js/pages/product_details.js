@@ -62,7 +62,7 @@ async function currentProduct() {
         //image slider
         const imageSlider = document.getElementById('image-slider');
         if (imageSlider && imageSlider.children.length === 0) {
-            product.slides.forEach(image => {
+            product.images.forEach(image => {
                 imageSlider.insertAdjacentHTML('beforeend', `<div class="w-24 h-24 md:w-48 md:h-48 rounded-2xl overflow-hidden border-2 border-transparent hover:border-black transition focus:border-black ring-offset-2 img-slide"><img src="${image}" alt="${product.name}" class="w-full h-full object-cover"></div>`)
             })
         }
@@ -87,41 +87,29 @@ async function currentProduct() {
         //product name
         const productName = document.getElementById('product-name');
         productName.innerText = product.name;
+        //product Rating
+        const productRating = document.getElementById("rating");
+        productRating.innerHTML = ` 
+                                               <div class="rating" style="--rating: ${product.rating}"></div>
+                                        <span id="ratingText">${product.rating} / 5</span>
+`;
+
         //product price
         const productPrice = document.getElementById('product-price');
-        productPrice.innerHTML = `${product.discount ? `<div class="flex items-center space-x-2">
-                <span class="font-bold text-xl">$${parseInt(product.price - product.price * product.discount / 100)}</span>
+        productPrice.innerHTML = `${product.discountPercentage ? `<div class="flex items-center space-x-2">
+                <span class="font-bold text-xl">$${parseInt(product.price - product.price * product.discountPercentage / 100)}</span>
                 <span class="text-gray-400 font-bold line-through">$${parseInt(product.price)}</span>
-                <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded-full">-${product.discount}%</span>
+                <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded-full">-${product.discountPercentage}%</span>
             </div>` : `<div class="font-bold text-xl ">$${parseInt(product.price)}</div>`}`;
         //product description
         const productDescription = document.getElementById('product-description');
         productDescription.innerText = product.description;
-        //product colors
-        const colors = document.getElementById('colors');
-        if (colors && colors.children.length === 0) {
-            product.colors.forEach(color => {
-                colors.insertAdjacentHTML('beforeend', `<div class="w-10 h-10 rounded-full hover:opacity-80 transition flex items-center justify-center color-option" style="background-color: ${color.code}" data-color="${color.name}"></div>`)
-            })
-        }
-        // Color Selector
-        const colorOptions = document.querySelectorAll('.color-option');
-        colorOptions.forEach(btn => {
-            btn.addEventListener('click', () => {
-                colorOptions.forEach(b => {
-                    b.innerHTML = '';
-                    b.classList.remove('ring-2', 'ring-offset-2', 'ring-black', 'selected');
-                });
-                btn.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>`;
-                btn.classList.add('ring-2', 'ring-offset-2', 'ring-black', 'selected');
-            });
-        });
 
         //product sizes
         const sizes = document.getElementById('sizes');
         if (sizes && sizes.children.length === 0) {
             product.sizes.forEach(size => {
-                sizes.insertAdjacentHTML('beforeend', `<button class="bg-[#F0F0F0] text-gray-600 py-3 px-6 rounded-full hover:bg-black hover:text-white transition font-medium size-option">${size.name}</button>`)
+                sizes.insertAdjacentHTML('beforeend', `<button class="bg-[#F0F0F0] text-gray-600 py-3 px-6 rounded-full hover:bg-black hover:text-white transition font-medium size-option">${size}</button>`)
             })
         }
         // Size Selector
@@ -151,9 +139,10 @@ renderProduct(0, 4);
 
 
 async function renderReview(productId, count = 4) {
+
     if (!productId) productId = productServices.getProductId();
     try {
-        const reviews = await productServices.getProductReviews(productId);
+        const reviews = await productServices.getReviewsByProductId(productId);
         const reviewContainer = document.getElementById('review-container');
         if (!reviewContainer) {
             console.error('Review container not found');
@@ -162,11 +151,13 @@ async function renderReview(productId, count = 4) {
 
         if (reviewContainer.innerText.trim().length > 0) return;
 
-        if (!reviews || reviews.length == 0) {
+        if (reviews.length == 0) {
             reviewContainer.innerHTML = '<p class="text-gray-500">No reviews yet.</p>';
             return;
         }
-
+        console.log(reviews);
+        const reviewCount = document.getElementById("reviewCount");
+        reviewCount.innerHTML = `(${reviews.length})`
         reviews.slice(0, count).forEach(review => {
             reviewContainer.insertAdjacentHTML('beforeend', `
             <div class="border border-gray-200 rounded-3xl p-6 md:p-8">
@@ -175,7 +166,7 @@ async function renderReview(productId, count = 4) {
                     <button class="text-gray-400 hover:text-black">•••</button>
                 </div>
                 <div class="flex items-center mb-2">
-                    <h4 class="font-bold text-lg mr-2">${review.name}</h4>
+                    <h4 class="font-bold text-lg mr-2">${review.userName}</h4>
                     <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd"
                             d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -183,7 +174,7 @@ async function renderReview(productId, count = 4) {
                     </svg>
                 </div>
                 <p class="text-gray-600 mb-4 text-sm md:text-base leading-relaxed">"${review.comment}"</p>
-                <p class="text-gray-500 text-sm font-medium">Posted on August 14, 2023</p>
+                <p class="text-gray-500 text-sm font-medium">${new Date(review.createdAt).toLocaleDateString()}</p>
             </div>
             `);
         });
@@ -212,14 +203,14 @@ async function renderProduct(start, end) {
                         class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                 </div>
                 <h3 class="font-bold text-base md:text-lg mb-1 truncate">${product.name}</h3>
-                <div class="flex items-center space-x-2 text-sm mb-1">
-                    <span class="text-yellow-400">★★★★</span>
-                    <span class="text-gray-500">4.0/5</span>
-                </div>
-                    ${product.discount ? `<div class="flex items-center space-x-2">
-                    <span class="font-bold text-xl">$${parseInt(product.price - product.price * product.discount / 100)}</span>
+<div class="flex items-center gap-2 mb-3">
+                                        <div class="rating" style="--rating: ${product.rating}"></div>
+                                        <span id="ratingText">${product.rating} / 5</span>
+                  </div>
+                    ${product.discountPercentage ? `<div class="flex items-center space-x-2">
+                    <span class="font-bold text-xl">$${parseInt(product.price - product.price * product.discountPercentage / 100)}</span>
                     <span class="text-gray-400 font-bold line-through">$${parseInt(product.price)}</span>
-                    <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded-full">-${product.discount}%</span>
+                    <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded-full">-${product.discountPercentage}%</span>
                 </div>` : `<div class="font-bold text-xl ">$${parseInt(product.price)}</div>`}
             </div>
             </a>`);

@@ -18,13 +18,11 @@
 
         <!-- Product Info -->
         <div class="flex flex-col space-y-6">
-            <div>
+            <div id="product-details">
                 <h1 class="text-3xl md:text-4xl font-extrabold uppercase leading-tight mb-2" id="product-name"></h1>
 
                 <!-- Rating -->
-                <div class="flex items-center space-x-2 text-yellow-400 mb-3">
-                    <div class="flex text-lg">★★★★/★</div>
-                    <span class="text-sm text-gray-600"><span class="font-medium text-black">4.5</span>/5</span>
+                <div class="flex items-center gap-2 mb-3" id="rating">
                 </div>
 
                 <!-- Price -->
@@ -33,15 +31,6 @@
             </div>
 
             <p class="text-gray-600 leading-relaxed" id="product-description"></p>
-
-            <hr class="border-gray-200">
-
-            <!-- Colors -->
-            <div>
-                <h3 class="text-gray-500 text-sm mb-3">Select Colors</h3>
-                <div class="flex space-x-3" id="colors">
-                </div>
-            </div>
 
             <hr class="border-gray-200">
 
@@ -84,8 +73,8 @@
 
         <!-- Reviews Header -->
         <div class="flex items-center justify-between mt-8 mb-6">
-            <h3 class="text-xl md:text-2xl font-bold">All Reviews <span
-                    class="text-gray-500 text-base font-normal">(451)</span></h3>
+            <h3 class="text-xl md:text-2xl font-bold">All Reviews <span class="text-gray-500 text-base font-normal"
+                    id="reviewCount">(451)</span></h3>
             <div class="flex items-center space-x-3">
                 <button
                     class="bg-[#F0F0F0] hover:bg-gray-200 rounded-full w-10 h-10 flex items-center justify-center transition">
