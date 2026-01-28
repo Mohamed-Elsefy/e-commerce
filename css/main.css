@@ -143,6 +143,12 @@ body {
     }
 }
 
+.style.active,
+.category.active {
+    background-color: #eee;
+    border-radius: 18px;
+}
+
 /* ===================>Inputs Range style<=============== */
 input[type="range"]::-webkit-slider-thumb {
     pointer-events: all;

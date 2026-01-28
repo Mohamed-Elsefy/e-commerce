@@ -4,6 +4,11 @@ export async function getAllProducts() {
     const products = await response.json()
     return products
 }
+export async function getAllCategories() {
+    const response = await fetch("./data/categories.json")
+    const categories = await response.json()
+    return categories;
+}
 // get product by id
 export async function getProductById(id) {
     const products = await getAllProducts()
@@ -25,12 +30,6 @@ export async function getAllReviews() {
     const localReviews = JSON.parse(localStorage.getItem('reviews') || '[]')
     return [...fileReviews, ...localReviews]
 }
-// get all reviews
-// export async function getAllReviews() {
-//     const response = await fetch(`./data/reviews.json`)
-//     const reviews = await response.json()
-//     return reviews
-// }
 // get product by count
 export async function getProductByCount(start, end) {
     const products = await getAllProducts()
@@ -42,7 +41,7 @@ export async function getProductByCount(start, end) {
 export async function getProductReviews(productId) {
     const reviews = await getAllReviews()
     const productReviews = reviews.filter(review => review.productId == productId)
-    return productReviews
+    return productReviews;
 }
 //count reviews
 export async function countReviews(productId) {
@@ -74,7 +73,11 @@ export async function getProductsByCategory(category, start, end) {
     const product = products.filter(product => product.category == category)
     return product.slice(start, end)
 }
-
+export async function getProductsByCategoryId(categoryId) {
+    const products = await getAllProducts()
+    const filteredProducts = products.filter(product => product.categoryId == categoryId)
+    return filteredProducts;
+}
 
 //get cart
 export async function getCart() {

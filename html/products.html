@@ -19,26 +19,6 @@
                 </div>
                 <ul class="filter-list section-content mb-2 overflow-hidden opacity-100 transition-all duration-1000 "
                     id="categories">
-                    <li class=" flex justify-between items-center p-3.5  cursor-pointer text-black opacity-70 text-sm category"
-                        data-value="t-shirts">
-                        <span>T-shirts</span><span><i class="fa-solid fa-angle-right"></i></span>
-                    </li>
-                    <li class=" flex justify-between items-center p-3.5  cursor-pointer text-black opacity-70 text-sm category"
-                        data-value="shorts">
-                        <span>Shorts</span><span><i class="fa-solid fa-angle-right"></i></span>
-                    </li>
-                    <li class=" flex justify-between items-center p-3.5  cursor-pointer text-black opacity-70 text-sm category"
-                        data-value="shirts">
-                        <span>Shirts</span><span><i class="fa-solid fa-angle-right"></i></span>
-                    </li>
-                    <li class=" flex justify-between items-center p-3.5  cursor-pointer text-black opacity-70 text-sm category"
-                        data-value="hoodie">
-                        <span>Hoodie</span><span><i class="fa-solid fa-angle-right"></i></span>
-                    </li>
-                    <li class=" flex justify-between items-center p-3.5 cursor-pointer text-black opacity-70 text-sm category"
-                        data-value="jeans">
-                        <span>Jeans</span><span><i class="fa-solid fa-angle-right"></i></span>
-                    </li>
                 </ul>
             </div>
             <div class="price-filter border-b border-gray-300">
@@ -109,7 +89,10 @@
                     id="dress">
                     <li class="style flex justify-between items-center p-3.5  cursor-pointer text-black opacity-70 text-sm "
                         data-value="Casual">
-                        <span>Casual</span><span><i class="fa-solid fa-angle-right"></i></span>
+                        <span>Casual</span>
+                        <span>
+                            <i class="fa-solid fa-angle-right"></i>
+                        </span>
                     </li>
                     <li class="style flex justify-between items-center p-3.5  cursor-pointer text-black opacity-70 text-sm"
                         data-value="formal">
@@ -122,7 +105,7 @@
                         </span>
                     </li>
                     <li class="style flex justify-between items-center p-3.5  cursor-pointer text-black opacity-70 text-sm "
-                        data-value="party">
+                        data-value="gym">
                         <span>Gym</span><span><i class="fa-solid fa-angle-right"></i></span>
                     </li>
                 </ul>
@@ -137,11 +120,19 @@
         <div class="products basis-full  md:basis-3/4">
             <div class="products-heading flex  items-center p-2 justify-between">
                 <h2 class="font-semibold text-2xl md:text-3xl">Casual</h2>
-                <!-- Showing 1-100 of 100 -->
-                <p class="text-black opacity-70 text-sm md:text-base"> Products Sort by
-                    <span class="font-semibold opacity-100 ">Most Popular <i class="fa-solid fa-angle-down"></i></span>
-                    <i class="fa-solid fa-sliders max-sm:block md:hidden! transition-all ml-5 cursor-pointer"
-                        id="settings"></i>
+                <div class="font-semibold opacity-100 ">
+                    <p class="text-black opacity-70 text-sm md:text-base"> Products Sort by
+                        <select id="sort">
+                            <option value="default">Recommended</option>
+                            <option value="price-asc">Price: Low to High</option>
+                            <option value="price-desc">Price: High to Low</option>
+                            <option value="name-asc">Name: A → Z</option>
+                            <option value="name-desc">Name: Z → A</option>
+                            <option value="rating">Top Rated</option>
+                        </select>
+                </div>
+                <i class="fa-solid fa-sliders max-sm:block md:hidden! transition-all ml-5 cursor-pointer"
+                    id="settings"></i>
 
                 </p>
 
