@@ -2,24 +2,24 @@
 
 /* Montserrat font - Bold weight (700) */
 @font-face {
-    font-family: 'Montserrat';
-    src: url('../assets/fonts/Montserrat-Bold.ttf') format('truetype');
+    font-family: "Montserrat";
+    src: url("../assets/fonts/Montserrat-Bold.ttf") format("truetype");
     font-weight: 700;
     font-style: normal;
 }
 
 /* Satoshi font - Regular weight (400) */
 @font-face {
-    font-family: 'Satoshi';
-    src: url('../assets/fonts/Satoshi-Regular.woff2') format('woff2');
+    font-family: "Satoshi";
+    src: url("../assets/fonts/Satoshi-Regular.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
 }
 
 /* Satoshi font - Bold weight (700) */
 @font-face {
-    font-family: 'Satoshi';
-    src: url('../assets/fonts/Satoshi-Bold.woff2') format('woff2');
+    font-family: "Satoshi";
+    src: url("../assets/fonts/Satoshi-Bold.woff2") format("woff2");
     font-weight: 700;
     font-style: normal;
 }
@@ -32,15 +32,27 @@
     --onbg: #000;
     --bgsecond: #dddddd;
 
+    /* Updated color */
+    --main-text: #000;
+    --sec-text: #5a5a5a;
+    --main-bg: #fff;
+    --sec-bg: #eee;
+
+    /* fonts */
     --fprim: 'Satoshi', sans-serif;
     --fsecond: 'Montserrat', sans-serif;
 }
 
 /* Dark theme overrides */
 .dark {
-    --bg: #1C1C1C;
+    --bg: #000000;
     --onbg: #fff;
     --bgsecond: #474747;
+    /* Updated color */
+    --main-text: #fff;
+    --sec-text: #d8d8d8;
+    --main-bg: #000;
+    --sec-bg: #000;
 }
 
 /* ===============================
@@ -53,9 +65,8 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* ===============================
-   Toast Notifications Styles
-   =============================== */
+
+/* Toast Notifications */
 #toast-container {
     position: fixed;
     top: 20px;
@@ -70,7 +81,6 @@ body {
     pointer-events: none;
 }
 
-/* Individual toast message */
 #toast-container>div {
     pointer-events: auto;
     padding: 16px 24px;
@@ -88,19 +98,16 @@ body {
     transition: all 0.3s ease-in-out;
 }
 
-/* Success toast */
 #toast-container>div.bg-green-500 {
     background-color: #22c55e !important;
     opacity: 1 !important;
 }
 
-/* Error toast */
 #toast-container>div.bg-red-500 {
     background-color: #ef4444 !important;
     opacity: 1 !important;
 }
 
-/* Warning toast */
 #toast-container>div.bg-yellow-500 {
     background-color: #eab308 !important;
     opacity: 1 !important;
@@ -187,4 +194,7 @@ input[type="range"]::-moz-range-thumb {
             var(--star-color) calc(var(--rating) / 5 * 100%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    width: 20px;
+    text-align: center;
+    transition: all 0.2s ease;
 }
