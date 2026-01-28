@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Montserrat Bold */
+/* Montserrat font - Bold weight (700) */
 @font-face {
   font-family: "Montserrat";
   src: url("../assets/fonts/Montserrat-Bold.ttf") format("truetype");
@@ -8,7 +8,7 @@
   font-style: normal;
 }
 
-/* Satoshi Regular */
+/* Satoshi font - Regular weight (400) */
 @font-face {
   font-family: "Satoshi";
   src: url("../assets/fonts/Satoshi-Regular.woff2") format("woff2");
@@ -16,7 +16,7 @@
   font-style: normal;
 }
 
-/* Satoshi Bold */
+/* Satoshi font - Bold weight (700) */
 @font-face {
   font-family: "Satoshi";
   src: url("../assets/fonts/Satoshi-Bold.woff2") format("woff2");
@@ -24,6 +24,9 @@
   font-style: normal;
 }
 
+/* ===============================
+   CSS Variables (Theme Colors & Fonts)
+   =============================== */
 :root {
   --bg: #fff;
   --onbg: #000;
@@ -35,11 +38,12 @@
   --main-bg: #fff;
   --sec-bg: #eee;
 
-  /* fonts */
-  --fprim: "Satoshi", sans-serif;
-  --fsecond: "Montserrat", sans-serif;
+    /* fonts */
+    --fprim: 'Satoshi', sans-serif;
+    --fsecond: 'Montserrat', sans-serif;
 }
 
+/* Dark theme overrides */
 .dark {
   --bg: #000000;
   --onbg: #fff;
@@ -51,13 +55,16 @@
   --sec-bg: #000;
 }
 
-/* theme setting */
+/* ===============================
+   Global Theme Styles
+   =============================== */
 body {
   background-color: var(--bg);
   color: var(--onbg);
   font-family: var(--fprim);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 
 /* Toast Notifications */
 #toast-container {
@@ -74,38 +81,39 @@ body {
   pointer-events: none;
 }
 
-#toast-container > div {
-  pointer-events: auto;
-  padding: 16px 24px;
-  border-radius: 12px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  color: white;
-  font-weight: 500;
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
-  transition: all 0.3s ease-in-out;
+#toast-container>div {
+    pointer-events: auto;
+    padding: 16px 24px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: white;
+    font-weight: 500;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease-in-out;
 }
 
-#toast-container > div.bg-green-500 {
-  background-color: #22c55e !important;
-  opacity: 1 !important;
+#toast-container>div.bg-green-500 {
+    background-color: #22c55e !important;
+    opacity: 1 !important;
 }
 
-#toast-container > div.bg-red-500 {
-  background-color: #ef4444 !important;
-  opacity: 1 !important;
+#toast-container>div.bg-red-500 {
+    background-color: #ef4444 !important;
+    opacity: 1 !important;
 }
 
-#toast-container > div.bg-yellow-500 {
-  background-color: #eab308 !important;
-  opacity: 1 !important;
+#toast-container>div.bg-yellow-500 {
+    background-color: #eab308 !important;
+    opacity: 1 !important;
 }
 
+/* Password visibility eye icon */
 #eye-icon {
   width: 20px;
   text-align: center;

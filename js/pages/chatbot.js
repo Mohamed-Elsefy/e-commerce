@@ -1,4 +1,5 @@
-
+import * as productServices from '../services/product_services.js';
+import * as checkout from '../services/checkout.js';
 const chatbot = document.getElementById('chat-window');
 const messages = document.getElementById('messages');
 const userInput = document.getElementById('userInput');
@@ -6,7 +7,13 @@ const closeChat = document.getElementById('closeChat');
 const openChat = document.getElementById('openChat');
 
 function toggleChat() {
-    chatbot.classList.toggle('hidden');
+    if (chatbot.classList.contains('hidden')) {
+        chatbot.classList.remove('hidden');
+        chatbot.classList.add('flex');
+    } else {
+        chatbot.classList.remove('flex');
+        chatbot.classList.add('hidden');
+    }
 }
 
 closeChat.addEventListener('click', toggleChat);
@@ -26,10 +33,11 @@ function getIntent(message) {
     const m = message.toLowerCase();
     //m.includes('products')
     if (/\b(hi|hello|hey|start|welcome)\b/.test(m)) return 'greeting';
-    if (/(product|products|item|items|shop|buying)/.test(m)) return 'products';
-    if (/(price|prices|cost|how much)/.test(m)) return 'price';
-    if (/(ship|shipping|delivery|time|arrive)/.test(m)) return 'shipping';
-    if (/(thank|thanks)/.test(m)) return 'thanks';
+    if (/\b(product|products|item|items|shop|buying)\b/.test(m)) return 'products';
+    if (/\b(price|prices|cost|how much)\b/.test(m)) return 'price';
+    if (/\b(ship|shipping|delivery|time|arrive)\b/.test(m)) return 'shipping';
+    if (/\b(orders|order|order status|order history|invoice|payment|my orders|myfatoorah)\b/.test(m)) return 'order';
+    if (/\b(thank|thanks)\b/.test(m)) return 'thanks';
 
 
     return 'unknown';
@@ -83,13 +91,82 @@ async function botReply(userMessage) {
                             <span class="text-xs text-gray-500">Free shipping on orders over $50!</span>
                         </div>
                     `;
+        case 'order':
+            const order = await checkout.getUserOrder();
 
+            if (!order || (Array.isArray(order) && order.length === 0)) {
+                return "You don't have any orders yet. 🛒";
+            }
+
+            const userOrder = Array.isArray(order) ? order : [order];
+            console.log(order);
+            let orderHtml = `<div class="space-y-3">
+                        <p class="font-medium mb-1">Here are your orders:</p>`;
+            userOrder.forEach(item => {
+                orderHtml += `
+                <div class="space-y-2">
+                    <p class="font-medium text-gray-800">Found your order! 📦</p>
+                    <div class="text-xs bg-gray-50 p-2 rounded border border-gray-200">
+                        <p class="mb-1"><b>Order ID:</b> #${item.id}</p>
+                        <p class="mb-1"><b>Total:</b> <span class="text-blue-600 font-bold">$${item.orderTotal}</span></p>
+                        <p><b>Status:</b> <span class="capitalize text-green-600 font-medium">${item.orderStatus}</span></p>
+                    </div>
+                    <button id="downloadInvoice" class="w-full mt-1 bg-black text-white py-2 px-3 rounded-lg text-xs font-semibold hover:bg-gray-800 transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-file-pdf"></i> Download Invoice
+                    </button>
+                </div>
+            `;
+            });
+            orderHtml += `</div>`;
+            return orderHtml;
         case 'thanks':
             return "You're welcome! Happy shopping! 🌟";
 
         default:
             return "I didn't quite catch that. 🤔 You can ask me about <b>products</b>, <b>shipping</b>, or <b>prices</b>.";
     }
+}
+
+async function generateInvoicePDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    const order = await checkout.getUserOrder();
+
+    if (!order) return;
+    const userOrder = Array.isArray(order) ? order[0] : order;
+
+    // Header
+    doc.setFontSize(22);
+    doc.setTextColor(0, 0, 0);
+    doc.text('INVOICE', 105, 20, { align: 'center' });
+
+    // Order Info
+    doc.setFontSize(12);
+    doc.text(`Order ID: #${userOrder.id}`, 20, 40);
+    doc.text(`Date: ${new Date(userOrder.orderDate).toLocaleDateString()}`, 20, 50);
+    doc.text(`Status: ${userOrder.orderStatus}`, 20, 60);
+
+    // Customer Info
+    doc.setFontSize(14);
+    doc.text('Customer Details:', 20, 80);
+    doc.setFontSize(12);
+    doc.text(`Name: ${userOrder.name}`, 20, 90);
+    doc.text(`Email: ${userOrder.email}`, 20, 100);
+    doc.text(`Address: ${userOrder.address}, ${userOrder.city}`, 20, 110);
+
+    // Items (simplified for now as userOrder.orderItems might be complex or empty in mockup)
+    doc.line(20, 120, 190, 120);
+    doc.setFontSize(14);
+    doc.text('Summary', 20, 130);
+    doc.setFontSize(12);
+    doc.text(`Total Amount: $${userOrder.orderTotal}`, 20, 140);
+
+    // Footer
+    doc.setFontSize(10);
+    doc.setTextColor(150, 150, 150);
+    doc.text('Thank you for shopping with us!', 105, 180, { align: 'center' });
+
+    doc.save(`Invoice_${userOrder.id}.pdf`);
 }
 
 async function sendMessage() {
@@ -113,4 +190,11 @@ if (sendMsgBtn) {
 
 userInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') sendMessage();
+});
+
+messages.addEventListener('click', (e) => {
+    const btn = e.target.closest('#downloadInvoice');
+    if (btn) {
+        generateInvoicePDF();
+    }
 });

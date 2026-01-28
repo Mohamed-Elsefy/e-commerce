@@ -1,141 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/output.css" />
-    <link
-      rel="stylesheet"
-      href="../node_modules/swiper/swiper-bundle.min.css"
-    />
-    <title>Document</title>
-  </head>
-  <body>
-    <section class="home relative">
-      <div
-        class="hero py-5 px-4 md:px-16 lg:px-24 bg-(--sec-bg) text-(--main-text) md:flex"
-      >
-        <div class="content md:w-4/6 md:mt-16">
-          <h1
-            class="font-extrabold leading-8 mb-4 text-4xl uppercase text-balance"
-          >
-            Find clothes <br />
-            that matches <br />
-            your style
-          </h1>
-          <p class="text-(--sec-text) leading-tight text-balance">
-            Browse through our diverse range of meticulously crafted garments,
-            designed to bring out your individuality and cater to your sense of
-            style.
-          </p>
-          <a
-            href="#"
-            class="bg-(--main-text) text-(--main-bg) block w-5/6 md:w-fit mx-auto md:ml-0 py-3 px-6 my-5 rounded-3xl text-center hover:shadow-2xl hover:scale-105 transition duration-300"
-            >Shop Now</a
-          >
-          <div
-            class="statistics mt-6 text-center md:text-start flex justify-center gap-y-2 flex-wrap"
-          >
-            <div class="stat w-1/2 md:w-1/3">
-              <span class="text-3xl font-bold">200+</span>
-              <p class="text-(--sec-text) text-sm">International Brands</p>
+<section class="bg-(--bg) transition-colors duration-300 font-(family-name:--fprime)">
+
+    <div class="relative bg-(--bgsecond) overflow-hidden border-b border-(--onbg)/5">
+        <div class="container mx-auto px-4 py-12 md:py-24 flex flex-col md:flex-row items-center">
+
+            <div class="md:w-1/2 z-10 text-center md:text-left">
+                <h1
+                    class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 uppercase text-(--onbg) font-(family-name:--fsecond)">
+                    Find Clothing That <br> Matches Your Style
+                </h1>
+
+                <p class="text-(--onbg) opacity-70 mb-8 text-lg max-w-lg mx-auto md:mx-0" id="welcome-message">
+                    Browse through our diverse range of meticulously crafted garments, designed to bring out your
+                    individuality.
+                </p>
+
+                <button
+                    class="bg-(--onbg) text-(--bg) px-12 py-4 rounded-full font-bold hover:opacity-90 transition shadow-xl transform active:scale-95">
+                    Shop Now
+                </button>
             </div>
-            <div class="stat w-1/2 md:w-1/3">
-              <span class="text-3xl font-bold">2,000+</span>
-              <p class="text-(--sec-text) text-sm">High-Quality Products</p>
+
+            <div class="md:w-1/2 mt-10 md:mt-0 relative group">
+                <img src="https://img.freepik.com/free-photo/fashion-portrait-young-elegant-woman_1328-2743.jpg"
+                    alt="Fashion Model"
+                    class="rounded-3xl shadow-2xl border border-(--onbg)/10 transition-transform duration-500 group-hover:scale-[1.02]">
             </div>
-            <div class="stat md:w-1/3">
-              <span class="text-3xl font-bold">30.000+</span>
-              <p class="text-(--sec-text) text-sm">Happy Customers</p>
-            </div>
-          </div>
         </div>
-        <div class="slider mt-4 md:w-2/6">
-          <div class="mySwiper">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <div class="product-card">
-                  <img
-                    class="w-full cover"
-                    src="../assets/images/slider (1).png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="product-card">
-                  <img
-                    class="w-full cover"
-                    src="../assets/images/slider (2).png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="product-card">
-                  <img
-                    class="w-full cover"
-                    src="../assets/images/slider (3).png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="product-card">
-                  <img
-                    class="w-full cover"
-                    src="../assets/images/slider (4).png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="product-card">
-                  <img
-                    class="w-full cover"
-                    src="../assets/images/slider (5).png"
-                    alt=""
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+    </div>
+
+    <div class="container mx-auto px-4 py-16">
+        <h2
+            class="text-3xl md:text-5xl font-extrabold text-center mb-12 uppercase text-(--onbg) font-(family-name:--fsecond) tracking-tight">
+            New Arrivals
+        </h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="home-product-container">
         </div>
-      </div>
-      <div
-        class="brands-slider bg-(--main-text) text-(--main-bg) text-center py-5 absolute bottom-0 z-10 w-full overflow-hidden"
-      >
-        <div class="swiper-wrapper">
-          <div class="swiper-slide w-5">
-            <p class="text-2xl">VERSACE</p>
-          </div>
-          <div class="swiper-slide w-5">
-            <p class="text-2xl">ZARA</p>
-          </div>
-          <div class="swiper-slide w-5">
-            <p class="text-2xl">GUCCI</p>
-          </div>
-          <div class="swiper-slide w-5">
-            <p class="text-2xl">PRADA</p>
-          </div>
-          <div class="swiper-slide w-5">
-            <p class="text-2xl">Calvin Klein</p>
-          </div>
-          <div class="swiper-slide w-5">
-            <p class="text-2xl">VERSACE</p>
-          </div>
-          <div class="swiper-slide w-5">
-            <p class="text-2xl">ZARA</p>
-          </div>
-          <div class="swiper-slide w-5">
-            <p class="text-2xl">GUCCI</p>
-          </div>
-          <div class="swiper-slide w-5">
-            <p class="text-2xl">PRADA</p>
-          </div>
-          <div class="swiper-slide w-5">
-            <p class="text-2xl">Calvin Klein</p>
-          </div>
+
+        <div class="text-center mt-12">
+            <a href="#products"
+                class="inline-block px-10 py-3 border-2 border-(--onbg) text-(--onbg) rounded-full font-bold hover:bg-(--onbg) hover:text-(--bg) transition-all">
+                View All Products
+            </a>
         </div>
       </div>
     </section>

@@ -1,13 +1,17 @@
 import { routes } from "./config/routes.js";
-import { initTheme } from './utilites/theme.js';
-import { renderAuthButtons } from './utilites/renderAuthButtons.js';
+import { initTheme } from './Utilites/theme.js';
+import { renderAuthButtons } from './Utilites/renderAuthButtons.js';
+import * as authService from './services/auth_services.js';
+// import * as checkout from './services/checkout.js';
+
+// checkout.setOrderDefault();
 
 // Reference to the currently loaded page script
 let currentScript;
 
 //Loads an HTML component into a specific element by ID
 async function loadComponent(id, file) {
-    const res = await fetch(file);
+    const res = await fetch(`${file}?t=${Date.now()}`);
     const html = await res.text();
     document.getElementById(id).innerHTML = html;
 }
@@ -33,6 +37,15 @@ function getPage() {
 // Handles page navigation and layout visibility
 async function router() {
     const page = getPage();
+
+    // Redirect based on authentication status
+    if (authService.isAuthenticated()) {
+        if (page === 'login' || page === 'register') {
+            window.location.hash = '#home';
+            return;
+        }
+    }
+
     const route = routes[page] || routes.home;
 
     // Elements that should be hidden on login/register pages
@@ -42,12 +55,14 @@ async function router() {
 
     // Hide layout elements on auth pages
     if (page === 'login' || page === 'register') {
-        if (header) header.style.display = 'none';
-        if (footer) footer.style.display = 'none';
+
+        // if (header) header.style.display = 'none';
+        // if (footer) footer.style.display = 'none';
         if (chatbot) chatbot.style.display = 'none';
     } else {
-        if (header) header.style.display = 'block';
-        if (footer) footer.style.display = 'block';
+        // if (header) header.style.display = 'block';
+        // if (footer) footer.style.display = 'block';
+
         if (chatbot) chatbot.style.display = 'block';
     }
 
@@ -60,19 +75,21 @@ async function router() {
 }
 
 // Load header and initialize theme
-loadComponent("header", "/html/header.html").then(() => {
+
+loadComponent("header", "html/header.html").then(() => {
     initTheme();
     renderAuthButtons();
 });
 
 // Load footer
-loadComponent("footer", "/html/footer.html");
+
+loadComponent("footer", "html/footer.html");
 
 // Load chatbot only if not on auth pages
 if (getPage() !== 'login' && getPage() !== 'register') {
-    loadComponent("chatbot", "/html/chatbot.html").then(() => {
+    loadComponent("chatbot", "html/chatbot.html").then(() => {
         const script = document.createElement("script");
-        script.src = "/js/pages/chatbot.js?t=" + Date.now();
+        script.src = "js/pages/chatbot.js?t=" + Date.now();
         script.type = "module";
         document.body.appendChild(script);
     });

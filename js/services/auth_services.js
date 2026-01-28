@@ -87,3 +87,11 @@ export function initAuthAnimation() {
 export function isAuthenticated() {
     return localStorage.getItem('currentUser') !== null;
 }
+// get current user mail
+export function getCurrentUserMail() {
+    const user = getCurrentUser();
+    if (user) {
+        return user.email;
+    }
+    return null;
+}
