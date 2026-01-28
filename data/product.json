@@ -827,7 +827,239 @@
                 "comment": "Great for business travel",
                 "createdAt": "2026-01-19T08:15:00Z"
             }
+        ]
+    },
+    {
+        "id": 301,
+        "name": "Relaxed Fit Knee-length piqué shorts",
+        "slug": "Relaxed Fit Knee-length piqué shorts",
+        "description": "Knee-length shorts in cotton piqué with covered elastication and a drawstring at the waist and side pockets. Relaxed fit for a casual but not oversized silhouette.",
+        "categoryId": 3,
+        "price": 349,
+        "discountPrice": 299,
+        "mainImage": "../assets/images/product/Relaxed Fit Knee-length piqué shorts.avif",
+        "images": [
+            "../assets/images/product/Relaxed Fit Knee-length piqué shorts1.avif",
+            "../assets/images/product/Relaxed Fit Knee-length piqué shorts2.avif",
+            "../assets/images/product/Relaxed Fit Knee-length piqué shorts3.avif"
         ],
-        "category": "T-shirt"
+        "sizes": [
+            "M",
+            "L",
+            "XL"
+        ],
+        "style": "casual",
+        "rating": 4.3,
+        "stock": 40,
+        "isActive": true
+    },
+    {
+        "id": 302,
+        "name": "Relaxed Fit Poplin shorts",
+        "slug": "Relaxed Fit Poplin shorts",
+        "description": "Shorts in cotton poplin with an elasticated waist, a zip fly and button, diagonal side pockets and welt back pockets with a button. Relaxed fit for a casual but not oversized silhouette.",
+        "categoryId": 3,
+        "price": 399,
+        "discountPrice": 349,
+        "mainImage": "../assets/images/product/Relaxed Fit Poplin shorts.avif",
+        "images": [
+            "../assets/images/product/Relaxed Fit Poplin shorts1.avif",
+            "../assets/images/product/Relaxed Fit Poplin shorts2.avif",
+            "../assets/images/product/Relaxed Fit Poplin shorts3.avif"
+        ],
+        "sizes": [
+            "M",
+            "L"
+        ],
+        "style": "casual",
+        "rating": 4.4,
+        "stock": 35,
+        "isActive": true
+    },
+    {
+        "id": 303,
+        "name": "2-pack DryMove™ mesh sports shorts",
+        "slug": "2-pack DryMove™ mesh sports shorts",
+        "description": "Sports shorts in DryMove™ functional fabric that helps to wick away moisture from your skin, keeping you comfortably dry while you move. Regular fit with covered elastication and a concealed drawstring at the waist. Pockets in the side seams and a slit at the hems for increased mobility.",
+        "categoryId": 3,
+        "price": 299,
+        "discountPrice": 259,
+        "mainImage": "../assets/images/product/2-pack DryMove™ mesh sports shorts.avif",
+        "images": [
+            "../assets/images/product/2-pack DryMove™ mesh sports shorts1.avif",
+            "../assets/images/product/2-pack DryMove™ mesh sports shorts2.avif",
+            "../assets/images/product/2-pack DryMove™ mesh sports shorts3.avif"
+        ],
+        "sizes": [
+            "S",
+            "M",
+            "L"
+        ],
+        "style": "gym",
+        "rating": 4.6,
+        "stock": 50,
+        "isActive": true
+    },
+    {
+        "id": 304,
+        "name": "Patterned swim shorts",
+        "slug": "Patterned swim shorts",
+        "description": "Swim shorts in a patterned weave featuring covered elastication and a drawstring at the waist, side pockets and a welt back pocket with a hook and loop fastening. Small slit at the hems. Soft mesh inner shorts.",
+        "categoryId": 3,
+        "price": 329,
+        "discountPrice": 289,
+        "mainImage": "../assets/images/product/Patterned swim shorts.avif",
+        "images": [
+            "../assets/images/product/Patterned swim shorts1.avif",
+            "../assets/images/product/Patterned swim shorts2.avif",
+            "../assets/images/product/Patterned swim shorts3.avif"
+        ],
+        "sizes": [
+            "M",
+            "L"
+        ],
+        "style": "casual",
+        "rating": 4.2,
+        "stock": 30,
+        "isActive": true
+    },
+    {
+        "id": 305,
+        "name": "Printed drawstring shortss",
+        "slug": "Printed drawstring shorts",
+        "description": "Loose-fit shorts in a soft, printed cotton weave. High waist with covered elastication and a drawstring adorned with metal beads. Gathers at the top and discreet side pockets.",
+        "categoryId": 3,
+        "price": 379,
+        "discountPrice": 339,
+        "mainImage": "../assets/images/product/Printed drawstring shorts.avif",
+        "images": [
+            "../assets/images/product/Printed drawstring shorts1.avif",
+            "../assets/images/product/Printed drawstring shorts2.avif",
+            "../assets/images/product/Printed drawstring shorts3.avif"
+        ],
+        "sizes": [
+            "M",
+            "L",
+            "XL"
+        ],
+        "style": "party",
+        "rating": 4.5,
+        "stock": 25,
+        "isActive": true
+    },
+    {
+        "id": 306,
+        "name": "Cargo shorts",
+        "slug": "Cargo shorts",
+        "description": "Knee-length cargo shorts in sweatshirt fabric with a soft brushed inside. Elasticated waist with a drawstring, a fake fly, diagonal side pockets and flap leg pockets.",
+        "categoryId": 3,
+        "price": 319,
+        "discountPrice": 279,
+        "mainImage": "../assets/images/product/Cargo shorts.avif",
+        "images": [
+            "../assets/images/product/Cargo shorts1.avif",
+            "../assets/images/product/Cargo shorts2.avif",
+            "../assets/images/product/Cargo shorts3.avif"
+        ],
+        "sizes": [
+            "S",
+            "M"
+        ],
+        "style": "casual",
+        "rating": 4.1,
+        "stock": 22,
+        "isActive": true
+    },
+    {
+        "id": 307,
+        "name": "Cotton jersey shorts",
+        "slug": "Cotton jersey shorts",
+        "description": "Shorts in soft cotton jersey with an elasticated, drawstring waist, discreet side pockets and a small slit on one side of the hems.",
+        "categoryId": 3,
+        "price": 359,
+        "discountPrice": 319,
+        "mainImage": "../assets/images/product/Cotton jersey shorts.avif",
+        "images": [
+            "../assets/images/product/Cotton jersey shorts1.avif",
+            "../assets/images/product/Cotton jersey shorts2.avif",
+            "../assets/images/product/Cotton jersey shorts3.avif"
+        ],
+        "sizes": [
+            "M",
+            "L"
+        ],
+        "style": "casual",
+        "rating": 4.3,
+        "stock": 24,
+        "isActive": true
+    },
+    {
+        "id": 308,
+        "name": "Double-layered sports shorts in DryMove™",
+        "slug": "Double-layered sports shorts in DryMove™",
+        "description": "Knee-length sports shorts in DryMove™ functional mesh that helps to wick away moisture from your skin, keeping you comfortably dry while you move. Regular fit with covered elastication and a concealed drawstring at the waist, side pockets and a slit at the side of the hems. The shorts are layered over jersey cycling shorts with an open pocket on one leg.",
+        "categoryId": 3,
+        "price": 289,
+        "discountPrice": 249,
+        "mainImage": "../assets/images/product/Double-layered sports shorts in DryMove.avif",
+        "images": [
+            "../assets/images/product/Double-layered sports shorts in DryMove1.avif",
+            "../assets/images/product/Double-layered sports shorts in DryMove2.avif",
+            "../assets/images/product/Double-layered sports shorts in DryMove3.avif"
+        ],
+        "sizes": [
+            "S",
+            "M",
+            "L"
+        ],
+        "style": "sport",
+        "rating": 4.6,
+        "stock": 38,
+        "isActive": true
+    },
+    {
+        "id": 309,
+        "name": "Casual Summer Shorts",
+        "slug": "casual-summer-shorts",
+        "description": "Perfect shorts for summer",
+        "categoryId": 3,
+        "price": 339,
+        "discountPrice": 299,
+        "mainImage": "shorts9-main.jpg",
+        "images": [
+            "shorts9-1.jpg"
+        ],
+        "sizes": [
+            "M",
+            "L"
+        ],
+        "style": "casual",
+        "rating": 4.2,
+        "stock": 27,
+        "isActive": true
+    },
+    {
+        "id": 310,
+        "name": "Tailored shorts",
+        "slug": "Tailored shorts",
+        "description": "Shorts in woven fabric with a zip fly and button, diagonal side pockets and a fake welt pocket at the back. Pleats at the front and creases down the front and back.",
+        "categoryId": 3,
+        "price": 389,
+        "discountPrice": 349,
+        "mainImage": "../assets/images/product/Tailored shorts.avif",
+        "images": [
+            "../assets/images/product/Tailored shorts1.avif",
+            "../assets/images/product/Tailored shorts2.avif",
+            "../assets/images/product/Tailored shorts3.avif"
+        ],
+        "sizes": [
+            "M",
+            "L",
+            "XL"
+        ],
+        "style": "party",
+        "rating": 4.7,
+        "stock": 20,
+        "isActive": true
     }
 ]
