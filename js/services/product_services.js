@@ -15,20 +15,28 @@ export async function getProductById(id) {
     const product = products.find(product => product.id == id)
     return product
 }
-export async function GetProductsByCategory(categoryId) {
+// get products by category
+export async function getProductsByCategory(categoryId) {
     const allProducts = await getAllProducts();
     let filterProducts = allProducts.filter(p => p.categoryId == categoryId);
     if (filterProducts.length != 0) {
         return filterProducts;
     }
-    return allProducts;
+    return [];
+}
+//get category by name
+export async function getCategoryByName(categoryName) {
+    const categories = await getAllCategories()
+    const category = categories.find(category => category.name == categoryName)
+    return category
 }
 // get all reviews
-export async function getAllReviews() {
-    const response = await fetch(`./data/reviews.json`)
-    const fileReviews = await response.json()
+export async function getAllReviews(productId) {
     const localReviews = JSON.parse(localStorage.getItem('reviews') || '[]')
-    return [...fileReviews, ...localReviews]
+    const productReviews = localReviews.filter(review => review.productId == productId)
+    const response = await getProductById(productId)
+    const reviews = response.reviews
+    return [...productReviews, ...reviews]
 }
 // get product by count
 export async function getProductByCount(start, end) {
@@ -37,24 +45,12 @@ export async function getProductByCount(start, end) {
     return product
 }
 
-// get product reviews
-export async function getProductReviews(productId) {
-    const reviews = await getAllReviews()
-    const productReviews = reviews.filter(review => review.productId == productId)
-    return productReviews;
-}
-//count reviews
+
 export async function countReviews(productId) {
-    const reviews = await getProductReviews(productId)
+    const reviews = await getAllReviews(productId)
     return reviews.length
 }
 
-export async function getReviewsByProductId(productId) {
-    const product = await getProductById(productId);
-    console.log(product.reviews);
-
-    return product ? product.reviews || [] : [];
-}
 // get discount
 export async function getDiscount(productId) {
     const product = await getProductById(productId)
@@ -62,21 +58,10 @@ export async function getDiscount(productId) {
     return discount
 }
 // get category
-export async function getCategory(productId) {
+export async function getCategoryId(productId) {
     const product = await getProductById(productId)
-    const category = product.category
-    return category
-}
-// get products by category
-export async function getProductsByCategory(category, start, end) {
-    const products = await getAllProducts()
-    const product = products.filter(product => product.category == category)
-    return product.slice(start, end)
-}
-export async function getProductsByCategoryId(categoryId) {
-    const products = await getAllProducts()
-    const filteredProducts = products.filter(product => product.categoryId == categoryId)
-    return filteredProducts;
+    const categoryId = product.categoryId
+    return categoryId
 }
 
 //get cart
