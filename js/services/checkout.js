@@ -46,7 +46,7 @@ export async function setOrderDefault() {
             cardCvv: '123',
             orderDate: new Date(),
             orderStatus: 'pending',
-            orderTotal: 1000,
+            orderTotal: 2000,
             orderItems: [
                 {
                     productId: 1,
@@ -71,4 +71,12 @@ export async function getUserOrder() {
         return [];
     }
     return userOrder;
+}
+// get user order by id
+export async function getUserOrderById(id) {
+    const userOrder = await getUserOrder();
+    if (!userOrder) {
+        return [];
+    }
+    return userOrder.find(o => o.id === id);
 }

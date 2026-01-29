@@ -13,7 +13,7 @@ if (!productServices.getProductId()) {
 }
 
 //add to cart
-async function addToCart(qty, color, size) {
+async function addToCart(qty, size) {
     const cart = await productServices.getCart()
     const productId = productServices.getProductId();
     const product = await productServices.getProductById(productId);
@@ -24,7 +24,6 @@ async function addToCart(qty, color, size) {
         discount: product.discount,
         mainImage: product.mainImage,
         qty: qty,
-        color: color,
         size: size
     }
     if (currentUser) {
@@ -65,19 +64,13 @@ countReviews.innerText = `(${reviewsCount})`;
 if (addToCartBtn) {
     addToCartBtn.addEventListener('click', () => {
         const qty = qtyVal ? parseInt(qtyVal.innerText) : 1;
-        let color = document.querySelector('.color-option.selected');
         let size = document.querySelector('.size-option.selected');
-
-        if (!color) {
-            massage('Please select a color', 'error');
-            return;
-        }
         if (!size) {
             massage('Please select a size', 'error');
             return;
         }
 
-        addToCart(qty, color.getAttribute('data-color'), size.innerText);
+        addToCart(qty, size.innerText);
     });
 }
 
@@ -116,10 +109,8 @@ async function currentProduct() {
         productName.innerText = product.name;
         //product Rating
         const productRating = document.getElementById("rating");
-        productRating.innerHTML = ` 
-                                               <div class="rating" style="--rating: ${product.rating}"></div>
-                                        <span id="ratingText">${product.rating} / 5</span>
-`;
+        productRating.innerHTML = ` <div class="rating" style="--rating: ${product.rating}"></div>
+                                    <span id="ratingText">${product.rating} / 5</span>`;
 
         //product price
         const productPrice = document.getElementById('product-price');
@@ -163,6 +154,9 @@ renderReview(productServices.getProductId(), 2);
 
 // Load more reviews
 const loadMoreReviews = document.getElementById('load_more');
+if (reviewsCount <= 2) {
+    loadMoreReviews.classList.add('hidden');
+}
 loadMoreReviews.addEventListener('click', () => {
     renderReview(productServices.getProductId(), 4);
     loadMoreReviews.classList.add('hidden');
@@ -177,7 +171,7 @@ async function renderReview(productId, count = 4) {
 
     if (!productId) productId = productServices.getProductId();
     try {
-        const reviews = await productServices.getReviewsByProductId(productId);
+        const reviews = await productServices.getAllReviews(productId);
         const reviewContainer = document.getElementById('review-container');
         if (!reviewContainer) {
             console.error('Review container not found');
@@ -206,7 +200,7 @@ async function renderReview(productId, count = 4) {
                     </svg>
                 </div>
                 <p class="text-gray-600 mb-4 text-sm md:text-base leading-relaxed">"${review.comment}"</p>
-                <p class="text-gray-500 text-sm font-medium">Posted on February 5, 2026</p>
+                <p class="text-gray-500 text-sm font-medium">Posted on ${review.createdAt.slice(0, 10).split('-').reverse().join('-')}</p>
             </div>
             `);
         });
@@ -226,9 +220,9 @@ async function renderProduct(start, end) {
         }
 
         if (productContainer.children.length > 0) return;
-        const category = await productServices.getCategory(productServices.getProductId());
-        const products = await productServices.getProductsByCategory(category, start, end);
-        products.forEach(product => {
+        const categoryId = await productServices.getCategoryId(productServices.getProductId());
+        const products = await productServices.getProductsByCategory(categoryId);
+        products.slice(start, end).forEach(product => {
             productContainer.insertAdjacentHTML('beforeend', `<a href="index.html#product?id=${product.id}">
             <div class="group cursor-pointer">
                 <div class="bg-[#F0EEED] rounded-3xl overflow-hidden mb-4 relative aspect-[1/1.1]">
@@ -312,7 +306,7 @@ if (submitReview && cancelReview && reviewComment) {
             return;
         }
         const review = {
-            name: currentUser.fullName,
+            userName: currentUser.fullName,
             rating: selectedRating,
             comment: reviewComment.value,
             productId: productServices.getProductId(),
