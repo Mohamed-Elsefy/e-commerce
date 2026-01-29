@@ -69,6 +69,10 @@ export async function getCart(userEmail) {
     const cart = localStorage.getItem(userEmail)
     return cart ? JSON.parse(cart) : []
 }
+//update cart
+export async function updateCart(userEmail, cart) {
+    localStorage.setItem(userEmail, JSON.stringify(cart))
+}
 
 
 //get product id from url
