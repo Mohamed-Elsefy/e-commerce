@@ -1,31 +1,54 @@
-<!-- Main navigation bar -->
-<nav class="container mx-auto px-4 py-4 flex justify-between items-center border-b border-(--onbg)">
+<nav class="container mx-auto px-4 py-4 flex items-center justify-between gap-4 border-b border-[var(--onbg)]">
+  
+  <div class="flex items-center gap-4 lg:gap-8">
+    <button class="md:hidden p-1" aria-label="Open Menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 19 15" fill="currentColor">
+        <path d="M18.75 7.125H0M18.75 1.125H0M18.75 13.125H0" stroke="black" stroke-width="2" />
+      </svg>
+    </button>
 
-    <!-- Logo / Brand name (navigates to home page) -->
-    <a href="#home" class="text-3xl font-bold uppercase font-(family-name:--fsecond) text-(--onbg)">
-        Shop.co
+    <a href="#home" class="text-2xl md:text-3xl font-bold uppercase font-[var(--fsecond)] text-[var(--onbg)] whitespace-nowrap">
+      Shop.co
     </a>
 
-    <!-- Right-side navigation actions -->
-    <div class="flex items-center gap-4">
-
-        <!-- Theme toggle button (light / dark mode) -->
-        <button id="theme-toggle" class="p-2 rounded-xl bg-(--bgsecond) text-(--onbg) transition-all active:scale-95">
-
-            <!-- Sun icon (shown in dark mode) -->
-            <span id="sun-icon" class="hidden">☀️</span>
-
-            <!-- Moon icon (shown in light mode) -->
-            <span id="moon-icon">🌙</span>
+    <ul class="hidden md:flex items-center gap-6 text-gray-700 font-medium">
+      <li>
+        <button class="flex items-center gap-1 hover:text-black transition-colors">
+          Shop
+          <svg width="10" height="6" viewBox="0 0 12 7" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
+      </li>
+      <li><a href="#sale" class="hover:text-black transition-colors">On Sale</a></li>
+      <li><a href="#new" class="hover:text-black transition-colors">New Arrivals</a></li>
+      <li><a href="#brands" class="hover:text-black transition-colors">Brands</a></li>
+    </ul>
+  </div>
 
-        <!-- Cart page link -->
-        <a href="#cart" class="text-(--onbg)">
-            <i class="fa-solid fa-cart-shopping"></i>
-        </a>
+  <div class="flex-1 max-w-xl hidden md:relative md:block">
+    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+    </span>
+    <input 
+      type="search" 
+      placeholder="Search for products..." 
+      class="w-full py-3 pl-12 pr-4 bg-gray-100 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-200 transition-all"
+    >
+  </div>
 
-        <!-- Authentication buttons container (Login / Logout rendered via JavaScript) -->
-        <div id="auth-buttons"></div>
+  <div class="flex items-center gap-3 md:gap-4">
+    <button class="md:hidden p-1 text-[var(--onbg)]" aria-label="Search">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+    </button>
 
-    </div>
+    <button id="theme-toggle" class="p-2 rounded-full bg-[var(--bgsecond)] text-[var(--onbg)] hover:bg-opacity-80 transition-all active:scale-90" aria-label="Toggle Theme">
+      <span id="sun-icon" class="hidden text-lg">☀️</span>
+      <span id="moon-icon" class="text-lg">🌙</span>
+    </button>
+
+    <a href="#cart" class="text-[var(--onbg)] p-1 hover:opacity-70 transition-opacity" aria-label="View Cart">
+      <i class="fa-solid fa-cart-shopping text-xl"></i>
+    </a>
+
+    <div id="auth-buttons" class="min-w-fit"></div>
+  </div>
 </nav>
