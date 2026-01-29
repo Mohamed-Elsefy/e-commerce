@@ -6,15 +6,16 @@ import { getCurrentUser } from '../services/auth_services.js';
 
 const currentUser = getCurrentUser();
 
-
 //thack the id in url
 if (!productServices.getProductId()) {
+    window.location.href = '/index.html';
+}
+if (!await productServices.getProductById(productServices.getProductId())) {
     window.location.href = '/index.html';
 }
 
 //add to cart
 async function addToCart(qty, size) {
-    const cart = await productServices.getCart()
     const productId = productServices.getProductId();
     const product = await productServices.getProductById(productId);
     const productCart = {
@@ -27,18 +28,29 @@ async function addToCart(qty, size) {
         size: size
     }
     if (currentUser) {
+        const cart = await productServices.getCart(currentUser.email)
+        if (cart.find(p => p.productId == productId)) {
+            massage('Product already in cart', 'error');
+            return;
+        }else{
+            cart.push(productCart)
+            massage('Product added to cart', 'success');
+        }
         productCart.userEmail = currentUser.email
+        localStorage.setItem(currentUser.email, JSON.stringify(cart))
     } else {
+        const cart = await productServices.getCart('guest')
+        if (cart.find(p => p.productId == productId)) {
+            massage('Product already in cart', 'error');
+            return;
+        }else{
+            cart.push(productCart)
+            massage('Product added to cart', 'success');
+        }
         productCart.userEmail = 'guest'
+        localStorage.setItem('guest', JSON.stringify(cart))
     }
 
-    if (cart.find(p => p.productId == productId)) {
-        massage('Product already in cart', 'error');
-    } else {
-        cart.push(productCart)
-        massage('Product added to cart', 'success');
-    }
-    localStorage.setItem('cart', JSON.stringify(cart))
 }
 
 

@@ -65,8 +65,8 @@ export async function getCategoryId(productId) {
 }
 
 //get cart
-export async function getCart() {
-    const cart = localStorage.getItem('cart')
+export async function getCart(userEmail) {
+    const cart = localStorage.getItem(userEmail)
     return cart ? JSON.parse(cart) : []
 }
 
