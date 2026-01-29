@@ -384,7 +384,7 @@ document.getElementById("clearFiltersBtn").addEventListener("click", () => {
         dressStyle: [],
         size: []
     };
-
+    window.location.reload();
     minRange.value = 50;
     maxRange.value = 350;
     updateSlider();

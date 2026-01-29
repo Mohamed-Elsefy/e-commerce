@@ -68,6 +68,7 @@ export async function GetCategoryById(categoryId) {
     let category = categories.find(category => category.id == categoryId)
     return category;
 }
+
 export async function getProductsByCategoryId(categoryId) {
     const products = await getAllProducts()
     const filteredProducts = products.filter(product => product.categoryId == categoryId)
