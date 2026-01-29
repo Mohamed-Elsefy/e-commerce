@@ -1061,5 +1061,441 @@
         "rating": 4.7,
         "stock": 20,
         "isActive": true
+    },
+    {
+        "id": 401,
+        "name": "Wide High Jeans",
+        "slug": "Wide High Jeans",
+        "description": "5-pocket jeans in washed cotton denim with a high waist, zip fly and button and wide, straight legs.",
+        "categoryId": 4,
+        "price": 699,
+        "discountPercentage": 15,
+        "mainImage": "../assets/images/product/Wide High Jeans.avif",
+        "images": [
+            "../assets/images/product/Wide High Jeans1.avif",
+            "../assets/images/product/Wide High Jeans2.avif",
+            "../assets/images/product/Wide High Jeans3.avif"
+        ],
+        "sizes": [
+            "XL",
+            "L",
+            "M"
+        ],
+        "style": "casual",
+        "rating": 4.6,
+        "stock": 35,
+        "isActive": true
+    },
+    {
+        "id": 402,
+        "name": "Motif-detail wide leg jeans",
+        "slug": "Motif-detail wide leg jeans",
+        "description": "5-pocket jeans in cotton denim with motifs details. Loose fit through the hip and thigh with wide legs. Adjustable elastication at the waist and a zip fly with a press-stud.",
+        "categoryId": 4,
+        "price": 679,
+        "discountPercentage": 10,
+        "mainImage": "../assets/images/product/Motif-detail wide leg jeans.avif",
+        "images": [
+            "../assets/images/product/Motif-detail wide leg jeans1.avif",
+            "../assets/images/product/Motif-detail wide leg jeans2.avif",
+            "../assets/images/product/Motif-detail wide leg jeans3.avif"
+        ],
+        "sizes": [
+            "XS",
+            "L",
+            "S"
+        ],
+        "style": "casual",
+        "rating": 4.4,
+        "stock": 40,
+        "isActive": true
+    },
+    {
+        "id": 403,
+        "name": "Skinny Fit Jeans",
+        "slug": "Skinny Fit Jeans",
+        "description": "Jeans in washed denim with a skinny fit through the hip, thigh and leg. Adjustable, elasticated waist, a fake fly with a press-stud, fake front pockets and real back pockets.",
+        "categoryId": 4,
+        "price": 719,
+        "discountPercentage": 20,
+        "mainImage": "../assets/images/product/Skinny Fit Jeans.avif",
+        "images": [
+            "../assets/images/product/Skinny Fit Jeans1.avif",
+            "../assets/images/product/Skinny Fit Jeans2.avif",
+            "../assets/images/product/Skinny Fit Jeans3.avif"
+        ],
+        "sizes": [
+            "S",
+            "XS",
+            "XXS"
+        ],
+        "style": "casual",
+        "rating": 4.7,
+        "stock": 28,
+        "isActive": true
+    },
+    {
+        "id": 404,
+        "name": "Feather Soft Denim drawstring trousers",
+        "slug": "Feather Soft Denim drawstring trousers",
+        "description": "Loose-fit trousers in supersoft and feather-light denim with an elasticated, drawstring waist, discreet side pockets and wide legs.",
+        "categoryId": 4,
+        "price": 689,
+        "discountPercentage": 0,
+        "mainImage": "../assets/images/product/Feather Soft Denim drawstring trousers1.avif",
+        "images": [
+            "../assets/images/product/Feather Soft Denim drawstring trousers.avif",
+            "../assets/images/product/Feather Soft Denim drawstring trousers2.avif",
+            "../assets/images/product/Feather Soft Denim drawstring trousers3.avif"
+        ],
+        "sizes": [
+            "L",
+            "XL",
+            "XXL"
+        ],
+        "style": "casual",
+        "rating": 4.3,
+        "stock": 30,
+        "isActive": true
+    },
+    {
+        "id": 405,
+        "name": "Printed denim joggers",
+        "slug": "Printed denim joggers",
+        "description": "Joggers in printed cotton denim with an elasticated, drawstring waist with a cord stopper, a fake fly and fake front pockets. Legs with pleats at the knees for added width and covered elastication at the hems.",
+        "categoryId": 4,
+        "price": 749,
+        "discountPercentage": 25,
+        "mainImage": "../assets/images/product/Printed denim joggers.avif",
+        "images": [
+            "../assets/images/product/Printed denim joggers1.avif",
+            "../assets/images/product/Printed denim joggers2.avif"
+        ],
+        "sizes": [
+            "S",
+            "L",
+            "XL"
+        ],
+        "style": "casual",
+        "rating": 4.5,
+        "stock": 22,
+        "isActive": true
+    },
+    {
+        "id": 406,
+        "name": "Wide Ultra High Jeans",
+        "slug": "Wide Ultra High Jeans",
+        "description": "5-pocket jeans in rigid cotton denim that feels firm at first but then softens and loosens with wear. Wide leg with a regular fit from the waist to the hip and a wide cut from the thigh to the hem. Extra-high waist with a zip fly and button. Longer length, designed to fall over the foot with a stacking effect. Inspired by the 70s, designed for today.",
+        "categoryId": 4,
+        "price": 709,
+        "discountPercentage": 15,
+        "mainImage": "../assets/images/product/Wide High Jeans.avif",
+        "images": [
+            "../assets/images/product/Wide High Jeans1.avif",
+            "../assets/images/product/Wide High Jeans2.avif",
+            "../assets/images/product/Wide High Jeans3.avif"
+        ],
+        "sizes": [
+            "L",
+            "XL",
+            "XXL"
+        ],
+        "style": "casual",
+        "rating": 4.4,
+        "stock": 26,
+        "isActive": true
+    },
+    {
+        "id": 407,
+        "name": "Regular Tapered Jeans",
+        "slug": "Regular Tapered Jeans",
+        "description": "5-pocket jeans in washed, stretch cotton denim with a regular waist, zip fly and button and gently tapered legs with good room for movement over the thighs and knees. Some of the cotton content of the jeans is recycled.",
+        "categoryId": 4,
+        "price": 699,
+        "discountPercentage": 10,
+        "mainImage": "../assets/images/product/Regular Tapered Jeans.avif",
+        "images": [
+            "../assets/images/product/Regular Tapered Jeans1.avif",
+            "../assets/images/product/Regular Tapered Jeans2.avif",
+            "../assets/images/product/Regular Tapered Jeans3.avif"
+        ],
+        "sizes": [
+            "L",
+            "XL",
+            "XXL",
+            "XXXL"
+        ],
+        "style": "casual",
+        "rating": 4.6,
+        "stock": 34,
+        "isActive": true
+    },
+    {
+        "id": 408,
+        "name": "Slim Fit Twill trousers",
+        "slug": "stretch-fit-jeans",
+        "description": "Ankle length trousers in a soft twill with an elasticated, drawstring waist, fake fly, pockets in the side seams and jetted back pockets. Legs with sewn-in creases and turn-ups at the hems. Slim fit that hugs the contours of your body, creating a fitted silhouette.",
+        "categoryId": 4,
+        "price": 729,
+        "discountPercentage": 18,
+        "mainImage": "../assets/images/product/Slim Fit Twill trousers.avif",
+        "images": [
+            "../assets/images/product/Slim Fit Twill trousers1.avif",
+            "../assets/images/product/Slim Fit Twill trousers2.avif",
+            "../assets/images/product/Slim Fit Twill trousers3.avif"
+        ],
+        "sizes": [
+            "L",
+            "XL",
+            "XXL",
+            "XXXL"
+        ],
+        "style": "formal",
+        "rating": 4.7,
+        "stock": 24,
+        "isActive": true
+    },
+    {
+        "id": 409,
+        "name": "Regular Fit Tailored linen-blend trousers",
+        "slug": "Regular Fit Tailored linen-blend trousers",
+        "description": "Trousers in an airy weave made from a lyocell and linen blend. Zip fly and an extended waistband with a concealed hook-and-bar fastener and a button. Diagonal side pockets, jetted back pockets with a button and long legs with creases. Regular fit for comfortable wear and a classic silhouette.",
+        "categoryId": 4,
+        "price": 669,
+        "discountPercentage": 12,
+        "mainImage": "../assets/images/product/Regular Fit Tailored linen-blend trousers.avif",
+        "images": [
+            "../assets/images/product/Regular Fit Tailored linen-blend trousers1.avif",
+            "../assets/images/product/Regular Fit Tailored linen-blend trousers2.avif",
+            "../assets/images/product/Regular Fit Tailored linen-blend trousers3.avif"
+        ],
+        "sizes": [
+            "L",
+            "XL",
+            "XXL"
+        ],
+        "style": "formal",
+        "rating": 4.2,
+        "stock": 29,
+        "isActive": true
+    },
+    {
+        "id": 410,
+        "name": "Regular Fit Printed jeans",
+        "slug": "Regular Fit Printed jeans",
+        "description": "5-pocket jeans in soft cotton denim with an all-over print. Regular fit through the hip and thigh with tapered legs. Adjustable, elasticated waist and zip fly with a button.",
+        "categoryId": 4,
+        "price": 799,
+        "discountPercentage": 20,
+        "mainImage": "../assets/images/product/Regular Fit Printed jeans.avif",
+        "images": [
+            "../assets/images/product/Regular Fit Printed jeans1.avif",
+            "../assets/images/product/Regular Fit Printed jeans2.avif",
+            "../assets/images/product/Regular Fit Printed jeans3.avif"
+        ],
+        "sizes": [
+            "XS",
+            "S",
+            "L"
+        ],
+        "style": "casual",
+        "rating": 4.8,
+        "stock": 18,
+        "isActive": true
+    },
+    {
+        "id": 601,
+        "name": "Loose Fit Printed hoodie",
+        "slug": "Loose Fit Printed hoodie",
+        "description": "Hoodie in printed sweatshirt fabric with a soft brushed inside. Lined hood with a wrapover front, dropped shoulders, a kangaroo pocket and ribbing at the cuffs and hem. Loose fit for a generous but not oversized silhouette.",
+        "categoryId": 6,
+        "price": 799,
+        "discountPercentage": 15,
+        "mainImage": "../assets/images/product/Loose Fit Printed hoodie.avif",
+        "images": [
+            "../assets/images/product/Loose Fit Printed hoodie1.avif",
+            "../assets/images/product/Loose Fit Printed hoodie2.avif",
+            "../assets/images/product/Loose Fit Printed hoodie3.avif"
+        ],
+        "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "style": "casual",
+        "rating": 4.5,
+        "stock": 40,
+        "isActive": true
+    },
+    {
+        "id": 602,
+        "name": "Loose Fit Zip-through hoodie",
+        "slug": "Loose Fit Zip-through hoodie",
+        "description": "Top in midweight sweatshirt fabric with a soft brushed inside. Hood with a drawstring, zip down the front and front pockets. Dropped shoulders, long sleeves and ribbing at the cuffs and hem. Loose fit for a generous but not oversized silhouette.",
+        "categoryId": 6,
+        "price": 849,
+        "discountPercentage": 20,
+        "mainImage": "../assets/images/product/Loose Fit Zip-through hoodie.avif",
+        "images": [
+            "../assets/images/product/Loose Fit Zip-through hoodie1.avif",
+            "../assets/images/product/Loose Fit Zip-through hoodie2.avif",
+            "../assets/images/product/Loose Fit Zip-through hoodie3.avif"
+        ],
+        "sizes": [
+            "M",
+            "L",
+            "XL"
+        ],
+        "style": "casual",
+        "rating": 4.7,
+        "stock": 35,
+        "isActive": true
+    },
+    {
+        "id": 603,
+        "name": "Oversized Fit Zip-through hoodie",
+        "slug": "zip-up-hoodie",
+        "description": "Zip-through hoodie in heavyweight sweatshirt fabric made from a cotton blend with a soft brushed inside. Jersey-lined, drawstring hood, a zip down the front, dropped shoulders and long sleeves. Front pockets and ribbing at the cuffs and hem. Oversized fit for a baggy, extra-loose silhouette.",
+        "categoryId": 6,
+        "price": 899,
+        "discountPercentage": 10,
+        "mainImage": "../assets/images/product/Oversized Fit Zip-through hoodie.avif",
+        "images": [
+            "../assets/images/product/Oversized Fit Zip-through hoodie1.avif",
+            "../assets/images/product/Oversized Fit Zip-through hoodie2.avif",
+            "../assets/images/product/Oversized Fit Zip-through hoodie3.avif"
+        ],
+        "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "style": "casual",
+        "rating": 4.4,
+        "stock": 30,
+        "isActive": true
+    },
+    {
+        "id": 604,
+        "name": "Relaxed Fit Hoodie",
+        "slug": "Relaxed Fit Hoodie",
+        "description": "Hoodie in sweatshirt fabric made from a cotton blend. Relaxed fit with a lined, drawstring hood, long sleeves, kangaroo pocket and ribbing at the cuffs and hem. Soft brushed inside.",
+        "categoryId": 6,
+        "price": 879,
+        "discountPercentage": 25,
+        "mainImage": "../assets/images/product/Relaxed Fit Hoodie.avif",
+        "images": [
+            "../assets/images/product/Relaxed Fit Hoodie1.avif",
+            "../assets/images/product/Relaxed Fit Hoodie2.avif",
+            "../assets/images/product/Relaxed Fit Hoodie3.avif"
+        ],
+        "sizes": [
+            "M",
+            "L",
+            "XL"
+        ],
+        "style": "casual",
+        "rating": 4.6,
+        "stock": 28,
+        "isActive": true
+    },
+    {
+        "id": 605,
+        "name": "Loose Fit Teddy zip-through hoodie",
+        "slug": "Loose Fit Teddy zip-through hoodie",
+        "description": "Top in soft teddy with a hood, zip down the front, and patch front pockets. Dropped shoulders, long sleeves and elasticated binding at the cuffs and hem. Loose fit for a generous but not oversized silhouette.",
+        "categoryId": 6,
+        "price": 949,
+        "discountPercentage": 18,
+        "mainImage": "../assets/images/product/Loose Fit Teddy zip-through hoodie.avif",
+        "images": [
+            "../assets/images/product/Loose Fit Teddy zip-through hoodie1.avif",
+            "../assets/images/product/Loose Fit Teddy zip-through hoodie2.avif",
+            "../assets/images/product/Loose Fit Teddy zip-through hoodie3.avif"
+        ],
+        "sizes": [
+            "M",
+            "L",
+            "XL"
+        ],
+        "style": "casual",
+        "rating": 4.8,
+        "stock": 22,
+        "isActive": true
+    },
+    {
+        "id": 606,
+        "name": "DryMove™ Sleeveless sports hoodie",
+        "slug": "DryMove™ Sleeveless sports hoodie",
+        "description": "Sleeveless sports hoodie in DryMove™ functional fabric that helps to wick away moisture from your skin, keeping you comfortably dry while you move. Regular fit with a mesh-lined, drawstring hood and a straight-cut hem with a slit at each side.",
+        "categoryId": 6,
+        "price": 829,
+        "discountPercentage": 12,
+        "mainImage": "../assets/images/product/DryMove™ Sleeveless sports hoodie.avif",
+        "images": [
+            "../assets/images/product/DryMove™ Sleeveless sports hoodie1.avif",
+            "../assets/images/product/DryMove™ Sleeveless sports hoodie2.avif",
+            "../assets/images/product/DryMove™ Sleeveless sports hoodie3.avif"
+        ],
+        "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "style": "sport",
+        "rating": 4.5,
+        "stock": 34,
+        "isActive": true
+    },
+    {
+        "id": 607,
+        "name": "Loose Fit Sleeveless sports hoodie",
+        "slug": "Loose Fit Sleeveless sports hoodie",
+        "description": "Sleeveless sports hoodie in midweight sweatshirt fabric with a washed look and a soft brushed inside. Loose fit with a lined, wrapover hood, a reflective print on the chest and back, a kangaroo pocket and a wide, ribbed trim at the hem.",
+        "categoryId": 6,
+        "price": 899,
+        "discountPercentage": 20,
+        "mainImage": "../assets/images/product/Loose Fit Sleeveless sports hoodie.avif",
+        "images": [
+            "../assets/images/product/Loose Fit Sleeveless sports hoodie1.avif",
+            "../assets/images/product/Loose Fit Sleeveless sports hoodie2.avif",
+            "../assets/images/product/Loose Fit Sleeveless sports hoodie3.avif"
+        ],
+        "sizes": [
+            "M",
+            "L",
+            "XL"
+        ],
+        "style": "sport",
+        "rating": 4.6,
+        "stock": 26,
+        "isActive": true
+    },
+    {
+        "id": 608,
+        "name": "Printed hoodie",
+        "slug": "Printed hoodie",
+        "description": "Hoodie in sweatshirt fabric made from a cotton blend with a soft brushed inside and a print motif on the front. Relaxed fit with a lined, wrapover hood, dropped shoulders, long sleeves and ribbing at the cuffs and hem.",
+        "categoryId": 6,
+        "price": 999,
+        "discountPercentage": 22,
+        "mainImage": "../assets/images/product/Printed hoodie.avif",
+        "images": [
+            "../assets/images/product/Printed hoodie1.avif",
+            "../assets/images/product/Printed hoodie2.avif",
+            "../assets/images/product/Printed hoodie3.avif"
+        ],
+        "sizes": [
+            "M",
+            "L",
+            "XL"
+        ],
+        "style": "casual",
+        "rating": 4.9,
+        "stock": 18,
+        "isActive": true
     }
 ]

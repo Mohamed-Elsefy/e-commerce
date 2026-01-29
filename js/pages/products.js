@@ -13,26 +13,38 @@ document.querySelectorAll('.section-header').forEach(button => {
     });
 });
 
-//Apply Filtration
+/* =========> Get All Categories  <=========  */
 
+var categories = await productService.getAllCategories();
+const categoryContainer = document.getElementById("categories");
+(function showCategories() {
+    categories.forEach(c => {
+        categoryContainer.innerHTML += ` 
+                           <li class=" flex justify-between items-center p-3.5  cursor-pointer text-black opacity-70 text-sm category"
+                        data-value="${c.id}">
+                        <span>${c.name}</span><span><i class="fa-solid fa-angle-right"></i></span>
+                    </li>`
+    })
+})();
+
+/* =========> Apply Filtration  <=========  */
 //Default Values
-var filters = {
-    minPrice: null,
-    maxPrice: null,
-    category: "T-Shirts",
-    dressStyle: "Casual",
-    size: null
+let filters = {
+    minPrice: 50,
+    maxPrice: 1000,
+    categoryId: null,
+    dressStyle: [],
+    size: []
 };
 
+//1. ===== Price Slider Track [Determine price] =====
 
-//1. Price Slider Track [Determine price]
 const minRange = document.getElementById("minRange");
 const maxRange = document.getElementById("maxRange");
 let minPrice = document.getElementById("minPrice");
 let maxPrice = document.getElementById("maxPrice");
 const sliderTrack = document.getElementById("sliderTrack");
 const maxGap = 10;
-let priceRange = { min: 0, max: 1000 };
 
 function updateSlider() {
     let minVal = parseInt(minRange.value);
@@ -72,9 +84,10 @@ function updateSlider() {
 
     minPrice.textContent = `$ ${minVal}`;
     maxPrice.textContent = `$ ${maxVal}`;
-    priceRange.min = minVal
-    priceRange.max = maxVal;
-    console.log(priceRange);
+    filters.minPrice = minVal
+    filters.maxPrice = maxVal;
+    console.log(filters);
+
 
 
 }
@@ -85,28 +98,25 @@ maxRange.addEventListener("input", updateSlider);
 //in case the user does not change the price values
 updateSlider();
 
-//2. determine the size
+//2. ======= Determine the size ========
 const sizeButtons = document.querySelectorAll(".size-item");
 
-let selectedSizes = [];
 
 sizeButtons.forEach(btn => {
     btn.addEventListener("click", () => {
 
-        // sizeButtons.forEach(b => b.classList.remove("active"));
-
         btn.classList.toggle("active");
 
-        selectedSizes.push(btn.dataset.value);
+        if (!filters.size.includes(btn.dataset.value)) {
+            filters.size.push(btn.dataset.value);
 
-        console.log("Selected size:", selectedSizes);
+        }
     });
 });
 
-//3. determine the dress code
+//3. ======= Determine the dress style =======
 
 const dressItems = document.querySelectorAll(".style");
-let selectedDressStyle = [];
 
 dressItems.forEach(btn => {
     btn.addEventListener("click", () => {
@@ -114,31 +124,17 @@ dressItems.forEach(btn => {
         //Add Active class
         // dressItems.forEach(b => b.classList.remove("active"));
         btn.classList.toggle("active");
-        selectedDressStyle.push(btn.dataset.value);
+        if (!filters.dressStyle.includes(btn.dataset.value)) {
+            filters.dressStyle.push(btn.dataset.value);
+
+        }
+
     })
 });
 
-//4. Fill the categories list & filter by category
-let selectedSort = "default";// default | price-asc | price-desc | rating | A-Z | Z-A
-let currentPage = 1;
-const pageSize = 6;
-
-
-const categoryContainer = document.getElementById("categories");
-var categories = await productService.getAllCategories();
+//4. Filter by category
 const allProducts = await productService.getAllProducts();
-
-
-(function showCategories() {
-    categories.forEach(c => {
-        categoryContainer.innerHTML += ` 
-                           <li class=" flex justify-between items-center p-3.5  cursor-pointer text-black opacity-70 text-sm category"
-                        data-value="${c.id}">
-                        <span>${c.name}</span><span><i class="fa-solid fa-angle-right"></i></span>
-                    </li>`
-    })
-})();
-
+const selectedCategoryContainer = document.querySelectorAll(".selectedCategory");
 
 let selectedCategory = null;
 
@@ -147,19 +143,23 @@ category.forEach(btn => {
     btn.addEventListener("click", async () => {
         category.forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
-        selectedCategory = btn.dataset.value;
+        selectedCategory = Number(btn.dataset.value);
+        filters.categoryId = selectedCategory;
+        const categoryName = await productService.GetCategoryById(selectedCategory);
+
+        selectedCategoryContainer.forEach(i => i.innerHTML = categoryName.name)
         loadPage();
 
     })
 });
 
-
 function renderProducts(allProducts) {
     var productsContainer = document.querySelector(".product-items");
     productsContainer.innerHTML = ""
 
-    allProducts.forEach(item => {
-        productsContainer.innerHTML += `
+    if (allProducts.length > 0) {
+        allProducts.forEach(item => {
+            productsContainer.innerHTML += `
         <a href="index.html#product?id=${item.id}">
             <div class="group cursor-pointer">
                 <div class="bg-[#F0EEED] rounded-3xl overflow-hidden mb-4 relative aspect-[1/1.1]">
@@ -178,10 +178,16 @@ function renderProducts(allProducts) {
                 </div>` : `<div class="font-bold text-xl ">$${parseInt(item.price)}</div>`}
             </div>
             </a>`
-    })
+
+        })
+    } else {
+        toggleEmptyState(false);
+    }
 }
 // render pagination buttons
-
+let selectedSort = "default";
+let currentPage = 1;
+const pageSize = 6;
 function renderPagination(meta) {
     var pageIndexContainer = document.querySelector(".page-index");
     pageIndexContainer.innerHTML = ""
@@ -189,16 +195,18 @@ function renderPagination(meta) {
         const btn = document.createElement("button");
         btn.textContent = i;
 
-        let btnStyles = ["text-gray-500", "py-3", "px-5", "cursor-pointer"]
+        let btnStyles = ["text-gray-500", "py-3", "px-3", "cursor-pointer", "rounded-4xl"]
         btn.classList.add(...btnStyles);
 
         if (i === meta.page) {
             btn.disabled = true;
+            btn.classList.remove("text-gray-500")
+            btn.classList.add("bg-gray-300", "text-black")
         }
 
         btn.onclick = () => {
             currentPage = i;
-            loadPage();//meta.data
+            loadPage();
         };
 
         pageIndexContainer.append(btn)
@@ -265,12 +273,15 @@ function sortProducts(products, sortType) {
 }
 
 async function loadPage() {
-    let filteredProducts = allProducts;
+    let baseProducts = allProducts;
 
-    if (selectedCategory !== null) {
-        filteredProducts = await productService.getProductsByCategoryId(selectedCategory);
+    if (filters.categoryId !== null) {
+        baseProducts = await productService.getProductsByCategoryId(filters.categoryId);
     }
+    let filteredProducts = filterProducts(baseProducts, filters);
     filteredProducts = sortProducts(filteredProducts, selectedSort);
+
+    toggleEmptyState(filteredProducts.length > 0);
 
     const result = paginate(filteredProducts, currentPage, pageSize);
 
@@ -308,76 +319,77 @@ loadPage();
 
 
 document.getElementById("btnFilter").addEventListener("click", function () {
-    applyFiltersFromUI();
+    currentPage = 1;
+    loadPage();
 })
 
-function applyFiltersFromUI() {
-    filters = {
-        minPrice: Number(minPrice.value) || null,
-        maxPrice: Number(maxPrice.value) || null,
-        dressStyle: selectedDressStyle || null,
-        size: selectedSizes || null
-    };
 
-    console.log(filters);
-    const result = filterProducts(allProducts, filters);
-    console.log(result);
-
-    renderProducts(result);
-
-
-}
-
-
-function filterProducts(products) {
+function filterProducts(products, filters) {
     return products.filter(product => {
 
         // Category
-        if (selectedCategory !== null && product.categoryId !== selectedCategory) {
+        if (filters.categoryId !== null &&
+            product.categoryId !== filters.categoryId) {
             return false;
         }
 
         // Size
-        if (selectedSizes.length > 0) {
+        if (filters.size && filters.size.length > 0) {
             const hasSize = product.sizes.some(size =>
-                selectedSizes.includes(size)
+                filters.size.includes(size)
             );
             if (!hasSize) return false;
         }
 
         // Style
-        if (selectedDressStyle.length > 0) {
-            if (!selectedDressStyle.includes(product.style)) {
+        if (filters.dressStyle.length > 0) {
+            const productStyle = product.style.toLowerCase();
+            const selectedStyles = filters.dressStyle.map(s => s.toLowerCase());
+
+            if (!selectedStyles.includes(productStyle)) {
                 return false;
             }
         }
 
+        // Price
         const finalPrice = getFinalPrice(product);
-        if (finalPrice < priceRange.min || finalPrice > priceRange.max) {
+        if ((filters.minPrice !== null && finalPrice < filters.minPrice) ||
+            (filters.maxPrice !== null && finalPrice > filters.maxPrice)) {
             return false;
         }
-
         return true;
     });
 }
+function toggleEmptyState(hasProducts) {
+    const emptyState = document.getElementById("emptyState");
+    const productsGrid = document.querySelector(".product-items");
+    const pagination = document.querySelector(".pagination")
 
+    if (hasProducts) {
+        emptyState.classList.add("hidden");
+        productsGrid.classList.remove("hidden");
+        pagination.classList.remove("hidden")
+    } else {
+        emptyState.classList.remove("hidden");
+        productsGrid.classList.add("hidden");
+        pagination.classList.add("hidden")
 
+    }
+}
+document.getElementById("clearFiltersBtn").addEventListener("click", () => {
+    filters = {
+        minPrice: 50,
+        maxPrice: 350,
+        categoryId: null,
+        dressStyle: [],
+        size: []
+    };
 
-// const filteredProducts = filterProducts(products, filters);
-// console.log(filteredProducts);
+    minRange.value = 50;
+    maxRange.value = 350;
+    updateSlider();
 
-// Pagination
-// let pageIndexes = document.querySelectorAll(".index");
-// const toggleClasses = ["text-black", "bg-gray-200", "rounded-xl"];
-// pageIndexes.forEach(item => {
-//     item.addEventListener("click", function () {
-//         pageIndexes.forEach(i => {
-//             i.classList.remove(...toggleClasses);
-//         })
-//         item.classList.add(...toggleClasses);
-
-//     })
-// })
+});
 
 
 var showFilter = document.getElementById("settings");

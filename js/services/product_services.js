@@ -67,6 +67,11 @@ export async function getCategory(productId) {
     const category = product.category
     return category
 }
+export async function GetCategoryById(categoryId) {
+    const categories = await getAllCategories();
+    let category = categories.find(category => category.id == categoryId)
+    return category;
+}
 // get products by category
 export async function getProductsByCategory(category, start, end) {
     const products = await getAllProducts()
