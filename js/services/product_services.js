@@ -60,8 +60,24 @@ export async function getDiscount(productId) {
 // get category
 export async function getCategoryId(productId) {
     const product = await getProductById(productId)
-    const categoryId = product.categoryId
-    return categoryId
+    const category = product.category
+    return category
+}
+export async function GetCategoryById(categoryId) {
+    const categories = await getAllCategories();
+    let category = categories.find(category => category.id == categoryId)
+    return category;
+}
+// get products by category
+export async function getProductsByCategory(category, start, end) {
+    const products = await getAllProducts()
+    const product = products.filter(product => product.category == category)
+    return product.slice(start, end)
+}
+export async function getProductsByCategoryId(categoryId) {
+    const products = await getAllProducts()
+    const filteredProducts = products.filter(product => product.categoryId == categoryId)
+    return filteredProducts;
 }
 
 //get cart

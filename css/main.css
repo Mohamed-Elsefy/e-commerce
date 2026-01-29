@@ -198,3 +198,17 @@ input[type="range"]::-moz-range-thumb {
     text-align: center;
     transition: all 0.2s ease;
 }
+
+
+
+/*===============  overlay Style ============== */
+@media screen and (max-width:768px) {
+    .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+        z-index: 400;
+    }
+}
