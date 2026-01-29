@@ -24,12 +24,6 @@ export async function getProductsByCategory(categoryId) {
     }
     return [];
 }
-// get products by category
-// export async function getProductsByCategory(category, start, end) {
-//     const products = await getAllProducts()
-//     const product = products.filter(product => product.category == category)
-//     return product.slice(start, end)
-// }
 //get category by name
 export async function getCategoryByName(categoryName) {
     const categories = await getAllCategories()
@@ -66,7 +60,7 @@ export async function getDiscount(productId) {
 // get category
 export async function getCategoryId(productId) {
     const product = await getProductById(productId)
-    const category = product.category
+    const category = product.categoryId
     return category
 }
 export async function GetCategoryById(categoryId) {
