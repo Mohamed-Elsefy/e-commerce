@@ -32,7 +32,7 @@ async function addToCart(qty, size) {
         if (cart.find(p => p.productId == productId)) {
             massage('Product already in cart', 'error');
             return;
-        }else{
+        } else {
             cart.push(productCart)
             massage('Product added to cart', 'success');
         }
@@ -43,7 +43,7 @@ async function addToCart(qty, size) {
         if (cart.find(p => p.productId == productId)) {
             massage('Product already in cart', 'error');
             return;
-        }else{
+        } else {
             cart.push(productCart)
             massage('Product added to cart', 'success');
         }
@@ -111,6 +111,11 @@ async function currentProduct() {
                     const newSrc = img.src.replace('150x150', '600x700');
                     mainImage.src = newSrc;
                 }
+            });
+
+            thumb.addEventListener('mouseleave', () => {
+                thumb.classList.remove('border-black');
+                mainImage.src = product.mainImage;
             });
         });
         //product main image

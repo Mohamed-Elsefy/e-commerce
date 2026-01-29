@@ -850,7 +850,8 @@
         "style": "casual",
         "rating": 4.3,
         "stock": 40,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 302,
@@ -873,7 +874,8 @@
         "style": "casual",
         "rating": 4.4,
         "stock": 35,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 303,
@@ -897,7 +899,8 @@
         "style": "gym",
         "rating": 4.6,
         "stock": 50,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 304,
@@ -920,7 +923,8 @@
         "style": "casual",
         "rating": 4.2,
         "stock": 30,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 305,
@@ -944,7 +948,8 @@
         "style": "party",
         "rating": 4.5,
         "stock": 25,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 306,
@@ -967,7 +972,8 @@
         "style": "casual",
         "rating": 4.1,
         "stock": 22,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 307,
@@ -990,7 +996,8 @@
         "style": "casual",
         "rating": 4.3,
         "stock": 24,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 308,
@@ -1014,7 +1021,8 @@
         "style": "sport",
         "rating": 4.6,
         "stock": 38,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 309,
@@ -1035,7 +1043,8 @@
         "style": "casual",
         "rating": 4.2,
         "stock": 27,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 310,
@@ -1059,7 +1068,8 @@
         "style": "party",
         "rating": 4.7,
         "stock": 20,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 401,
@@ -1083,7 +1093,8 @@
         "style": "casual",
         "rating": 4.6,
         "stock": 35,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 402,
@@ -1107,7 +1118,8 @@
         "style": "casual",
         "rating": 4.4,
         "stock": 40,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 403,
@@ -1131,7 +1143,8 @@
         "style": "casual",
         "rating": 4.7,
         "stock": 28,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 404,
@@ -1155,7 +1168,8 @@
         "style": "casual",
         "rating": 4.3,
         "stock": 30,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 405,
@@ -1178,7 +1192,8 @@
         "style": "casual",
         "rating": 4.5,
         "stock": 22,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 406,
@@ -1202,7 +1217,8 @@
         "style": "casual",
         "rating": 4.4,
         "stock": 26,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 407,
@@ -1227,7 +1243,8 @@
         "style": "casual",
         "rating": 4.6,
         "stock": 34,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 408,
@@ -1252,7 +1269,8 @@
         "style": "formal",
         "rating": 4.7,
         "stock": 24,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 409,
@@ -1276,7 +1294,8 @@
         "style": "formal",
         "rating": 4.2,
         "stock": 29,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 410,
@@ -1300,7 +1319,8 @@
         "style": "casual",
         "rating": 4.8,
         "stock": 18,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 601,
@@ -1325,7 +1345,8 @@
         "style": "casual",
         "rating": 4.5,
         "stock": 40,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 602,
@@ -1349,7 +1370,8 @@
         "style": "casual",
         "rating": 4.7,
         "stock": 35,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 603,
@@ -1374,7 +1396,8 @@
         "style": "casual",
         "rating": 4.4,
         "stock": 30,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 604,
@@ -1398,7 +1421,8 @@
         "style": "casual",
         "rating": 4.6,
         "stock": 28,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 605,
@@ -1422,7 +1446,8 @@
         "style": "casual",
         "rating": 4.8,
         "stock": 22,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 606,
@@ -1447,7 +1472,8 @@
         "style": "sport",
         "rating": 4.5,
         "stock": 34,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 607,
@@ -1471,7 +1497,8 @@
         "style": "sport",
         "rating": 4.6,
         "stock": 26,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     },
     {
         "id": 608,
@@ -1495,6 +1522,7 @@
         "style": "casual",
         "rating": 4.9,
         "stock": 18,
-        "isActive": true
+        "isActive": true,
+        "reviews": []
     }
 ]
