@@ -1,3 +1,4 @@
+
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let currentDiscount = 0;
 
@@ -20,12 +21,12 @@ export function displayCartItems() {
 
     cart.forEach(item => {
         container.innerHTML += `
-            <div class="flex border rounded-lg p-4 mb-4 bg-white  shadow-sm transition-colors duration-300">
+            <div class="flex border rounded-lg p-4 mb-4 bg-(--bgsecond)  shadow-sm transition-colors duration-300">
                 <img src="${item.mainImage || ''}" class="w-24 h-24 object-cover rounded" alt="${item.name || 'Product'}">
                 <div class="ml-4 grow">
-                    <h3 class="font-bold text-black ">${item.name || 'Unnamed Product'}</h3>
-                    <p class="text-sm text-gray-500 ">Size: ${item.size || 'N/A'} | Color: ${item.color || 'N/A'}</p>
-                    <p class="font-bold mt-2 text-black ">$${item.price || 0}</p>
+                    <h3 class="font-bold text-(--onbg) ">${item.name || 'Unnamed Product'}</h3>
+                    <p class="text-base text-gray-500 ">Size: ${item.size || 'N/A'} | Color: ${item.color || 'N/A'}</p>
+                    <p class="font-bold mt-2 text-(--onbg)">$${item.price || 0}</p>
                 </div>
                 <div class="flex flex-col items-end justify-between">
                     <button onclick="removeItem('${item.productId}')" class="text-red-500 hover:scale-110 transition">
@@ -91,6 +92,7 @@ document.getElementById('applyPromo')?.addEventListener('click', () => {
         if (msg) {
             msg.textContent = "Promo code applied! 10% off";
             msg.classList.add('text-green-600');
+            localStorage.setItem('appliedDiscount', JSON.stringify(currentDiscount));
         }
     } else {
         currentDiscount = 0;
@@ -101,5 +103,24 @@ document.getElementById('applyPromo')?.addEventListener('click', () => {
     }
     updateSummary();
 });
+
+document.getElementById("checkoutBtn").addEventListener("click", () => {
+    const user = localStorage.getItem("currentUser");
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    if (!user) {
+        alert("Please login first");
+        window.location.hash = "#login"; // بدل href
+        return;
+    }
+
+    if (cart.length === 0) {
+        alert("Your cart is empty");
+        return;
+    }
+
+    window.location.hash = "#checkout";
+});
+
 
 displayCartItems();
