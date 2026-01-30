@@ -1,3 +1,4 @@
+
 import * as productServices from '../services/product_services.js';
 import { getCurrentUser } from '../services/auth_services.js';
 import { massage } from '../Utilites/helpers.js';
@@ -8,6 +9,7 @@ if (currentUser) {
 } else {
     cart = await productServices.getCart('guest')
 }
+
 let currentDiscount = 0;
 
 export function displayCartItems() {
@@ -17,7 +19,6 @@ export function displayCartItems() {
     if (!container) return;
 
     container.innerHTML = '';
-    // cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     if (cart.length === 0) {
         if (emptyMsg) emptyMsg.classList.remove('hidden');
@@ -29,12 +30,12 @@ export function displayCartItems() {
 
     cart.forEach(item => {
         container.innerHTML += `
-            <div class="flex border rounded-lg p-4 mb-4 bg-white  shadow-sm transition-colors duration-300">
+            <div class="flex border rounded-lg p-4 mb-4 bg-(--bgsecond)  shadow-sm transition-colors duration-300">
                 <img src="${item.mainImage || ''}" class="w-24 h-24 object-cover rounded" alt="${item.name || 'Product'}">
                 <div class="ml-4 grow">
-                    <h3 class="font-bold text-black ">${item.name || 'Unnamed Product'}</h3>
-                    <p class="text-sm text-gray-500 ">Size: ${item.size || 'N/A'} | Color: ${item.color || 'N/A'}</p>
-                    <p class="font-bold mt-2 text-black ">$${item.price || 0}</p>
+                    <h3 class="font-bold text-(--onbg) ">${item.name || 'Unnamed Product'}</h3>
+                    <p class="text-base text-gray-500 ">Size: ${item.size || 'N/A'} | Color: ${item.color || 'N/A'}</p>
+                    <p class="font-bold mt-2 text-(--onbg)">$${item.price || 0}</p>
                 </div>
                 <div class="flex flex-col items-end justify-between">
                     <button onclick="removeItem('${item.productId}')" class="text-red-500 hover:scale-110 transition">
@@ -83,7 +84,6 @@ window.removeItem = function (productId) {
         productServices.updateCart('guest', cart)
     }
     massage('Product removed from cart', 'success');
-    // localStorage.setItem('cart', JSON.stringify(cart));
     displayCartItems();
 };
 
@@ -99,30 +99,45 @@ window.updateQuantity = function (productId, change) {
         productServices.updateCart('guest', cart)
     }
     massage('Product quantity updated', 'success');
-    // localStorage.setItem('cart', JSON.stringify(cart));
     displayCartItems();
 };
 
 document.getElementById('applyPromo')?.addEventListener('click', () => {
     const code = document.getElementById('promoCode')?.value;
-    //   const msg = document.getElementById('promoMessage');
 
     if (code === "ITI2026") {
         currentDiscount = 0.10;
+        localStorage.setItem('appliedDiscount', JSON.stringify(currentDiscount));
+
         massage('Promo code applied! 10% off', 'success');
     } else if (code === "ITI.NET") {
         currentDiscount = 0.20;
+            localStorage.setItem('appliedDiscount', JSON.stringify(currentDiscount));
+
         massage('Promo code applied! 20% off', 'success');
     }
     else {
         currentDiscount = 0;
         massage('Invalid promo code', 'error');
-        // if (msg) {
-        //     msg.textContent = "Invalid code";
-        //     msg.classList.add('text-red-600');
-        // }
+  
     }
     updateSummary();
 });
+
+document.getElementById("checkoutBtn").addEventListener("click", async() => {
+    if (!currentUser) {
+        alert("Please login first");
+        window.location.hash = "#login"; // بدل href
+        return;
+    }
+
+    if (cart.length === 0) {
+        alert("Your cart is empty");
+        return;
+    }
+
+    window.location.hash = "#checkout";
+});
+
 
 displayCartItems();

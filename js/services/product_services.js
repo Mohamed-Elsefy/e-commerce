@@ -106,3 +106,25 @@ export function addReview(review) {
     reviews.push(review);
     localStorage.setItem('reviews', JSON.stringify(reviews));
 }
+// merge guest cart to user cart  ==> elsefy
+export async function mergeGuestCartToUser(userEmail) {
+    const guestCart = await getCart('guest');
+
+    if (guestCart.length === 0) return;
+
+    let userCart = await getCart(userEmail);
+
+    guestCart.forEach(guestItem => {
+        const existingItem = userCart.find(uItem => uItem.productId === guestItem.productId);
+
+        if (existingItem) {
+            existingItem.qty = (existingItem.qty || 1) + (guestItem.qty || 1);
+        } else {
+            userCart.push(guestItem);
+        }
+    });
+
+    await updateCart(userEmail, userCart);
+
+    localStorage.removeItem('guest');
+}
