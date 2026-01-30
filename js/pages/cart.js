@@ -1,15 +1,24 @@
 
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+import * as productServices from '../services/product_services.js';
+import { getCurrentUser } from '../services/auth_services.js';
+import { massage } from '../Utilites/helpers.js';
+const currentUser = getCurrentUser();
+let cart = [];
+if (currentUser) {
+    cart = await productServices.getCart(currentUser.email)
+} else {
+    cart = await productServices.getCart('guest')
+}
+
 let currentDiscount = 0;
 
 export function displayCartItems() {
     const container = document.getElementById('cartItems');
     const emptyMsg = document.getElementById('emptyCart');
-    
-    if (!container) return; 
+
+    if (!container) return;
 
     container.innerHTML = '';
-    cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     if (cart.length === 0) {
         if (emptyMsg) emptyMsg.classList.remove('hidden');
@@ -48,7 +57,7 @@ export function displayCartItems() {
 
 function updateSummary() {
     const subtotal = cart.reduce((sum, item) => sum + (item.price * (item.qty || 1)), 0);
-    const delivery = subtotal > 0 ? 10 : 0; 
+    const delivery = subtotal > 0 ? 10 : 0;
     const discountAmount = subtotal * currentDiscount;
     const total = subtotal - discountAmount + delivery;
 
@@ -64,51 +73,59 @@ function updateSummary() {
     if (elements.delivery) elements.delivery.textContent = `$${delivery.toFixed(2)}`;
     if (elements.total) elements.total.textContent = `$${total.toFixed(2)}`;
 
-    
+
 }
 
-window.removeItem = function(productId) {
+window.removeItem = function (productId) {
     cart = cart.filter(item => item.productId !== productId);
-    localStorage.setItem('cart', JSON.stringify(cart));
+    if (currentUser) {
+        productServices.updateCart(currentUser.email, cart)
+    } else {
+        productServices.updateCart('guest', cart)
+    }
+    massage('Product removed from cart', 'success');
     displayCartItems();
 };
 
-window.updateQuantity = function(productId, change) {
+window.updateQuantity = function (productId, change) {
     const item = cart.find(item => item.productId === productId);
     if (item) {
         item.qty = (item.qty || 1) + change;
         if (item.qty < 1) item.qty = 1;
     }
-    localStorage.setItem('cart', JSON.stringify(cart));
+    if (currentUser) {
+        productServices.updateCart(currentUser.email, cart)
+    } else {
+        productServices.updateCart('guest', cart)
+    }
+    massage('Product quantity updated', 'success');
     displayCartItems();
 };
 
 document.getElementById('applyPromo')?.addEventListener('click', () => {
     const code = document.getElementById('promoCode')?.value;
-    const msg = document.getElementById('promoMessage');
-    
-    if (code === "KINGKHALED") { 
+
+    if (code === "ITI2026") {
         currentDiscount = 0.10;
-        if (msg) {
-            msg.textContent = "Promo code applied! 10% off";
-            msg.classList.add('text-green-600');
+        localStorage.setItem('appliedDiscount', JSON.stringify(currentDiscount));
+
+        massage('Promo code applied! 10% off', 'success');
+    } else if (code === "ITI.NET") {
+        currentDiscount = 0.20;
             localStorage.setItem('appliedDiscount', JSON.stringify(currentDiscount));
-        }
-    } else {
+
+        massage('Promo code applied! 20% off', 'success');
+    }
+    else {
         currentDiscount = 0;
-        if (msg) {
-            msg.textContent = "Invalid code";
-            msg.classList.add('text-red-600');
-        }
+        massage('Invalid promo code', 'error');
+  
     }
     updateSummary();
 });
 
-document.getElementById("checkoutBtn").addEventListener("click", () => {
-    const user = localStorage.getItem("currentUser");
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    if (!user) {
+document.getElementById("checkoutBtn").addEventListener("click", async() => {
+    if (!currentUser) {
         alert("Please login first");
         window.location.hash = "#login"; // بدل href
         return;

@@ -60,14 +60,29 @@ export async function getDiscount(productId) {
 // get category
 export async function getCategoryId(productId) {
     const product = await getProductById(productId)
-    const categoryId = product.categoryId
-    return categoryId
+    const category = product.categoryId
+    return category
+}
+export async function GetCategoryById(categoryId) {
+    const categories = await getAllCategories();
+    let category = categories.find(category => category.id == categoryId)
+    return category;
+}
+
+export async function getProductsByCategoryId(categoryId) {
+    const products = await getAllProducts()
+    const filteredProducts = products.filter(product => product.categoryId == categoryId)
+    return filteredProducts;
 }
 
 //get cart
-export async function getCart() {
-    const cart = localStorage.getItem('cart')
+export async function getCart(userEmail) {
+    const cart = localStorage.getItem(userEmail)
     return cart ? JSON.parse(cart) : []
+}
+//update cart
+export async function updateCart(userEmail, cart) {
+    localStorage.setItem(userEmail, JSON.stringify(cart))
 }
 
 
@@ -85,4 +100,27 @@ export function addReview(review) {
     }
     reviews.push(review);
     localStorage.setItem('reviews', JSON.stringify(reviews));
+}
+
+// merge guest cart to user cart  ==> elsefy
+export async function mergeGuestCartToUser(userEmail) {
+    const guestCart = await getCart('guest');
+    
+    if (guestCart.length === 0) return; 
+
+    let userCart = await getCart(userEmail);
+
+    guestCart.forEach(guestItem => {
+        const existingItem = userCart.find(uItem => uItem.productId === guestItem.productId);
+        
+        if (existingItem) {
+            existingItem.qty = (existingItem.qty || 1) + (guestItem.qty || 1);
+        } else {
+            userCart.push(guestItem);
+        }
+    });
+
+    await updateCart(userEmail, userCart);
+    
+    localStorage.removeItem('guest');
 }

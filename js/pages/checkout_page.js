@@ -1,4 +1,15 @@
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+import * as productServices from '../services/product_services.js';
+import { getCurrentUser } from '../services/auth_services.js';
+
+const user = getCurrentUser();
+let cart = [];
+
+if (user) {
+    cart = await productServices.getCart(user.email);
+} else {
+    window.location.hash = '#login';
+}
+
 let savedDiscountPercent = JSON.parse(localStorage.getItem('appliedDiscount')) || 0;
 
 function initCheckout() {
@@ -35,7 +46,7 @@ function initCheckout() {
         
         alert("Order Placed Successfully! Thank you for shopping with us.");
         
-        localStorage.removeItem('cart');
+        localStorage.removeItem(user.email);
         localStorage.removeItem('appliedDiscount');
         
         window.location.hash = '#products';
