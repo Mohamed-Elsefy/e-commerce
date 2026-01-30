@@ -1,94 +1,99 @@
 
+let cachedProducts = null;
+let cachedCategories = null;
+
 export async function getAllProducts() {
-    const response = await fetch(`./data/product.json`)
-    const products = await response.json()
-    return products
+    if (cachedProducts) return cachedProducts;
+    const response = await fetch(`./data/product.json`);
+    cachedProducts = await response.json();
+    return cachedProducts;
 }
+
 export async function getAllCategories() {
-    const response = await fetch("./data/categories.json")
-    const categories = await response.json()
-    return categories;
+    if (cachedCategories) return cachedCategories;
+    const response = await fetch("./data/categories.json");
+    cachedCategories = await response.json();
+    return cachedCategories;
 }
+
 // get product by id
 export async function getProductById(id) {
-    const products = await getAllProducts()
-    const product = products.find(product => product.id == id)
-    return product
+    const products = await getAllProducts();
+    return products.find(product => product.id == id);
 }
+
 // get products by category
 export async function getProductsByCategory(categoryId) {
     const allProducts = await getAllProducts();
-    let filterProducts = allProducts.filter(p => p.categoryId == categoryId);
-    if (filterProducts.length != 0) {
-        return filterProducts;
-    }
-    return [];
+    return allProducts.filter(p => p.categoryId == categoryId);
 }
+
 //get category by name
 export async function getCategoryByName(categoryName) {
-    const categories = await getAllCategories()
-    const category = categories.find(category => category.name == categoryName)
-    return category
+    const categories = await getAllCategories();
+    return categories.find(category => category.name == categoryName);
 }
+
 // get all reviews
 export async function getAllReviews(productId) {
-    const localReviews = JSON.parse(localStorage.getItem('reviews') || '[]')
-    const productReviews = localReviews.filter(review => review.productId == productId)
-    const response = await getProductById(productId)
-    const reviews = response.reviews
-    return [...productReviews, ...reviews]
+    const localReviews = JSON.parse(localStorage.getItem('reviews') || '[]');
+    const productReviews = localReviews.filter(review => review.productId == productId);
+
+    const product = await getProductById(productId);
+    const dbReviews = product ? (product.reviews || []) : [];
+
+    return [...productReviews, ...dbReviews];
 }
+
 // get product by count
 export async function getProductByCount(start, end) {
-    const products = await getAllProducts()
-    const product = products.slice(start, end)
-    return product
+    const products = await getAllProducts();
+    return products.slice(start, end);
 }
 
-
 export async function countReviews(productId) {
-    const reviews = await getAllReviews(productId)
-    return reviews.length
+    const reviews = await getAllReviews(productId);
+    return reviews.length;
 }
 
 // get discount
 export async function getDiscount(productId) {
-    const product = await getProductById(productId)
-    const discount = product.discount
-    return discount
-}
-// get category
-export async function getCategoryId(productId) {
-    const product = await getProductById(productId)
-    const category = product.categoryId
-    return category
-}
-export async function GetCategoryById(categoryId) {
-    const categories = await getAllCategories();
-    let category = categories.find(category => category.id == categoryId)
-    return category;
+    const product = await getProductById(productId);
+    return product ? product.discount : 0;
 }
 
-export async function getProductsByCategoryId(categoryId) {
-    const products = await getAllProducts()
-    const filteredProducts = products.filter(product => product.categoryId == categoryId)
-    return filteredProducts;
+// get category
+export async function getCategoryId(productId) {
+    const product = await getProductById(productId);
+    return product ? product.categoryId : null;
+}
+
+export async function getCategoryById(categoryId) {
+    const categories = await getAllCategories();
+    return categories.find(category => category.id == categoryId);
+}
+
+// Calculate discounted price
+export function calculateDiscountedPrice(price, discountPercentage) {
+    if (!discountPercentage) return price;
+    return price - (price * (discountPercentage / 100));
 }
 
 //get cart
 export async function getCart(userEmail) {
-    const cart = localStorage.getItem(userEmail)
-    return cart ? JSON.parse(cart) : []
-}
-//update cart
-export async function updateCart(userEmail, cart) {
-    localStorage.setItem(userEmail, JSON.stringify(cart))
+    const cart = localStorage.getItem(userEmail);
+    return cart ? JSON.parse(cart) : [];
 }
 
+//update cart
+export async function updateCart(userEmail, cart) {
+    localStorage.setItem(userEmail, JSON.stringify(cart));
+}
 
 //get product id from url
 export function getProductId() {
-    const hash = location.hash.split('?')[1];
+    const hash = (location.hash || '').split('?')[1];
+    if (!hash) return null;
     return new URLSearchParams(hash).get('id');
 }
 
