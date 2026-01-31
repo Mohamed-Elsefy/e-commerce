@@ -1,52 +1,200 @@
-<section class="bg-(--bg) transition-colors duration-300 font-(family-name:--fprime)">
-
-    <div class="relative bg-(--bgsecond) overflow-hidden border-b border-(--onbg)/5">
-        <div class="container mx-auto px-4 py-12 md:py-24 flex flex-col md:flex-row items-center">
-
-            <div class="md:w-1/2 z-10 text-center md:text-left">
-                <h1
-                    class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 uppercase text-(--onbg) font-(family-name:--fsecond)">
-                    Find Clothing That <br> Matches Your Style
-                </h1>
-
-                <p class="text-(--onbg) opacity-70 mb-8 text-lg max-w-lg mx-auto md:mx-0" id="welcome-message">
-                    Browse through our diverse range of meticulously crafted garments, designed to bring out your
-                    individuality.
-                </p>
-
-                <button
-                    class="bg-(--onbg) text-(--bg) px-12 py-4 rounded-full font-bold hover:opacity-90 transition shadow-xl transform active:scale-95">
-                    Shop Now
-                </button>
-            </div>
-
-            <div class="md:w-1/2 mt-10 md:mt-0 relative group">
-                <img src="https://img.freepik.com/free-photo/fashion-portrait-young-elegant-woman_1328-2743.jpg"
-                    alt="Fashion Model"
-                    class="rounded-3xl shadow-2xl border border-(--onbg)/10 transition-transform duration-500 group-hover:scale-[1.02]">
-            </div>
-        </div>
-    </div>
-
-    <div class="container mx-auto px-4 py-16">
-        <h2
-            class="text-3xl md:text-5xl font-extrabold text-center mb-12 uppercase text-(--onbg) font-(family-name:--fsecond) tracking-tight">
-            New Arrivals
-        </h2>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="home-product-container">
-        </div>
-
-        <div class="text-center mt-12">
-            <a href="#products"
-                class="inline-block px-10 py-3 border-2 border-(--onbg) text-(--onbg) rounded-full font-bold hover:bg-(--onbg) hover:text-(--bg) transition-all">
-                View All Products
-            </a>
+<section class="home">
+  <div class="hero relative overflow-hidden pt-5 px-4 md:px-16 lg:px-24">
+    <div class="flex flex-col md:flex-row">
+      <div class="content md:w-4/6 md:mt-16">
+        <h1
+          class="font-extrabold leading-8 mb-4 text-4xl uppercase text-balance"
+        >
+          Find clothes <br />
+          that matches <br />
+          your style
+        </h1>
+        <p class="text-(--sec-text) leading-tight text-balance">
+          Browse through our diverse range of meticulously crafted garments,
+          designed to bring out your individuality and cater to your sense of
+          style.
+        </p>
+        <a
+          href="#"
+          class="bg-(--main-text) text-(--main-bg) block w-5/6 md:w-fit mx-auto md:ml-0 py-3 px-6 my-5 rounded-3xl text-center hover:shadow-2xl hover:scale-105 transition duration-300"
+          >Shop Now</a
+        >
+        <div
+          class="statistics mt-6 md:pb-20 text-center md:text-start flex justify-center gap-y-2 flex-wrap"
+        >
+          <div class="stat w-1/2 md:w-1/3">
+            <span class="text-3xl font-bold">200+</span>
+            <p class="text-(--sec-text) text-sm">International Brands</p>
+          </div>
+          <div class="stat w-1/2 md:w-1/3">
+            <span class="text-3xl font-bold">2,000+</span>
+            <p class="text-(--sec-text) text-sm">High-Quality Products</p>
+          </div>
+          <div class="stat md:w-1/3">
+            <span class="text-3xl font-bold">30.000+</span>
+            <p class="text-(--sec-text) text-sm">Happy Customers</p>
+          </div>
         </div>
       </div>
-    </section>
-    
-    <script src="../node_modules/swiper/swiper-bundle.min.js"></script>
-    <script src="../js/pages/home.js"></script>
-  </body>
-</html>
+      <div class="slider h-96 relative z-0 mt-4 md:w-2/6">
+        <img
+          class="absolute w-full transition-opacity duration-1000 opacity-100"
+          src="../assets/images/slider (1).png"
+          alt=""
+        />
+        <img
+          class="absolute w-full transition-opacity duration-1000 opacity-0"
+          src="../assets/images/slider (2).png"
+          alt=""
+        />
+        <img
+          class="absolute w-full transition-opacity duration-1000 opacity-0"
+          src="../assets/images/slider (3).png"
+          alt=""
+        />
+        <img
+          class="absolute w-full transition-opacity duration-1000 opacity-0"
+          src="../assets/images/slider (4).png"
+          alt=""
+        />
+        <img
+          class="absolute w-full transition-opacity duration-1000 opacity-0"
+          src="../assets/images/slider (5).png"
+          alt=""
+        />
+      </div>
+    </div>
+    <div
+      class="h-12 bg-(--main-text) text-(--main-bg) overflow-hidden flex items-center relative"
+      id="newsTicker"
+    >
+      <div
+        class="bg-red-600 h-full hidden md:flex shrink-0 items-center px-3 uppercase z-40"
+      >
+        Trending Now
+      </div>
+      <div
+        class="bg-red-600 h-full hidden md:block shrink-0 w-12 shadow-[inset_0_10px_20px_rgba(0,0,0,1)]"
+      ></div>
+      <ul class="w-full flex gap-4 list-none" id="tickerWrapper">
+        <li class="shrink-0">🚀 Flash Sale: 50% OFF on all Tech Gadgets!</li>
+        <li class="shrink-0">
+          📦 Free Shipping on all orders over $99 this week.
+        </li>
+        <li class="shrink-0">✨ New Spring Collection 2026 is finally here.</li>
+        <li class="shrink-0">
+          💳 Get 10% cashback by using our store credit card.
+        </li>
+        <li class="shrink-0">
+          🔥 Limited Stock: Retro Sneakers back in inventory!
+        </li>
+      </ul>
+    </div>
+    <div
+      class="flex justify-evenly flex-wrap gap-4 bg-(--main-text) text-(--main-bg) border-t-2 border-gray-400 font-bold md:text-2xl py-3 relative z-10 uppercase"
+    >
+      <p>Versace</p>
+      <p>Zara</p>
+      <p>Gucci</p>
+      <p>Prada</p>
+      <p>Calvin Klein</p>
+    </div>
+  </div>
+</section>
+<section class="new-arrivals">
+  <div class="py-5 px-4 md:px-16 lg:px-24">
+    <h2 class="text-3xl font-bold text-center tracking-tight mb-4">
+      New Arrivals
+    </h2>
+    <div
+      id="products"
+      class="flex justify-between gap-4 overflow-y-visible overflow-x-auto mb-5"
+    >
+      <!-- Product Cards Here -->
+    </div>
+    <a
+      class="block m-auto w-fit border border-gray-300 py-2 px-5 rounded-2xl hover:bg-(--main-text) hover:text-(--main-bg) transition duration-300"
+      href="#products"
+      >View All</a
+    >
+  </div>
+</section>
+<section class="top-selling">
+  <div class="py-5 px-4 md:px-16 lg:px-24">
+    <h2 class="text-3xl font-bold text-center tracking-tight mb-4">
+      Top Selling
+    </h2>
+    <div
+      id="top"
+      class="flex justify-between gap-4 overflow-y-visible overflow-x-auto mb-5"
+    >
+      <!-- Product Cards Here -->
+    </div>
+    <a
+      class="block m-auto w-fit border border-gray-300 py-2 px-5 rounded-2xl hover:bg-(--main-text) hover:text-(--main-bg) transition duration-300"
+      href="#products"
+      >View All</a
+    >
+  </div>
+</section>
+
+<section class="py-5 px-4 md:px-16 lg:px-24">
+  <div class="bg-gray-400 rounded-3xl p-5">
+    <h2 class="text-center uppercase mb-5 leading-tight font-bold text-2xl">
+      Browse by dress style
+    </h2>
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <div class="cat-card relative">
+        <p class="text-black absolute left-2.5 top-2.5 font-bold text-2xl">
+          Casual
+        </p>
+        <img
+          class="h-full w-full rounded-3xl"
+          src="../assets/images/Casual.jpg"
+          alt="Casual"
+        />
+      </div>
+      <div class="cat-card relative sm:col-span-2">
+        <p class="text-black absolute left-2.5 top-2.5 font-bold text-2xl">
+          Formal
+        </p>
+        <img
+          class="h-full w-full rounded-3xl"
+          src="../assets/images/Formal.jpg"
+          alt="Formal"
+        />
+      </div>
+      <div class="cat-card relative sm:col-span-2">
+        <p class="text-black absolute left-2.5 top-2.5 font-bold text-2xl">
+          Party
+        </p>
+        <img
+          class="h-full w-full rounded-3xl"
+          src="../assets/images/Party.jpg"
+          alt="Party"
+        />
+      </div>
+      <div class="cat-card relative">
+        <p class="text-black absolute left-2.5 top-2.5 font-bold text-2xl">
+          Gym
+        </p>
+        <img
+          class="h-full w-full rounded-3xl"
+          src="../assets/images/Gym.jpg"
+          alt="Gym"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+<section class="py-5">
+  <h2 class="ml-5 mb-4 uppercase leading-tight font-bold text-2xl">
+    Our happy customers
+  </h2>
+  <div
+    id="rev"
+    class="flex justify-between gap-4 p-5 overflow-y-visible overflow-x-auto mb-5"
+  >
+    <!-- Review Cards Here -->
+  </div>
+</section>
