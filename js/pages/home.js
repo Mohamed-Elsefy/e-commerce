@@ -68,7 +68,7 @@ let newArrival = allProducts.filter((e) => e.stock >= 40);
 
 newArrival.map((product) => {
   let p = `
-  <div class="shrink-0 pb-5" key=${product.id} > <a href="#products">
+  <div class="shrink-0 pb-5" key=${product.id} > <a href="#product?id=${product.id}">
     <img class="h-60 mb-2" src="../../${product.mainImage}" alt="${
     product.name
   }"/>
@@ -98,7 +98,7 @@ let topSelling = allProducts.filter((e) => e.rating >= 4.7);
 
 topSelling.map((product) => {
   let p = `
-  <div class="shrink-0 pb-5" key=${product.id} > <a href="#products">
+  <div class="shrink-0 pb-5" key=${product.id} > <a href="#product?id=${product.id}">
     <img class="h-60 mb-2" src="../../${product.mainImage}" alt="${
     product.name
   }"/>
@@ -132,4 +132,10 @@ reviews.map((review) => {
     <p class="w-60 text-gray-400 text-13px text-balance">${review.comment}</p>
     </div>`;
   revContainer.innerHTML += p;
+  console.log(review);
+  
 });
+
+
+console.log(await getAllProducts());
+console.log(await getAllReviews());
