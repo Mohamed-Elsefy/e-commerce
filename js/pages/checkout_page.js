@@ -1,6 +1,7 @@
 import * as productServices from '../services/product_services.js';
 import { getCurrentUser } from '../services/auth_services.js';
-
+import { massage } from '../Utilites/helpers.js';
+import { createOrder } from '../services/checkout.js';
 const user = getCurrentUser();
 let cart = [];
 
@@ -18,12 +19,20 @@ function initCheckout() {
     const discountEl = document.getElementById('checkoutDiscount');
     const totalEl = document.getElementById('checkoutTotal');
     const form = document.getElementById('checkoutForm');
-
+    const fullName = document.getElementById('fullname');
+    const address = document.getElementById('address');
+    const phone = document.getElementById('phone');
+    const paymentMethod = document.querySelectorAll('input[name="payment"]');
     if (cart.length === 0) {
         window.location.hash = '#cart';
         return;
     }
-
+    let method = "cash on delivery";
+    paymentMethod.forEach(input => {
+        input.addEventListener('change', () => {
+            method = input.value;
+        });
+    });
     itemsContainer.innerHTML = cart.map(item => `
         <div class="flex justify-between text-sm">
             <span class="opacity-80">${item.name} (x${item.qty})</span>
@@ -33,8 +42,8 @@ function initCheckout() {
 
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
     const delivery = 10;
-    
-    const discountAmount = subtotal * savedDiscountPercent; 
+
+    const discountAmount = subtotal * savedDiscountPercent;
     const total = subtotal + delivery - discountAmount;
 
     subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
@@ -43,12 +52,24 @@ function initCheckout() {
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        
-        alert("Order Placed Successfully! Thank you for shopping with us.");
-        
+
+        massage('Order Placed Successfully! Thank you for shopping with us.', 'success');
+        const order = {
+            id: Date.now(),
+            name: fullName.value,
+            email: user.email,
+            phone: phone.value,
+            address: address.value,
+            paymentMethod: method,
+            orderDate: new Date(),
+            orderStatus: 'pending',
+            orderTotal: total,
+            orderItems: cart
+        };
+        createOrder(order);
         localStorage.removeItem(user.email);
         localStorage.removeItem('appliedDiscount');
-        
+
         window.location.hash = '#products';
     });
 }

@@ -128,36 +128,64 @@ async function generateInvoicePDF(orderId) {
     if (!order) return;
     const userOrder = order;
 
+    let y = 20;
+
     // Header
     doc.setFontSize(22);
     doc.setTextColor(0, 0, 0);
-    doc.text('INVOICE', 105, 20, { align: 'center' });
+    doc.text('INVOICE ITI STORE', 105, y, { align: 'center' });
+    y += 20;
 
     // Order Info
     doc.setFontSize(12);
-    doc.text(`Order ID: #${userOrder.id}`, 20, 40);
-    doc.text(`Date: ${new Date(userOrder.orderDate).toLocaleDateString()}`, 20, 50);
-    doc.text(`Status: ${userOrder.orderStatus}`, 20, 60);
+    doc.text(`Order ID: #${userOrder.id}`, 20, y);
+    y += 10;
+    doc.text(`Date: ${new Date(userOrder.orderDate).toLocaleDateString()}`, 20, y);
+    y += 10;
+    doc.text(`Status: ${userOrder.orderStatus}`, 20, y);
+    y += 10;
+    doc.text(`Payment Method: ${userOrder.paymentMethod}`, 20, y);
+    y += 20;
 
     // Customer Info
     doc.setFontSize(14);
-    doc.text('Customer Details:', 20, 80);
+    doc.text('Customer Details:', 20, y);
+    y += 10;
     doc.setFontSize(12);
-    doc.text(`Name: ${userOrder.name}`, 20, 90);
-    doc.text(`Email: ${userOrder.email}`, 20, 100);
-    doc.text(`Address: ${userOrder.address}, ${userOrder.city}`, 20, 110);
+    doc.text(`Name: ${userOrder.name}`, 20, y);
+    y += 10;
+    doc.text(`Email: ${userOrder.email}`, 20, y);
+    y += 10;
+    doc.text(`Phone: ${userOrder.phone || 'N/A'}`, 20, y);
+    y += 10;
+    doc.text(`Address: ${userOrder.address}`, 20, y);
+    y += 20;
 
-    // Items (simplified for now as userOrder.orderItems might be complex or empty in mockup)
-    doc.line(20, 120, 190, 120);
+    // Items Section
+    doc.line(20, y, 190, y);
+    y += 10;
     doc.setFontSize(14);
-    doc.text('Summary', 20, 130);
+    doc.text('Order Items', 20, y);
+    y += 10;
+
     doc.setFontSize(12);
-    doc.text(`Total Amount: $${userOrder.orderTotal}`, 20, 140);
+    userOrder.orderItems.forEach(item => {
+        doc.text(`- ${item.name} (x${item.qty})`, 20, y);
+        doc.text(`$${(item.price * item.qty).toFixed(2)}`, 190, y, { align: 'right' });
+        y += 10;
+    });
+
+    // Summary
+    doc.line(20, y, 190, y);
+    y += 10;
+    doc.setFontSize(14);
+    doc.text('Total Amount', 20, y);
+    doc.text(`$${userOrder.orderTotal.toFixed(2)}`, 190, y, { align: 'right' });
 
     // Footer
     doc.setFontSize(10);
     doc.setTextColor(150, 150, 150);
-    doc.text('Thank you for shopping with us!', 105, 180, { align: 'center' });
+    doc.text('Thank you for shopping with us!', 105, 280, { align: 'center' });
 
     doc.save(`Invoice_${userOrder.id}.pdf`);
 }

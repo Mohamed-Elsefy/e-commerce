@@ -112,27 +112,27 @@ document.getElementById('applyPromo')?.addEventListener('click', () => {
         massage('Promo code applied! 10% off', 'success');
     } else if (code === "ITI.NET") {
         currentDiscount = 0.20;
-            localStorage.setItem('appliedDiscount', JSON.stringify(currentDiscount));
+        localStorage.setItem('appliedDiscount', JSON.stringify(currentDiscount));
 
         massage('Promo code applied! 20% off', 'success');
     }
     else {
         currentDiscount = 0;
         massage('Invalid promo code', 'error');
-  
+
     }
     updateSummary();
 });
 
-document.getElementById("checkoutBtn").addEventListener("click", async() => {
+document.getElementById("checkoutBtn").addEventListener("click", async () => {
     if (!currentUser) {
-        alert("Please login first");
+        massage('Please login first', 'error');
         window.location.hash = "#login"; // بدل href
         return;
     }
 
     if (cart.length === 0) {
-        alert("Your cart is empty");
+        massage('Your cart is empty', 'error');
         return;
     }
 
