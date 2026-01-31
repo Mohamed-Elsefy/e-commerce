@@ -145,7 +145,7 @@ category.forEach(btn => {
         btn.classList.add("active");
         selectedCategory = Number(btn.dataset.value);
         filters.categoryId = selectedCategory;
-        const categoryName = await productService.GetCategoryById(selectedCategory);
+        const categoryName = await productService.getCategoryById(selectedCategory);
 
         selectedCategoryContainer.forEach(i => i.innerHTML = categoryName.name)
         loadPage();

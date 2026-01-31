@@ -27,7 +27,11 @@ export async function getProductsByCategory(categoryId) {
     const allProducts = await getAllProducts();
     return allProducts.filter(p => p.categoryId == categoryId);
 }
-
+export async function getProductsByCategoryId(categoryId) {
+    const products = await getAllProducts()
+    const filteredProducts = products.filter(product => product.categoryId == categoryId)
+    return filteredProducts;
+}
 //get category by name
 export async function getCategoryByName(categoryName) {
     const categories = await getAllCategories();
