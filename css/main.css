@@ -2,41 +2,41 @@
 
 /* Montserrat font - Bold weight (700) */
 @font-face {
-  font-family: "Montserrat";
-  src: url("../assets/fonts/Montserrat-Bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
+    font-family: "Montserrat";
+    src: url("../assets/fonts/Montserrat-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
 }
 
 /* Satoshi font - Regular weight (400) */
 @font-face {
-  font-family: "Satoshi";
-  src: url("../assets/fonts/Satoshi-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Satoshi";
+    src: url("../assets/fonts/Satoshi-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
 }
 
 /* Satoshi font - Bold weight (700) */
 @font-face {
-  font-family: "Satoshi";
-  src: url("../assets/fonts/Satoshi-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
+    font-family: "Satoshi";
+    src: url("../assets/fonts/Satoshi-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
 }
 
 /* ===============================
    CSS Variables (Theme Colors & Fonts)
    =============================== */
 :root {
-  --bg: #fff;
-  --onbg: #000;
-  --bgsecond: #dddddd;
+    --bg: #fff;
+    --onbg: #000;
+    --bgsecond: #dddddd;
 
-  /* Updated color */
-  --main-text: #000;
-  --sec-text: #5a5a5a;
-  --main-bg: #fff;
-  --sec-bg: #eee;
+    /* Updated color */
+    --main-text: #000;
+    --sec-text: #5a5a5a;
+    --main-bg: #fff;
+    --sec-bg: #eee;
 
   /* fonts */
   --fprim: "Satoshi", sans-serif;
@@ -45,39 +45,39 @@
 
 /* Dark theme overrides */
 .dark {
-  --bg: #000000;
-  --onbg: #fff;
-  --bgsecond: #474747;
-  /* Updated color */
-  --main-text: #fff;
-  --sec-text: #d8d8d8;
-  --main-bg: #000;
-  --sec-bg: #000;
+    --bg: #000000;
+    --onbg: #fff;
+    --bgsecond: #474747;
+    /* Updated color */
+    --main-text: #fff;
+    --sec-text: #d8d8d8;
+    --main-bg: #000;
+    --sec-bg: #000;
 }
 
 /* ===============================
    Global Theme Styles
    =============================== */
 body {
-  background-color: var(--bg);
-  color: var(--onbg);
-  font-family: var(--fprim);
-  transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: var(--bg);
+    color: var(--onbg);
+    font-family: var(--fprim);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Toast Notifications */
 #toast-container {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  width: 90%;
-  max-width: 500px;
-  pointer-events: none;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 90%;
+    max-width: 500px;
+    pointer-events: none;
 }
 
 #toast-container > div {
@@ -114,9 +114,9 @@ body {
 
 /* Password visibility eye icon */
 #eye-icon {
-  width: 20px;
-  text-align: center;
-  transition: all 0.2s ease;
+    width: 20px;
+    text-align: center;
+    transition: all 0.2s ease;
 }
 
 .text-10px {
@@ -127,4 +127,98 @@ body {
 }
 .text-13px {
   font-size: 13px;
+}
+
+
+/* ===========> Filter styles <=========== */
+
+.section-header.collapsed i {
+    transform: rotate(-180deg);
+}
+
+.section-content.collapsed {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.size-item.active {
+    background-color: #000;
+    color: #fff;
+    opacity: 100%;
+}
+
+@media screen and (max-width:768px) {
+    .show-filter {
+        position: absolute;
+        z-index: 500;
+        display: block;
+        height: fit-content;
+        background-color: white;
+        width: 100%;
+        left: 0;
+    }
+}
+
+.style.active,
+.category.active {
+    background-color: #eee;
+    border-radius: 18px;
+}
+
+/* ===================>Inputs Range style<=============== */
+input[type="range"]::-webkit-slider-thumb {
+    pointer-events: all;
+    width: 18px;
+    height: 18px;
+    background: black;
+    border-radius: 50%;
+    appearance: none;
+}
+
+input[type="range"]::-moz-range-thumb {
+    pointer-events: all;
+    width: 18px;
+    height: 18px;
+    background: black;
+    border-radius: 50%;
+}
+
+/* =============> Rating Stars style <============= */
+.rating {
+    --star-size: 24px;
+    --star-color: #ddd;
+    --star-background: #f5b301;
+    display: inline-block;
+    font-size: var(--star-size);
+    font-family: system-ui, sans-serif;
+    line-height: 1;
+    position: relative;
+}
+
+.rating::before {
+    content: "★★★★★";
+    letter-spacing: 3px;
+    background: linear-gradient(90deg,
+            var(--star-background) calc(var(--rating) / 5 * 100%),
+            var(--star-color) calc(var(--rating) / 5 * 100%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: 20px;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+
+
+/*===============  overlay Style ============== */
+@media screen and (max-width:768px) {
+    .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+        z-index: 400;
+    }
 }
