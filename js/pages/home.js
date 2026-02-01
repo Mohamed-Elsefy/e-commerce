@@ -1,4 +1,9 @@
-import { getAllProducts, getAllReviews, renderProducts, makeLink } from "../services/product_services.js";
+import {
+  getAllProducts,
+  getAllReviews,
+  renderProducts,
+  makeLink,
+} from "../services/product_services.js";
 
 // Fade In Fade Out Slider
 let images = document.querySelectorAll(".slider img");
@@ -60,8 +65,6 @@ container.addEventListener("touchend", () => (isPaused = false), {
 // 4. Start Animation
 requestAnimationFrame(step);
 
-
-
 let allProducts = await getAllProducts();
 
 // New Arrival
@@ -76,7 +79,7 @@ renderProducts(topSelling, topProductsContainer);
 
 // Make Product Link
 let arr = document.querySelectorAll(".product-link");
-makeLink(arr)
+makeLink(arr);
 
 // Reviews
 let revContainer = document.querySelector("#rev");
