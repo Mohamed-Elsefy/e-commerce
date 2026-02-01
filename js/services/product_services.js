@@ -34,16 +34,15 @@ export async function getCategoryByName(categoryName) {
 }
 
 // get all reviews
-export async function getAllReviews(productId) {
-  const localReviews = JSON.parse(localStorage.getItem("reviews") || "[]");
-  const productReviews = localReviews.filter(
-    (review) => review.productId == productId
-  );
-
-  const product = await getProductById(productId);
-  const dbReviews = product ? product.reviews || [] : [];
-
-  return [...productReviews, ...dbReviews];
+export async function getAllReviews() {
+  const products = await getAllProducts();
+  let allReviews = [];
+  products.forEach((product) => {
+    if (product.reviews && Array.isArray(product.reviews)) {
+      allReviews = allReviews.concat(product.reviews);
+    }
+  });
+  return allReviews;
 }
 
 // get product by count
@@ -130,4 +129,58 @@ export async function mergeGuestCartToUser(userEmail) {
   await updateCart(userEmail, userCart);
 
   localStorage.removeItem("guest");
+}
+
+// Fetch all products
+export function renderProducts(products, container) {
+  products.map((product) => {
+    let p = `
+  <div class="product-link group shrink-0 mb-4 rounded-2xl border border-gray-300 overflow-hidden" key=${
+    product.id
+  } > 
+  <div class="overflow-hidden h-60">
+    <img class="h-full w-full mb-2 group-hover:scale-110 transition duration-500" src="../../${
+      product.mainImage
+    }" alt="${product.name}"/>
+  </div>
+  <div class="p-3">
+    <h3 class="w-40 h-9 mb-3 font-semibold text-sm">${product.name}</h3>
+    <div class="flex items-center gap-2 mb-3">
+      <div class="rating" style="--rating: ${product.rating}"></div>
+      <span id="ratingText">${product.rating} / 5</span>
+    </div>
+    <p class="flex items-center gap-2 mt-3">$${
+      product.discountPercentage > 0
+        ? parseInt(
+            product.price - (product.price * product.discountPercentage) / 100
+          )
+        : product.price
+    } <span class="text-gray-400">${
+      product.discountPercentage > 0 ? "$" + product.price : ""
+    }</span>
+    ${
+      product.discountPercentage > 0
+        ? `<span class="inline-block bg-red-200 p-1 text-xs rounded text-red-600"> ${
+            product.discountPercentage > 0
+              ? "-" + product.discountPercentage + "%"
+              : ""
+          } </span>`
+        : ""
+    }</p>
+  
+  </div>
+    </div>`;
+
+    container.innerHTML += p;
+  });
+}
+
+// make product on click go to product details page
+
+export function makeLink(arr) {
+  arr.forEach((e) => {
+    e.addEventListener("click", () => {
+      window.location.href = `#product?id=${e.getAttribute("key")}`;
+    });
+  });
 }
