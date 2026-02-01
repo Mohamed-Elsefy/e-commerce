@@ -31,7 +31,7 @@
                 </h1>
 
                 <!-- Static rating display -->
-                <div class="flex items-center space-x-2 text-yellow-500 mb-3">
+                <div id="rating" class="flex items-center space-x-2 text-yellow-500 mb-3">
                     <div class="flex text-lg">★★★★/★</div>
                     <span class="text-sm opacity-70">
                         <span class="font-medium text-(--onbg)">4.5</span>/5
@@ -43,18 +43,16 @@
                     <!-- Price injected by JS -->
                 </div>
             </div>
+            <hr class="border-(--onbg)/10">
 
             <!-- Product description -->
             <p id="product-description" class="text-(--onbg) opacity-70 leading-relaxed">
             </p>
 
-            <hr class="border-(--onbg)/10">
 
             <!-- Color selection -->
             <div>
-                <h3 class="text-(--onbg) opacity-50 text-sm mb-3 font-bold uppercase tracking-wider">
-                    Select Colors
-                </h3>
+
 
                 <!-- Available colors rendered dynamically -->
                 <div class="flex space-x-3" id="colors">
@@ -171,42 +169,53 @@
         <div class="absolute inset-0" id="modal-backdrop"></div>
 
         <!-- Modal Content (No Height Limits) -->
-        <div class="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-10">
+        <div
+            class="relative bg-(--bg) text-(--onbg) rounded-2xl shadow-2xl max-w-md w-full p-10 border border-(--onbg)/10">
             <div class="flex justify-between items-center mb-8">
                 <h3 class="text-3xl font-black uppercase">Add a Review</h3>
-                <button id="close-modal" class="text-4xl">&times;</button>
+                <button id="close-modal" class="text-4xl hover:opacity-70 transition">&times;</button>
             </div>
 
             <form id="review-form">
                 <!-- Stars -->
                 <div class="mb-8">
-                    <label class="block text-sm font-bold text-gray-400 uppercase tracking-widest mb-3">Your
+                    <label class="block text-sm font-bold opacity-50 uppercase tracking-widest mb-3">Your
                         Rating</label>
                     <div id="star-rating" class="flex gap-3">
-                        <button type="button" class="star-btn text-5xl text-gray-200" data-rating="1">★</button>
-                        <button type="button" class="star-btn text-5xl text-gray-200" data-rating="2">★</button>
-                        <button type="button" class="star-btn text-5xl text-gray-200" data-rating="3">★</button>
-                        <button type="button" class="star-btn text-5xl text-gray-200" data-rating="4">★</button>
-                        <button type="button" class="star-btn text-5xl text-gray-200" data-rating="5">★</button>
+                        <button type="button"
+                            class="star-btn text-5xl text-(--onbg)/10 hover:text-yellow-400 transition"
+                            data-rating="1">★</button>
+                        <button type="button"
+                            class="star-btn text-5xl text-(--onbg)/10 hover:text-yellow-400 transition"
+                            data-rating="2">★</button>
+                        <button type="button"
+                            class="star-btn text-5xl text-(--onbg)/10 hover:text-yellow-400 transition"
+                            data-rating="3">★</button>
+                        <button type="button"
+                            class="star-btn text-5xl text-(--onbg)/10 hover:text-yellow-400 transition"
+                            data-rating="4">★</button>
+                        <button type="button"
+                            class="star-btn text-5xl text-(--onbg)/10 hover:text-yellow-400 transition"
+                            data-rating="5">★</button>
                     </div>
                 </div>
 
                 <!-- Comment -->
                 <div class="mb-4">
                     <label for="review-comment"
-                        class="block text-sm font-bold text-gray-400 uppercase tracking-widest mb-3">Your
+                        class="block text-sm font-bold opacity-50 uppercase tracking-widest mb-3">Your
                         Thoughts</label>
                     <textarea id="review-comment" rows="4"
-                        class="w-full border-4 border-gray-100 rounded-2xl p-5 focus:border-black outline-none transition text-lg"
+                        class="w-full bg-(--bgsecond)/30 border-2 border-(--onbg)/10 rounded-2xl p-5 focus:border-(--onbg) outline-none transition text-lg placeholder:opacity-50"
                         placeholder="What's your experience?"></textarea>
                 </div>
 
                 <button type="button" id="cancel-review"
-                    class="w-full text-gray-400 font-bold uppercase tracking-widest py-4 hover:text-black transition">
+                    class="w-full text-(--onbg) opacity-50 font-bold uppercase tracking-widest py-4 hover:opacity-100 transition">
                     Maybe Later
                 </button>
                 <button type="submit" id="submit-review"
-                    class="w-full bg-black text-white font-bold uppercase rounded-full tracking-widest py-4 hover:bg-gray-800 transition">
+                    class="w-full bg-(--onbg) text-(--bg) font-bold uppercase rounded-full tracking-widest py-4 hover:opacity-90 transition shadow-lg">
                     Submit Review
                 </button>
             </form>

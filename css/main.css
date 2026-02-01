@@ -119,12 +119,95 @@ body {
   transition: all 0.2s ease;
 }
 
-.text-10px {
-  font-size: 10px;
+/* ===========> Filter styles <=========== */
+
+.section-header.collapsed i {
+  transform: rotate(-180deg);
 }
-.text-12px {
-  font-size: 12px;
+
+.section-content.collapsed {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
 }
-.text-13px {
-  font-size: 13px;
+
+.size-item.active {
+  background-color: #000;
+  color: #fff;
+  opacity: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .show-filter {
+    position: absolute;
+    z-index: 500;
+    display: block;
+    height: fit-content;
+    background-color: white;
+    width: 100%;
+    left: 0;
+  }
+}
+
+.style.active,
+.category.active {
+  background-color: #eee;
+  border-radius: 18px;
+}
+
+/* ===================>Inputs Range style<=============== */
+input[type="range"]::-webkit-slider-thumb {
+  pointer-events: all;
+  width: 18px;
+  height: 18px;
+  background: black;
+  border-radius: 50%;
+  appearance: none;
+}
+
+input[type="range"]::-moz-range-thumb {
+  pointer-events: all;
+  width: 18px;
+  height: 18px;
+  background: black;
+  border-radius: 50%;
+}
+
+/* =============> Rating Stars style <============= */
+.rating {
+  --star-size: 20px;
+  --star-color: #ddd;
+  --star-background: #f5b301;
+  display: inline-block;
+  font-size: var(--star-size);
+  font-family: system-ui, sans-serif;
+  line-height: 1;
+  position: relative;
+}
+
+.rating::before {
+  content: "★★★★★";
+  letter-spacing: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--star-background) calc(var(--rating) / 5 * 100%),
+    var(--star-color) calc(var(--rating) / 5 * 100%)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  width: 20px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+/*===============  overlay Style ============== */
+@media screen and (max-width: 768px) {
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: 400;
+  }
 }

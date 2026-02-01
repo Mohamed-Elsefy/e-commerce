@@ -36,12 +36,12 @@
         "order": 4
     },
     {
-        "id": 5,
-        "name": "Shoes",
-        "slug": "shoes",
-        "mainImage": "/assets/images/categories/shoes.jpg",
-        "description": "Men shoes collection",
+        "id": 6,
+        "name": "Hoodies",
+        "slug": "Hoodies",
+        "mainImage": "/assets/images/product/Relaxed Fit Hoodie3.avif",
+        "description": "hoodie collection",
         "isActive": true,
-        "order": 5
+        "order": 4
     }
 ]
