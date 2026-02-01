@@ -28,10 +28,9 @@
    CSS Variables (Theme Colors & Fonts)
    =============================== */
 :root {
-  --bg: #fff;
-  --onbg: #000;
-  --bgsecond: #dddddd;
-
+  --bg: #c0c0c0;
+  --onbg: #1a1a1a;
+  --bgsecond: #9c9c9c;
   /* Updated color */
   --main-text: #000;
   --sec-text: #5a5a5a;
@@ -45,9 +44,9 @@
 
 /* Dark theme overrides */
 .dark {
-  --bg: #000000;
-  --onbg: #fff;
-  --bgsecond: #474747;
+  --bg: #121212;
+  --onbg: #e6e6e6;
+  --bgsecond: #1e1e1e;
   /* Updated color */
   --main-text: #fff;
   --sec-text: #d8d8d8;
@@ -211,3 +210,23 @@ input[type="range"]::-moz-range-thumb {
     z-index: 400;
   }
 }
+
+
+/* ===============================
+   Header Navigation Styles
+   =============================== */
+  .nav-link {
+    @apply relative text-(--onbg) transition;
+  }
+  .nav-link::after {
+    content: '';
+    @apply absolute left-0 -bottom-1 h-[2px] w-0 bg-current transition-all duration-300;
+  }
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .mobile-link {
+    @apply p-2 rounded-md transition hover:bg-(--bgsecond);
+  }
+

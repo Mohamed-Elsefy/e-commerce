@@ -2,6 +2,22 @@ let cachedProducts = null;
 let cachedCategories = null;
 
 export async function getAllProducts() {
+//   if (window.location.hash.includes("products")) {
+//     const params = new URLSearchParams(
+//       window.location.hash.split("?")[1]
+//     );
+//     const query = params.get("query");
+//     if (query) {
+//       const products = await getAllProducts();
+//       return products.filter((product) => 
+//         product.name.toLowerCase().includes(query.toLowerCase())
+//       );
+//     }
+//   }
+//   else {
+    
+// }
+
   if (cachedProducts) return cachedProducts;
   const response = await fetch(`./data/product.json`);
   cachedProducts = await response.json();
