@@ -168,7 +168,7 @@ function renderProducts(allProducts) {
                 <h3 class="font-bold text-base md:text-lg mb-1 truncate">${item.name}</h3>
                  <div class="flex items-center gap-2 mb-3">
                                         <div class="rating" style="--rating: ${item.rating}"></div>
-                                        <span id="ratingText">${item.rating} / 5</span>
+                                        <span id="ratingText" class="text-xl">${item.rating} / 5</span>
                   </div>
                     ${item.discountPercentage ? `<div class="flex items-center space-x-2">
                     <span class="font-bold text-xl">$${parseInt(item.price - item.price * item.discountPercentage / 100)}</span>
