@@ -1,4 +1,9 @@
-import { getAllProducts, getAllReviews, renderProducts } from "../services/product_services.js";
+import {
+  getAllProducts,
+  getAllReviews,
+  renderProducts,
+  makeLink
+} from "../services/product_services.js";
 
 // Fade In Fade Out Slider
 let images = document.querySelectorAll(".slider img");
@@ -62,16 +67,15 @@ requestAnimationFrame(step);
 
 // New Arrival
 let productsContainer = document.querySelector("#new-arrivals");
-let productsContainer = document.querySelector("#new-arrivals");
 let allProducts = await getAllProducts();
 
-let newArrival = allProducts.slice(-5, );
+let newArrival = allProducts.slice(-5);
 renderProducts(newArrival, productsContainer);
 
 // Top Selling
 let topProductsContainer = document.querySelector("#top");
 
-let topSelling = allProducts.slice(0, 4)
+let topSelling = allProducts.slice(0, 4);
 
 renderProducts(topSelling, topProductsContainer);
 
@@ -81,20 +85,27 @@ let reviews = await getAllReviews();
 
 reviews.slice(0, 5).map((review) => {
   let p = `
-  <div class="shrink-0 border border-(--border) rounded-3xl p-6 w-80 mb-5 bg-(--bg)" key=${review.id || review.createdAt}>
+  <div class="shrink-0 border border-(--border) rounded-3xl p-6 w-80 mb-5 bg-(--sec-bg)" key=${
+    review.id || review.createdAt
+  }>
     <div class="flex justify-between items-start mb-3">
-        <div class="text-yellow-400 text-sm">${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}</div>
+        <div class="text-yellow-400 text-sm">${"★".repeat(
+          review.rating
+        )}${"☆".repeat(5 - review.rating)}</div>
     </div>
     <div class="flex items-center mb-2">
-        <h4 class="font-bold text-base mr-2">${review.userName || review.name}</h4>
+        <h4 class="font-bold text-base mr-2">${
+          review.userName || review.name
+        }</h4>
         <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
         </svg>
     </div>
-    <p class="text-(--onbg) opacity-70 text-sm leading-relaxed truncate-2-lines italic">"${review.comment}"</p>
+    <p class="text-(--sec-text) opacity-70 text-sm leading-relaxed truncate-2-lines italic">"${
+      review.comment
+    }"</p>
   </div>`;
   revContainer.innerHTML += p;
 });
 
-let productsLink = document.querySelectorAll("product-link");
-makeLink(productsLink);
+makeLink(document.querySelectorAll(".product-link"));
