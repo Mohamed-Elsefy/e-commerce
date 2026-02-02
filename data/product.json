@@ -1,56 +1,5 @@
 [
     {
-        "id": 101,
-        "name": "Basic White T-Shirt",
-        "slug": "basic-white-t-shirt",
-        "description": "Basic cotton T-shirt for everyday wear",
-        "categoryId": 1,
-        "price": 299,
-        "discountPercentage": 17,
-        "mainImage": "assets\\images\\product\\Basic White T-Shirt.jpg",
-        "images": [
-            "assets\\images\\product\\Basic White T-Shirt1.jpeg",
-            "assets\\images\\product\\Basic White T-Shirt2.jpeg"
-        ],
-        "sizes": [
-            "S",
-            "M",
-            "L",
-            "XL"
-        ],
-        "style": "casual",
-        "rating": 4.5,
-        "stock": 50,
-        "isActive": true,
-        "reviews": [
-            {
-                "id": 1,
-                "productId": 101,
-                "userName": "Ahmed",
-                "rating": 4,
-                "comment": "Very good quality",
-                "createdAt": "2026-01-22T14:30:00Z"
-            },
-            {
-                "id": 2,
-                "productId": 101,
-                "userName": "Mohamed",
-                "rating": 5,
-                "comment": "Perfect fit and comfortable",
-                "createdAt": "2026-01-20T10:15:00Z"
-            },
-            {
-                "id": 3,
-                "productId": 101,
-                "userName": "Youssef",
-                "rating": 4,
-                "comment": "Good value for money",
-                "createdAt": "2026-01-18T16:45:00Z"
-            }
-        ],
-        "category": "T-shirt"
-    },
-    {
         "id": 102,
         "name": "TEXTURE SS T-SHIRT-BLACK",
         "slug": "black-cotton-tshirt",
