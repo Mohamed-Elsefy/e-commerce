@@ -2,6 +2,7 @@
 import * as productServices from '../services/product_services.js';
 import { massage } from '../Utilites/helpers.js';
 import { getCurrentUser } from '../services/auth_services.js';
+import * as cartServices from '../services/cart_services.js';
 
 // Global variables
 const currentUser = getCurrentUser();
@@ -270,13 +271,13 @@ async function handleAddToCart(product, qty, size) {
     };
 
     const userKey = currentUser ? currentUser.email : 'guest';
-    const cart = await productServices.getCart(userKey);
+    const cart = await cartServices.getCart(userKey);
 
     if (cart.find(p => p.productId == product.id)) {
         massage('Product already in cart', 'error');
     } else {
         cart.push({ ...productCart, userEmail: userKey });
-        await productServices.updateCart(userKey, cart);
+        await cartServices.updateCart(userKey, cart);
         massage('Product added to cart', 'success');
     }
 }
