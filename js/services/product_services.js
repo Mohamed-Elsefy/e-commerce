@@ -105,18 +105,6 @@ export function calculateDiscountedPrice(price, discountPercentage) {
   if (!discountPercentage) return price;
   return price - price * (discountPercentage / 100);
 }
-
-//get cart [Used in cart,checkout,product details]
-export async function getCart(userEmail) {
-  const cart = localStorage.getItem(userEmail);
-  return cart ? JSON.parse(cart) : [];
-}
-
-//update cart [Used in cart, product details]
-export async function updateCart(userEmail, cart) {
-  localStorage.setItem(userEmail, JSON.stringify(cart));
-}
-
 //get product id from url [Used in product details]
 export function getProductId() {
   const hash = (location.hash || "").split("?")[1];
@@ -133,31 +121,7 @@ export function addReview(review) {
   reviews.push(review);
   localStorage.setItem("reviews", JSON.stringify(reviews));
 }
-// merge guest cart to user cart  ==> elsefy
-// [Used in login]
-export async function mergeGuestCartToUser(userEmail) {
-  const guestCart = await getCart("guest");
 
-  if (guestCart.length === 0) return;
-
-  let userCart = await getCart(userEmail);
-
-  guestCart.forEach((guestItem) => {
-    const existingItem = userCart.find(
-      (uItem) => uItem.productId === guestItem.productId
-    );
-
-    if (existingItem) {
-      existingItem.qty = (existingItem.qty || 1) + (guestItem.qty || 1);
-    } else {
-      userCart.push(guestItem);
-    }
-  });
-
-  await updateCart(userEmail, userCart);
-
-  localStorage.removeItem("guest");
-}
 
 // Fetch all products [Not used]
 export function renderProducts(products, container) {
