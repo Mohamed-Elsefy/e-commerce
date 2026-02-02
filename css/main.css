@@ -58,7 +58,7 @@
    Global Theme Styles
    =============================== */
 body {
-  background-color: var(--bg);
+  background-color: var(--main-bg);
   color: var(--onbg);
   font-family: var(--fprim);
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -79,7 +79,7 @@ body {
   pointer-events: none;
 }
 
-#toast-container > div {
+#toast-container>div {
   pointer-events: auto;
   padding: 16px 24px;
   border-radius: 12px;
@@ -96,17 +96,17 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
-#toast-container > div.bg-green-500 {
+#toast-container>div.bg-green-500 {
   background-color: #22c55e !important;
   opacity: 1 !important;
 }
 
-#toast-container > div.bg-red-500 {
+#toast-container>div.bg-red-500 {
   background-color: #ef4444 !important;
   opacity: 1 !important;
 }
 
-#toast-container > div.bg-yellow-500 {
+#toast-container>div.bg-yellow-500 {
   background-color: #eab308 !important;
   opacity: 1 !important;
 }
@@ -187,11 +187,9 @@ input[type="range"]::-moz-range-thumb {
 .rating::before {
   content: "★★★★★";
   letter-spacing: 3px;
-  background: linear-gradient(
-    90deg,
-    var(--star-background) calc(var(--rating) / 5 * 100%),
-    var(--star-color) calc(var(--rating) / 5 * 100%)
-  );
+  background: linear-gradient(90deg,
+      var(--star-background) calc(var(--rating) / 5 * 100%),
+      var(--star-color) calc(var(--rating) / 5 * 100%));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   width: 20px;
@@ -215,20 +213,22 @@ input[type="range"]::-moz-range-thumb {
 /* ===============================
    Header Navigation Styles
    =============================== */
-  .nav-link {
-    @apply relative text-(--onbg) transition;
-  }
-  .nav-link::after {
-    content: '';
-    @apply absolute left-0 -bottom-1 h-[2px] w-0 bg-current transition-all duration-300;
-  }
-  .nav-link:hover::after {
-    @apply w-full;
-  }
+.nav-link {
+  @apply relative text-(--onbg) transition;
+}
 
-  .mobile-link {
-    @apply p-2 rounded-md transition hover:bg-(--bgsecond);
-  }
+.nav-link::after {
+  content: '';
+  @apply absolute left-0 -bottom-1 h-[2px] w-0 bg-current transition-all duration-300;
+}
+
+.nav-link:hover::after {
+  @apply w-full;
+}
+
+.mobile-link {
+  @apply p-2 rounded-md transition hover:bg-(--bgsecond);
+}
 
 /* Scrollbar */
 .container-with-scroll::-webkit-scrollbar {
@@ -240,6 +240,7 @@ input[type="range"]::-moz-range-thumb {
   background: #f1f1f1;
   border-radius: 10px;
 }
+
 /* progress */
 .container-with-scroll::-webkit-scrollbar-thumb {
   background: #888;

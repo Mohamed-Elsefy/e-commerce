@@ -104,13 +104,20 @@ const sizeButtons = document.querySelectorAll(".size-item");
 
 sizeButtons.forEach(btn => {
     btn.addEventListener("click", () => {
-
+        const value = btn.dataset.value;
         btn.classList.toggle("active");
 
-        if (!filters.size.includes(btn.dataset.value)) {
-            filters.size.push(btn.dataset.value);
-
+        if (btn.classList.contains("active")) {
+            // ADD
+            if (!filters.size.includes(value)) {
+                filters.size.push(value);
+            }
+        } else {
+            // REMOVE
+            filters.size = filters.size.filter(size => size !== value);
         }
+
+        console.log(filters.size);
     });
 });
 
@@ -120,16 +127,26 @@ const dressItems = document.querySelectorAll(".style");
 
 dressItems.forEach(btn => {
     btn.addEventListener("click", () => {
+        const value = btn.dataset.value;
 
-        //Add Active class
         btn.classList.toggle("active");
-        if (!filters.dressStyle.includes(btn.dataset.value)) {
-            filters.dressStyle.push(btn.dataset.value);
 
+        if (btn.classList.contains("active")) {
+            // ADD
+            if (!filters.dressStyle.includes(value)) {
+                filters.dressStyle.push(value);
+            }
+        } else {
+            // REMOVE
+            filters.dressStyle = filters.dressStyle.filter(
+                dress => dress !== value
+            );
         }
 
-    })
+        console.log(filters.dressStyle);
+    });
 });
+
 
 //4. Filter by category
 const allProducts = await productService.getAllProducts();
