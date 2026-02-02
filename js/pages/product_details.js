@@ -289,7 +289,7 @@ async function renderRelatedProducts(categoryId) {
     if (!container || container.children.length > 0) return;
 
     try {
-        const products = await productServices.getProductsByCategory(categoryId);
+        const products = await productServices.getProductsByCategoryId(categoryId);
         products.slice(0, 4).forEach(product => {
             const discountedPrice = productServices.calculateDiscountedPrice(product.price, product.discountPercentage);
             container.insertAdjacentHTML('beforeend', `

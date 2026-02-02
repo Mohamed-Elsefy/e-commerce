@@ -1,6 +1,7 @@
 let cachedProducts = null;
 let cachedCategories = null;
 
+// get all products from json file [Used in main,home,products]
 export async function getAllProducts() {
   //   if (window.location.hash.includes("products")) {
   //     const params = new URLSearchParams(
@@ -24,6 +25,7 @@ export async function getAllProducts() {
   return cachedProducts;
 }
 
+//get all categories from json [used in chatbot,products]
 export async function getAllCategories() {
   if (cachedCategories) return cachedCategories;
   const response = await fetch("./data/categories.json");
@@ -31,29 +33,25 @@ export async function getAllCategories() {
   return cachedCategories;
 }
 
-// get product by id
+// get product by id [Used in product details]
 export async function getProductById(id) {
   const products = await getAllProducts();
   return products.find((product) => product.id == id);
 }
 
-// get products by category
-export async function getProductsByCategory(categoryId) {
-  const allProducts = await getAllProducts();
-  return allProducts.filter((p) => p.categoryId == categoryId);
-}
+// get products by categoryId [Used in chatbot,product details,product]
 export async function getProductsByCategoryId(categoryId) {
   const products = await getAllProducts()
   const filteredProducts = products.filter(product => product.categoryId == categoryId)
   return filteredProducts;
 }
-//get category by name
+//get category by name [Not used anywhere]
 export async function getCategoryByName(categoryName) {
   const categories = await getAllCategories();
   return categories.find((category) => category.name == categoryName);
 }
 
-// get all reviews
+// get all reviews [Used in home]
 export async function getAllReviews() {
   const products = await getAllProducts();
   let jsonReviews = [];
@@ -67,6 +65,7 @@ export async function getAllReviews() {
   return [...jsonReviews, ...localReviews];
 }
 
+//get reviews (local storage & json file) for specific product  [Used in product details]
 export async function getReviewsByProductId(productId) {
   const products = await getAllProducts();
   const product = products.find((p) => p.id == productId);
@@ -78,59 +77,54 @@ export async function getReviewsByProductId(productId) {
   return [...jsonReviews, ...filteredLocalReviews];
 }
 
-// get product by count
+// get product by count [Not Used]
 export async function getProductByCount(start, end) {
   const products = await getAllProducts();
   return products.slice(start, end);
 }
 
+//Used in product details
 export async function countReviews(productId) {
   const reviews = await getReviewsByProductId(productId);
   return reviews.length;
 }
 
-// get discount
+// get discount [Not Used]
 export async function getDiscount(productId) {
   const product = await getProductById(productId);
   return product ? product.discount : 0;
 }
-
-// get category
-export async function getCategoryId(productId) {
-  const product = await getProductById(productId);
-  return product ? product.categoryId : null;
-}
-
+// Used in products
 export async function getCategoryById(categoryId) {
   const categories = await getAllCategories();
   return categories.find((category) => category.id == categoryId);
 }
 
-// Calculate discounted price
+// Calculate discounted price [Used in product details]
 export function calculateDiscountedPrice(price, discountPercentage) {
   if (!discountPercentage) return price;
   return price - price * (discountPercentage / 100);
 }
 
-//get cart
+//get cart [Used in cart,checkout,product details]
 export async function getCart(userEmail) {
   const cart = localStorage.getItem(userEmail);
   return cart ? JSON.parse(cart) : [];
 }
 
-//update cart
+//update cart [Used in cart, product details]
 export async function updateCart(userEmail, cart) {
   localStorage.setItem(userEmail, JSON.stringify(cart));
 }
 
-//get product id from url
+//get product id from url [Used in product details]
 export function getProductId() {
   const hash = (location.hash || "").split("?")[1];
   if (!hash) return null;
   return new URLSearchParams(hash).get("id");
 }
 
-//add review
+//add review [Used in product details]
 export function addReview(review) {
   let reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
   if (!Array.isArray(reviews)) {
@@ -140,6 +134,7 @@ export function addReview(review) {
   localStorage.setItem("reviews", JSON.stringify(reviews));
 }
 // merge guest cart to user cart  ==> elsefy
+// [Used in login]
 export async function mergeGuestCartToUser(userEmail) {
   const guestCart = await getCart("guest");
 
@@ -164,7 +159,7 @@ export async function mergeGuestCartToUser(userEmail) {
   localStorage.removeItem("guest");
 }
 
-// Fetch all products
+// Fetch all products [Not used]
 export function renderProducts(products, container) {
   products.map((product) => {
     let p = `
