@@ -77,18 +77,17 @@ function updateSummary() {
 }
 
 window.removeItem = function (productId) {
-    cart = cart.filter(item => item.productId !== productId);
+    cart = cart.filter(item => item.productId != productId);
     if (currentUser) {
         productServices.updateCart(currentUser.email, cart)
     } else {
         productServices.updateCart('guest', cart)
     }
-    massage('Product removed from cart', 'success');
     displayCartItems();
 };
 
 window.updateQuantity = function (productId, change) {
-    const item = cart.find(item => item.productId === productId);
+    const item = cart.find(item => item.productId == productId);
     if (item) {
         item.qty = (item.qty || 1) + change;
         if (item.qty < 1) item.qty = 1;
@@ -98,7 +97,6 @@ window.updateQuantity = function (productId, change) {
     } else {
         productServices.updateCart('guest', cart)
     }
-    massage('Product quantity updated', 'success');
     displayCartItems();
 };
 
@@ -116,6 +114,7 @@ document.getElementById('applyPromo')?.addEventListener('click', () => {
 
         massage('Promo code applied! 20% off', 'success');
     }
+    
     else {
         currentDiscount = 0;
         massage('Invalid promo code', 'error');
