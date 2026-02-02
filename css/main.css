@@ -28,9 +28,10 @@
    CSS Variables (Theme Colors & Fonts)
    =============================== */
 :root {
-  --bg: #c0c0c0;
-  --onbg: #1a1a1a;
-  --bgsecond: #9c9c9c;
+  --bg: #fff;
+  --onbg: #000;
+  --bgsecond: #dddddd;
+
   /* Updated color */
   --main-text: #000;
   --sec-text: #5a5a5a;

@@ -1,9 +1,4 @@
-import {
-  getAllProducts,
-  getAllReviews,
-  renderProducts,
-  makeLink,
-} from "../services/product_services.js";
+import { getAllProducts, getAllReviews, renderProducts } from "../services/product_services.js";
 
 // Fade In Fade Out Slider
 let images = document.querySelectorAll(".slider img");
@@ -65,21 +60,19 @@ container.addEventListener("touchend", () => (isPaused = false), {
 // 4. Start Animation
 requestAnimationFrame(step);
 
-let allProducts = await getAllProducts();
-
 // New Arrival
 let productsContainer = document.querySelector("#new-arrivals");
-let newArrival = allProducts.filter((e) => e.stock >= 45);
+let allProducts = await getAllProducts();
+
+let newArrival = allProducts.slice(-5, );
 renderProducts(newArrival, productsContainer);
 
 // Top Selling
 let topProductsContainer = document.querySelector("#top");
-let topSelling = allProducts.filter((e) => e.rating >= 4.8);
-renderProducts(topSelling, topProductsContainer);
 
-// Make Product Link
-let arr = document.querySelectorAll(".product-link");
-makeLink(arr);
+let topSelling = allProducts.slice(0, 4)
+
+renderProducts(topSelling, topProductsContainer);
 
 // Reviews
 let revContainer = document.querySelector("#rev");
@@ -87,10 +80,13 @@ let reviews = await getAllReviews();
 
 reviews.map((review) => {
   let p = `
-  <div class="shrink-0 pb-5 border border-gray-300 p-5 rounded-2xl" key=${review.id} >
+  <div class="shrink-0 pb-5" key=${review.id} >
   <span>⭐${review.rating}</span>
-    <h3 class="font-semibold mb-4">${review.userName} ✅</h3>
-    <p class="w-60 text-gray-400 text-balance">"${review.comment}"</p>
+    <h3 class="font-semibold">${review.name} ✅</h3>
+    <p class="w-60 text-gray-400 text-13px text-balance">${review.comment}</p>
     </div>`;
   revContainer.innerHTML += p;
 });
+
+let productsLink = document.querySelectorAll("product-link");
+makeLink(productsLink);

@@ -204,6 +204,12 @@ function setupReviewModal(productId) {
             productServices.addReview(review);
             toggleModal(false);
             renderReviews(productId, 4);
+
+            // Update reviews count in UI
+            const reviewsCount = await productServices.countReviews(productId);
+            const reviewsCountEl = document.getElementById('reviews-count');
+            if (reviewsCountEl) reviewsCountEl.innerText = `(${reviewsCount})`;
+
             massage('Review added successfully', 'success');
         });
     }
@@ -283,7 +289,7 @@ async function renderRelatedProducts(categoryId) {
     if (!container || container.children.length > 0) return;
 
     try {
-        const products = await productServices.getProductsByCategory(categoryId);
+        const products = await productServices.getProductsByCategoryId(categoryId);
         products.slice(0, 4).forEach(product => {
             const discountedPrice = productServices.calculateDiscountedPrice(product.price, product.discountPercentage);
             container.insertAdjacentHTML('beforeend', `
@@ -323,8 +329,9 @@ async function renderReviews(productId, count = 4) {
     if (!container) return;
 
     try {
-        const reviews = await productServices.getAllReviews(productId);
-        if (!reviews || reviews.length === 0) {
+        const reviews = await productServices.getReviewsByProductId(productId);
+
+        if (!reviews || reviews.length == 0) {
             container.innerHTML = '<p class="text-gray-500">No reviews yet.</p>';
             return;
         }
