@@ -16,7 +16,7 @@
   font-style: normal;
 }
 
-/* Satoshi font - Bold weight (700) */
+/* Satoshi font - Bold weight (700) */ 
 @font-face {
   font-family: "Satoshi";
   src: url("../assets/fonts/Satoshi-Bold.woff2") format("woff2");
@@ -114,6 +114,7 @@ body {
 
 /* Password visibility eye icon */
 #eye-icon {
+
   width: 20px;
   text-align: center;
   transition: all 0.2s ease;
@@ -209,6 +210,7 @@ input[type="range"]::-moz-range-thumb {
     z-index: 400;
   }
 }
+
 
 
 /* ===============================

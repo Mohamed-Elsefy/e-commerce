@@ -83,7 +83,6 @@ window.removeItem = function (productId) {
     } else {
         productServices.updateCart('guest', cart)
     }
-    massage('Product removed from cart', 'success');
     displayCartItems();
 };
 
@@ -98,7 +97,6 @@ window.updateQuantity = function (productId, change) {
     } else {
         productServices.updateCart('guest', cart)
     }
-    massage('Product quantity updated', 'success');
     displayCartItems();
 };
 
@@ -116,6 +114,7 @@ document.getElementById('applyPromo')?.addEventListener('click', () => {
 
         massage('Promo code applied! 20% off', 'success');
     }
+    
     else {
         currentDiscount = 0;
         massage('Invalid promo code', 'error');
