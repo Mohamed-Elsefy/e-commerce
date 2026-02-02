@@ -27,4 +27,8 @@ export const routes = {
         html: "/html/register.html",
         js: "/js/pages/register.js",
     },
+    checkout: {
+        html: "/html/check_out.html",
+        js: "/js/pages/checkout_page.js",
+    },
 };

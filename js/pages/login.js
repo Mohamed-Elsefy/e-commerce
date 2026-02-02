@@ -1,6 +1,7 @@
 import { massage } from '../Utilites/helpers.js';
 import { initAuthAnimation, setupPasswordToggle } from '../Utilites/auth_ui.js';
 import * as authService from '../services/auth_services.js';
+import { mergeGuestCartToUser } from '../services/product_services.js';
 
 export function initLogin() {
     const loginForm = document.getElementById('login-form');
@@ -23,7 +24,10 @@ export function initLogin() {
             const response = await authService.loginUser(email, password);
 
             if (response.success) {
+                await mergeGuestCartToUser(email);
+
                 massage('Welcome back! Login successful.', 'success');
+                
                 setTimeout(() => {
                     const homeUrl = window.location.origin + window.location.pathname + '#home';
                     window.location.replace(homeUrl);

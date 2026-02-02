@@ -18,7 +18,7 @@ export function massage(message, type = "success") {
     `;
 
     toast.innerHTML = `
-        <div class="flex items-center gap-2 text-center">
+        <div class="flex justify-center items-center gap-2 text-center">
             <span class="font-bold text-lg capitalize">${type}:</span>
             <span class="font-medium">${message}</span>
         </div>

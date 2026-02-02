@@ -1,10 +1,8 @@
 import { routes } from "./config/routes.js";
-import { initTheme } from "./Utilites/theme.js";
-import { renderAuthButtons } from "./Utilites/renderAuthButtons.js";
-import * as authService from "./services/auth_services.js";
-// import * as checkout from './services/checkout.js';
 
-// checkout.setOrderDefault();
+import { initTheme } from './Utilites/theme.js';
+import { renderAuthButtons } from './Utilites/renderAuthButtons.js';
+import * as authService from './services/auth_services.js';
 
 // Reference to the currently loaded page script
 let currentScript;

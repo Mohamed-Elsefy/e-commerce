@@ -1,25 +1,51 @@
+
+import * as productServices from '../services/product_services.js';
+import { getCurrentUser } from '../services/auth_services.js';
+import { massage } from '../Utilites/helpers.js';
+const currentUser = getCurrentUser();
 let cart = [];
+if (currentUser) {
+    cart = await productServices.getCart(currentUser.email)
+} else {
+    cart = await productServices.getCart('guest')
+}
+
 let currentDiscount = 0;
-function displayCartItems() {
+
+export function displayCartItems() {
     const container = document.getElementById('cartItems');
+    const emptyMsg = document.getElementById('emptyCart');
+
+    if (!container) return;
+
     container.innerHTML = '';
+
+    if (cart.length === 0) {
+        if (emptyMsg) emptyMsg.classList.remove('hidden');
+        updateSummary();
+        return;
+    }
+
+    if (emptyMsg) emptyMsg.classList.add('hidden');
 
     cart.forEach(item => {
         container.innerHTML += `
-            <div class="flex  border rounded-lg p-4 mb-4 bg-white">
-                <img src="${item.image}" class="w-24 h-24 bg-cover rounded">
-                <div class="ml-4 grow ">
-                    <h3 class="font-bold">${item.name}</h3>
-                    <p>Size: ${item.size}</p>
-                    <p>Color: ${item.color}</p>
-                    <p class="font-bold mt-2">$${item.price}</p>
+            <div class="flex border rounded-lg p-4 mb-4 bg-(--bgsecond)  shadow-sm transition-colors duration-300">
+                <img src="${item.mainImage || ''}" class="w-24 h-24 object-cover rounded" alt="${item.name || 'Product'}">
+                <div class="ml-4 grow">
+                    <h3 class="font-bold text-(--onbg) ">${item.name || 'Unnamed Product'}</h3>
+                    <p class="text-base text-gray-500 ">Size: ${item.size || 'N/A'} | Color: ${item.color || 'N/A'}</p>
+                    <p class="font-bold mt-2 text-(--onbg)">$${item.price || 0}</p>
                 </div>
-                <div class="flex flex-col items-end">
-                    <button onclick="removeItem(${item.id})" ><box-icon color="red"  name='trash'></box-icon></button>
-                    <div class="flex items-center mt-4">
-                        <button onclick="updateQuantity(${item.id}, -1)" class="px-3 py-1 shadow-lg  shadow-gray-400 border rounded-xl">-</button>
-                        <span class="px-4">${item.quantity}</span>
-                        <button onclick="updateQuantity(${item.id}, 1)" class="px-3 py-1  shadow-lg  shadow-gray-400 rounded-xl border">+</button>
+                <div class="flex flex-col items-end justify-between">
+                    <button onclick="removeItem('${item.productId}')" class="text-red-500 hover:scale-110 transition">
+                        <i class="fa-solid fa-trash-can"></i>  <!-- لو أضفت Font Awesome -->
+                        <!-- أو استخدم: <i class='bx bx-trash'></i> لو Boxicons -->
+                    </button>
+                    <div class="flex items-center mt-4 text-black border rounded-full px-2 py-1 bg-gray-50  transition-colors duration-300">
+                        <button class="px-2 font-bold text-black " onclick="updateQuantity('${item.productId}', -1)">-</button>
+                        <span class="px-4 font-medium text-black ">${item.qty || 1}</span>
+                        <button class="px-2 font-bold text-black " onclick="updateQuantity('${item.productId}', 1)">+</button>
                     </div>
                 </div>
             </div>
@@ -29,70 +55,89 @@ function displayCartItems() {
     updateSummary();
 }
 
-
 function updateSummary() {
-    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const discount = subtotal * currentDiscount;
-    const total = subtotal - discount + 0;
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * (item.qty || 1)), 0);
+    const delivery = subtotal > 0 ? 10 : 0;
+    const discountAmount = subtotal * currentDiscount;
+    const total = subtotal - discountAmount + delivery;
 
-    document.getElementById('subtotal').textContent = `$${subtotal}`;
-    document.getElementById('discount').textContent = `-$${discount}`;
-    document.getElementById('total').textContent = `$${total}`;
+    const elements = {
+        subtotal: document.getElementById('subtotal'),
+        discount: document.getElementById('discount'),
+        delivery: document.getElementById('delivery'),
+        total: document.getElementById('total')
+    };
+
+    if (elements.subtotal) elements.subtotal.textContent = `$${subtotal.toFixed(2)}`;
+    if (elements.discount) elements.discount.textContent = `-$${discountAmount.toFixed(2)}`;
+    if (elements.delivery) elements.delivery.textContent = `$${delivery.toFixed(2)}`;
+    if (elements.total) elements.total.textContent = `$${total.toFixed(2)}`;
+
+
 }
 
-function addToCart(product) {
-    const existing  = cart.find(p => p.id === product.id);
-    if (existing) {
-        existing.quantity += 1; 
+window.removeItem = function (productId) {
+    cart = cart.filter(item => item.productId !== productId);
+    if (currentUser) {
+        productServices.updateCart(currentUser.email, cart)
     } else {
-        cart.push({ ...product, quantity: 1 });
+        productServices.updateCart('guest', cart)
     }
-        displayCartItems(); 
-}
+    massage('Product removed from cart', 'success');
+    displayCartItems();
+};
 
-// 
-// document.addEventListener('DOMContentLoaded', function () {
-//     const cartData = localStorage.getItem('cart');
-//       if(savedCart) cart = JSON.parse(savedCart);
-//     displayCartItems();
-// });
+window.updateQuantity = function (productId, change) {
+    const item = cart.find(item => item.productId === productId);
+    if (item) {
+        item.qty = (item.qty || 1) + change;
+        if (item.qty < 1) item.qty = 1;
+    }
+    if (currentUser) {
+        productServices.updateCart(currentUser.email, cart)
+    } else {
+        productServices.updateCart('guest', cart)
+    }
+    massage('Product quantity updated', 'success');
+    displayCartItems();
+};
 
-document.addEventListener('DOMContentLoaded', function () {
-    fetch('https://fakestoreapi.com/products?limit=5')
-        .then(res => res.json())
-        .then(data => {
-            cart = data.map(item => ({
-                id: item.id,
-                name: item.title,
-                price: item.price,
-                quantity: 1,
-                size: "M", 
-                color: "Default",
-                image: item.image
-            }));
-            displayCartItems();
-        })
-        .catch(err => console.log('Error fetching products:', err));
+document.getElementById('applyPromo')?.addEventListener('click', () => {
+    const code = document.getElementById('promoCode')?.value;
+
+    if (code === "ITI2026") {
+        currentDiscount = 0.10;
+        localStorage.setItem('appliedDiscount', JSON.stringify(currentDiscount));
+
+        massage('Promo code applied! 10% off', 'success');
+    } else if (code === "ITI.NET") {
+        currentDiscount = 0.20;
+        localStorage.setItem('appliedDiscount', JSON.stringify(currentDiscount));
+
+        massage('Promo code applied! 20% off', 'success');
+    }
+    else {
+        currentDiscount = 0;
+        massage('Invalid promo code', 'error');
+
+    }
+    updateSummary();
 });
 
-function removeItem(id) {
-    const index = cart.findIndex(item => item.id === id);
-    if (index !== -1) {
-        cart.splice(index, 1); 
+document.getElementById("checkoutBtn").addEventListener("click", async () => {
+    if (!currentUser) {
+        massage('Please login first', 'error');
+        window.location.hash = "#login"; // بدل href
+        return;
     }
-    displayCartItems();
-}
 
-
-
-
-function updateQuantity(id, change) {
-    const item = cart.find(item => item.id === id);
-    if (item) {
-        item.quantity += change;
-        if (item.quantity < 1) item.quantity = 1; 
+    if (cart.length === 0) {
+        massage('Your cart is empty', 'error');
+        return;
     }
-    displayCartItems();
-}
+
+    window.location.hash = "#checkout";
+});
 
 
+displayCartItems();
