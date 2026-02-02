@@ -16,7 +16,7 @@
   font-style: normal;
 }
 
-/* Satoshi font - Bold weight (700) */ 
+/* Satoshi font - Bold weight (700) */
 @font-face {
   font-family: "Satoshi";
   src: url("../assets/fonts/Satoshi-Bold.woff2") format("woff2");
@@ -28,31 +28,34 @@
    CSS Variables (Theme Colors & Fonts)
    =============================== */
 :root {
-  --bg: #fff;
-  --onbg: #000;
-  --bgsecond: #dddddd;
+  /* Core Palette */
+  --bg: #ffffff;
+  --onbg: #000000;
+  --bgsecond: #f2f0f1;
 
-  /* Updated color */
-  --main-text: #000;
-  --sec-text: #5a5a5a;
-  --main-bg: #fff;
-  --sec-bg: #eee;
+  /* Semantic Mappings */
+  --main-bg: #ffffff;
+  --sec-bg: #f0f0f0;
+  --main-text: #000000;
+  --sec-text: rgba(0, 0, 0, 0.6);
+  --border: rgba(0, 0, 0, 0.1);
 
-  /* fonts */
+  /* Fonts */
   --fprim: "Satoshi", sans-serif;
   --fsecond: "Montserrat", sans-serif;
 }
 
 /* Dark theme overrides */
 .dark {
-  --bg: #121212;
-  --onbg: #e6e6e6;
-  --bgsecond: #1e1e1e;
-  /* Updated color */
-  --main-text: #fff;
-  --sec-text: #d8d8d8;
-  --main-bg: #121212;
+  --bg: #000000;
+  --onbg: #ffffff;
+  --bgsecond: #1a1a1a;
+
+  --main-bg: #000000;
   --sec-bg: #121212;
+  --main-text: #ffffff;
+  --sec-text: rgba(255, 255, 255, 0.6);
+  --border: rgba(255, 255, 255, 0.1);
 }
 
 /* ===============================
@@ -133,8 +136,8 @@ body {
 }
 
 .size-item.active {
-  background-color: #000;
-  color: #fff;
+  background-color: var(--onbg);
+  color: var(--bg);
   opacity: 100%;
 }
 
@@ -144,7 +147,7 @@ body {
     z-index: 500;
     display: block;
     height: fit-content;
-    background-color: white;
+    background-color: var(--main-bg);
     width: 100%;
     left: 0;
   }
@@ -152,7 +155,7 @@ body {
 
 .style.active,
 .category.active {
-  background-color: #eee;
+  background-color: var(--bgsecond);
   border-radius: 18px;
 }
 
@@ -161,7 +164,7 @@ input[type="range"]::-webkit-slider-thumb {
   pointer-events: all;
   width: 18px;
   height: 18px;
-  background: black;
+  background: var(--onbg);
   border-radius: 50%;
   appearance: none;
 }
@@ -170,7 +173,7 @@ input[type="range"]::-moz-range-thumb {
   pointer-events: all;
   width: 18px;
   height: 18px;
-  background: black;
+  background: var(--onbg);
   border-radius: 50%;
 }
 
@@ -193,6 +196,7 @@ input[type="range"]::-moz-range-thumb {
       var(--star-background) calc(var(--rating) / 5 * 100%),
       var(--star-color) calc(var(--rating) / 5 * 100%));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   width: 20px;
   text-align: center;
@@ -204,7 +208,7 @@ input[type="range"]::-moz-range-thumb {
   .overlay {
     position: fixed;
     inset: 0;
-    background: rgba(255, 255, 255, 0.4);
+    background: var(--border);
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
     z-index: 400;
