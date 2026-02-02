@@ -31,4 +31,8 @@ export const routes = {
         html: "/html/check_out.html",
         js: "/js/pages/checkout_page.js",
     },
+    payment: {
+        html: "/html/payment.html",
+        js: "/js/pages/payment.js",
+    },
 };

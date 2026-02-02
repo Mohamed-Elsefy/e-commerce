@@ -58,8 +58,8 @@ function renderProductDetails(product) {
         priceContainer.innerHTML = `
             <div class="flex items-center space-x-2">
                 <span class="font-bold text-xl">$${parseInt(discountedPrice)}</span>
-                <span class="text-gray-400 font-bold line-through">$${parseInt(product.price)}</span>
-                <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded-full">-${product.discountPercentage}%</span>
+                <span class="text-sm font-normal opacity-40 line-through">$${parseInt(product.price)}</span>
+                <span class="bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-xs font-bold px-2 py-1 rounded-full">-${product.discountPercentage}%</span>
             </div>
         `;
     } else {
@@ -71,7 +71,7 @@ function renderProductDetails(product) {
     if (sizesContainer && sizesContainer.children.length === 0) {
         product.sizes.forEach(size => {
             sizesContainer.insertAdjacentHTML('beforeend', `
-                <button class="bg-[#F0F0F0] text-gray-600 py-3 px-6 rounded-full hover:bg-black hover:text-white transition font-medium size-option">${size}</button>
+                <button class="bg-(--bgsecond) text-(--onbg) opacity-60 py-3 px-6 rounded-full hover:bg-(--onbg) hover:text-(--bg) hover:opacity-100 transition font-medium size-option">${size}</button>
             `);
         });
         setupSizeSelector();
@@ -88,7 +88,7 @@ function setupGallery(product) {
     if (imageSlider && imageSlider.children.length === 0) {
         product.images.forEach(image => {
             imageSlider.insertAdjacentHTML('beforeend', `
-                <div class="w-24 h-24 md:w-48 md:h-48 rounded-2xl overflow-hidden border-2 border-transparent hover:border-black transition focus:border-black ring-offset-2 img-slide">
+                <div class="w-24 h-24 md:w-48 md:h-48 rounded-2xl overflow-hidden border-2 border-transparent hover:border-(--onbg) transition focus:border-(--onbg) ring-offset-2 img-slide">
                     <img src="${image}" alt="${product.name}" class="w-full h-full object-cover">
                 </div>
             `);
@@ -123,11 +123,11 @@ function setupSizeSelector() {
     sizeOptions.forEach(btn => {
         btn.addEventListener('click', () => {
             sizeOptions.forEach(b => {
-                b.classList.remove('bg-black', 'text-white', 'selected');
-                b.classList.add('bg-[#F0F0F0]', 'text-gray-600');
+                b.classList.remove('bg-(--onbg)', 'text-(--bg)', 'opacity-100', 'selected');
+                b.classList.add('bg-(--bgsecond)', 'text-(--onbg)', 'opacity-60');
             });
-            btn.classList.remove('bg-[#F0F0F0]', 'text-gray-600');
-            btn.classList.add('bg-black', 'text-white', 'selected');
+            btn.classList.remove('bg-(--bgsecond)', 'text-(--onbg)', 'opacity-60');
+            btn.classList.add('bg-(--onbg)', 'text-(--bg)', 'opacity-100', 'selected');
         });
     });
 }
@@ -306,8 +306,8 @@ async function renderRelatedProducts(categoryId) {
                         ${product.discountPercentage ? `
                             <div class="flex items-center space-x-2">
                                 <span class="font-bold text-xl">$${parseInt(discountedPrice)}</span>
-                                <span class="text-gray-400 font-bold line-through">$${parseInt(product.price)}</span>
-                                <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded-full">-${product.discountPercentage}%</span>
+                                <span class="text-sm font-normal opacity-40 line-through">$${parseInt(product.price)}</span>
+                                <span class="bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-[10px] font-bold px-2 py-1 rounded-full">-${product.discountPercentage}%</span>
                             </div>
                         ` : `<div class="font-bold text-xl">$${parseInt(product.price)}</div>`}
                     </div>
@@ -339,10 +339,10 @@ async function renderReviews(productId, count = 4) {
         container.innerHTML = '';
         reviews.slice(0, count).forEach(review => {
             container.insertAdjacentHTML('beforeend', `
-                <div class="border border-gray-200 rounded-3xl p-6 md:p-8">
+                <div class="border border-(--border) rounded-3xl p-6 md:p-8">
                     <div class="flex justify-between items-start mb-3">
                         <div class="text-yellow-400 text-lg">${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}</div>
-                        <button class="text-gray-400 hover:text-black">•••</button>
+                        <button class="text-(--onbg) opacity-40 hover:opacity-100">•••</button>
                     </div>
                     <div class="flex items-center mb-2">
                         <h4 class="font-bold text-lg mr-2">${review.userName}</h4>
@@ -350,8 +350,8 @@ async function renderReviews(productId, count = 4) {
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                         </svg>
                     </div>
-                    <p class="text-gray-600 mb-4 text-sm md:text-base leading-relaxed">"${review.comment}"</p>
-                    <p class="text-gray-500 text-sm font-medium">Posted on ${formatDate(review.createdAt)}</p>
+                    <p class="text-(--onbg) opacity-70 mb-4 text-sm md:text-base leading-relaxed">"${review.comment}"</p>
+                    <p class="text-(--onbg) opacity-40 text-sm font-medium">Posted on ${formatDate(review.createdAt)}</p>
                 </div>
             `);
         });

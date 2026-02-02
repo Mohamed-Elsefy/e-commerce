@@ -1,5 +1,6 @@
 import * as productServices from '../services/product_services.js';
 import * as checkout from '../services/checkout.js';
+import { generateInvoice } from '../services/invoice_service.js';
 const chatbot = document.getElementById('chat-window');
 const messages = document.getElementById('messages');
 const userInput = document.getElementById('userInput');
@@ -121,73 +122,12 @@ async function botReply(userMessage) {
 }
 
 async function generateInvoicePDF(orderId) {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
     const order = await checkout.getUserOrderById(orderId);
 
     if (!order) return;
     const userOrder = order;
 
-    let y = 20;
-
-    // Header
-    doc.setFontSize(22);
-    doc.setTextColor(0, 0, 0);
-    doc.text('INVOICE ITI STORE', 105, y, { align: 'center' });
-    y += 20;
-
-    // Order Info
-    doc.setFontSize(12);
-    doc.text(`Order ID: #${userOrder.id}`, 20, y);
-    y += 10;
-    doc.text(`Date: ${new Date(userOrder.orderDate).toLocaleDateString()}`, 20, y);
-    y += 10;
-    doc.text(`Status: ${userOrder.orderStatus}`, 20, y);
-    y += 10;
-    doc.text(`Payment Method: ${userOrder.paymentMethod}`, 20, y);
-    y += 20;
-
-    // Customer Info
-    doc.setFontSize(14);
-    doc.text('Customer Details:', 20, y);
-    y += 10;
-    doc.setFontSize(12);
-    doc.text(`Name: ${userOrder.name}`, 20, y);
-    y += 10;
-    doc.text(`Email: ${userOrder.email}`, 20, y);
-    y += 10;
-    doc.text(`Phone: ${userOrder.phone || 'N/A'}`, 20, y);
-    y += 10;
-    doc.text(`Address: ${userOrder.address}`, 20, y);
-    y += 20;
-
-    // Items Section
-    doc.line(20, y, 190, y);
-    y += 10;
-    doc.setFontSize(14);
-    doc.text('Order Items', 20, y);
-    y += 10;
-
-    doc.setFontSize(12);
-    userOrder.orderItems.forEach(item => {
-        doc.text(`- ${item.name} (x${item.qty})`, 20, y);
-        doc.text(`$${(item.price * item.qty).toFixed(2)}`, 190, y, { align: 'right' });
-        y += 10;
-    });
-
-    // Summary
-    doc.line(20, y, 190, y);
-    y += 10;
-    doc.setFontSize(14);
-    doc.text('Total Amount', 20, y);
-    doc.text(`$${userOrder.orderTotal.toFixed(2)}`, 190, y, { align: 'right' });
-
-    // Footer
-    doc.setFontSize(10);
-    doc.setTextColor(150, 150, 150);
-    doc.text('Thank you for shopping with us!', 105, 280, { align: 'center' });
-
-    doc.save(`Invoice_${userOrder.id}.pdf`);
+    generateInvoice(userOrder);
 }
 
 async function sendMessage() {
@@ -202,7 +142,6 @@ async function sendMessage() {
         addMessage(reply, 'bot');
     }, 500);
 }
-
 
 const sendMsgBtn = document.getElementById('sendMsgBtn');
 if (sendMsgBtn) {

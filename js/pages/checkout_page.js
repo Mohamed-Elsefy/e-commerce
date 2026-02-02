@@ -70,7 +70,7 @@ function initCheckout() {
         localStorage.removeItem(user.email);
         localStorage.removeItem('appliedDiscount');
 
-        window.location.hash = '#products';
+        window.location.hash = `#payment?orderId=${order.id}`;
     });
 }
 
