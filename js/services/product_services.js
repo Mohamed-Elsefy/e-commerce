@@ -110,7 +110,7 @@ export function addReview(review) {
 // Fetch all products [Not used]
 export function renderProducts(products, container) {
   products.map((product) => {
-    let p = `<div class="product-link group relative flex-none w-64 h-80 mb-4 rounded-2xl border border-gray-200 overflow-hidden shadow-sm" key="${product.id}"> 
+    let p = `<div class="product-link group relative flex-none w-64 h-96 mb-4 rounded-2xl border border-gray-200 overflow-hidden shadow-sm" key="${product.id}"> 
   
   <div class="absolute inset-0 z-0 transition-transform duration-500 group-hover:scale-110" 
        style="background-image: url('${product.mainImage}'); background-size: cover; background-position: center;">
@@ -120,7 +120,7 @@ export function renderProducts(products, container) {
 
   <div class="absolute bottom-0 w-full z-20 p-4 backdrop-blur-xs bg-white/10 border-t border-white/10 text-white">
     
-    <h3 class="font-medium text-sm line-clamp-2 mb-2 h-10">
+    <h3 class="font-medium text-sm line-clamp-2 mb-2">
       ${product.name}
     </h3>
 
