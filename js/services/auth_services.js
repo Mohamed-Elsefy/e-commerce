@@ -1,4 +1,4 @@
-import { isValidEmail, isValidPassword, isValidName } from '../utilites/validation.js';
+import { isValidEmail, isValidPassword, isValidName, encrypt, decrypt } from '../utilites/validation.js';
 
 export async function registerUser(userData) {
     if (!isValidName(userData.fullName)) {
@@ -19,10 +19,15 @@ export async function registerUser(userData) {
         throw new Error('This email is already registered');
     }
 
-    users.push(userData);
+    const encryptedUser = {
+        ...userData,
+        password: encrypt(userData.password)
+    };
+
+    users.push(encryptedUser);
     localStorage.setItem('users', JSON.stringify(users));
 
-    return { success: true, user: userData };
+    return { success: true, user: encryptedUser };
 }
 
 export async function loginUser(email, password) {
@@ -31,8 +36,15 @@ export async function loginUser(email, password) {
     }
 
     const users = JSON.parse(localStorage.getItem('users') || '[]');
-    const user = users.find(u => u.email === email && u.password === password);
 
+    const user = users.find(u => {
+        if (u.email === email) {
+            const originalPassword = decrypt(u.password);
+            return originalPassword === password;
+        }
+        return false;
+    });
+    
     if (!user) {
         throw new Error('Invalid email or password');
     }

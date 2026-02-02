@@ -1,3 +1,4 @@
+const SECRET_KEY = "my-super-secret-key-123";
 
 export function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -11,4 +12,13 @@ export function isValidPassword(password) {
 
 export function isValidName(name) {
     return name && name.trim().length >= 3;
+}
+
+export function encrypt(text) {
+    return CryptoJS.AES.encrypt(text, SECRET_KEY).toString();
+}
+
+export function decrypt(cipherText) {
+    const bytes = CryptoJS.AES.decrypt(cipherText, SECRET_KEY);
+    return bytes.toString(CryptoJS.enc.Utf8);
 }
