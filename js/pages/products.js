@@ -122,7 +122,6 @@ dressItems.forEach(btn => {
     btn.addEventListener("click", () => {
 
         //Add Active class
-        // dressItems.forEach(b => b.classList.remove("active"));
         btn.classList.toggle("active");
         if (!filters.dressStyle.includes(btn.dataset.value)) {
             filters.dressStyle.push(btn.dataset.value);
@@ -160,8 +159,8 @@ function renderProducts(allProducts) {
     if (allProducts.length > 0) {
         allProducts.forEach(item => {
             productsContainer.innerHTML += `
-        <a href="index.html#product?id=${item.id}">
-            <div class="group cursor-pointer">
+            <div class="group ">
+                <a href="index.html#product?id=${item.id}" class="cursor-pointer">
                 <div class="bg-[#F0EEED] rounded-3xl overflow-hidden mb-4 relative aspect-[1/1.1]">
                     <img src="${item.mainImage}" alt="Product"
                         class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
@@ -176,8 +175,9 @@ function renderProducts(allProducts) {
                     <span class="text-gray-400 font-bold line-through">$${parseInt(item.price)}</span>
                     <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded-full">-${item.discountPercentage}%</span>
                 </div>` : `<div class="font-bold text-xl ">$${parseInt(item.price)}</div>`}
+                </a>
             </div>
-            </a>`
+            `
 
         })
     } else {
