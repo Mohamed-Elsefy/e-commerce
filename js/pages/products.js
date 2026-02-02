@@ -20,7 +20,7 @@ const categoryContainer = document.getElementById("categories");
 (function showCategories() {
     categories.forEach(c => {
         categoryContainer.innerHTML += ` 
-                           <li class=" flex justify-between items-center p-3.5  cursor-pointer text-black opacity-70 text-sm category"
+                           <li class=" flex justify-between items-center p-3.5  cursor-pointer text-(--main-text) opacity-70 text-sm category"
                         data-value="${c.id}">
                         <span>${c.name}</span><span><i class="fa-solid fa-angle-right"></i></span>
                     </li>`
