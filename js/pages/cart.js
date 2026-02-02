@@ -30,7 +30,7 @@ export function displayCartItems() {
 
     cart.forEach(item => {
         container.innerHTML += `
-            <div class="flex border rounded-lg p-4 mb-4 bg-(--bgsecond)  shadow-sm transition-colors duration-300">
+            <div class="flex border rounded-lg p-4 mb-4 bg-(--sec-bg)  shadow-md shadow-cyan-100 transition-colors duration-300">
                 <img src="${item.mainImage || ''}" class="w-24 h-24 object-cover rounded" alt="${item.name || 'Product'}">
                 <div class="ml-4 grow">
                     <h3 class="font-bold text-(--onbg) ">${item.name || 'Unnamed Product'}</h3>

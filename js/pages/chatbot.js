@@ -173,7 +173,7 @@ messages.addEventListener('click', async (e) => {
         addMessage(`I want to see items from ${categoryName}`, 'user');
 
         // Fetch products for category
-        const products = await productServices.getProductsByCategory(categoryId);
+        const products = await productServices.getProductsByCategoryId(categoryId);
         if (products.length == 0) {
             addMessage("Sorry, I couldn't fetch the products right now.", 'bot');
             return;
