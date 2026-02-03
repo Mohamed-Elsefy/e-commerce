@@ -1,6 +1,6 @@
 
 import * as productServices from '../services/product_services.js';
-import { massage } from '../Utilites/helpers.js';
+import { massage } from '../Utilities/helpers.js';
 import { getCurrentUser } from '../services/auth_services.js';
 import * as cartServices from '../services/cart_services.js';
 
@@ -291,10 +291,12 @@ async function renderRelatedProducts(categoryId) {
 
     try {
         const products = await productServices.getProductsByCategoryId(categoryId);
-        products.slice(0, 4).forEach(product => {
+        products.slice(0, 4).forEach((product, index) => {
+            const animationClass = index % 2 === 0 ? "animate-side" : "animate-top";
+            const delay = (index * 0.1).toFixed(1);
             const discountedPrice = productServices.calculateDiscountedPrice(product.price, product.discountPercentage);
             container.insertAdjacentHTML('beforeend', `
-                <a href="index.html#product?id=${product.id}">
+                <a href="index.html#product?id=${product.id}" class="${animationClass}" style="animation-delay: ${delay}s">
                     <div class="group cursor-pointer">
                         <div class="bg-[#F0EEED] rounded-3xl overflow-hidden mb-4 relative aspect-[1/1.1]">
                             <img src="${product.mainImage}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
@@ -338,9 +340,11 @@ async function renderReviews(productId, count = 4) {
         }
 
         container.innerHTML = '';
-        reviews.slice(0, count).forEach(review => {
+        reviews.slice(0, count).forEach((review, index) => {
+            const animationClass = index % 2 === 0 ? "animate-side" : "animate-top";
+            const delay = (index * 0.1).toFixed(1);
             container.insertAdjacentHTML('beforeend', `
-                <div class="border border-(--border) rounded-3xl p-6 md:p-8">
+                <div class="border border-(--border) rounded-3xl p-6 md:p-8 ${animationClass}" style="animation-delay: ${delay}s">
                     <div class="flex justify-between items-start mb-3">
                         <div class="text-yellow-400 text-lg">${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}</div>
                         <button class="text-(--onbg) opacity-40 hover:opacity-100">•••</button>
