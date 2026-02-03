@@ -1,7 +1,7 @@
 import { routes } from "./config/routes.js";
 
-import { initTheme } from "./Utilites/theme.js";
-import { renderAuthButtons } from "./Utilites/renderAuthButtons.js";
+import { initTheme } from "./Utilities/theme.js";
+import { renderAuthButtons } from "./Utilities/renderAuthButtons.js";
 import * as authService from "./services/auth_services.js";
 import { getAllProducts } from "./services/product_services.js";
 // import * as checkout from './services/checkout.js';
@@ -72,6 +72,21 @@ async function router() {
 
   // Load page HTML and JavaScript
   await loadComponent("content", route.html);
+
+  // Apply entry animations to main sections
+  const content = document.getElementById("content");
+  if (content) {
+    const mainSections = content.querySelectorAll("section");
+    mainSections.forEach((section, index) => {
+      // Add staggered delay
+      section.style.animationDelay = `${index * 0.4}s`;
+
+      // Alternate animations for visual variety
+      const animationClass = index % 2 === 0 ? "animate-side" : "animate-top";
+      section.classList.add(animationClass);
+    });
+  }
+
   loadJS(route.js);
 }
 

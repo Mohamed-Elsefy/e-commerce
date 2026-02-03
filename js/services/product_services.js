@@ -136,8 +136,8 @@ export function renderProducts(products, container) {
         ` : `<span class="h-4"></span>`}
         <span class="text-lg font-bold">
           $${product.discountPercentage > 0
-            ? Math.floor(product.price - (product.price * product.discountPercentage) / 100)
-            : product.price}
+        ? Math.floor(product.price - (product.price * product.discountPercentage) / 100)
+        : product.price}
         </span>
       </div>
 
