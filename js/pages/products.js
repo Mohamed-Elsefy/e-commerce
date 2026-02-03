@@ -165,8 +165,6 @@ category.forEach(btn => {
 
         selectedCategoryContainer.forEach(i => i.innerHTML = categoryName.name)
         loadPage();
-        overlay.classList.remove("overlay");
-        filterSideBar.classList.remove("show-filter")
     })
 });
 
@@ -341,6 +339,9 @@ loadPage();
 document.getElementById("btnFilter").addEventListener("click", function () {
     currentPage = 1;
     loadPage();
+    overlay.classList.remove("overlay");
+    filterSideBar.classList.remove("show-filter")
+
 })
 
 
@@ -422,7 +423,6 @@ showFilter.addEventListener("click", function () {
 });
 var closeBtn = document.getElementById("closeBtn");
 closeBtn.addEventListener("click", function () {
-    overlay.classList.remove("overlay");
     filterSideBar.classList.remove("show-filter")
 
 })
