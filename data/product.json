@@ -1174,53 +1174,6 @@
         ]
     },
     {
-        "id": 309,
-        "name": "Casual Summer Shorts",
-        "slug": "casual-summer-shorts",
-        "description": "Perfect shorts for summer",
-        "categoryId": 3,
-        "price": 339,
-        "discountPrice": 299,
-        "mainImage": "shorts9-main.jpg",
-        "images": [
-            "shorts9-1.jpg"
-        ],
-        "sizes": [
-            "M",
-            "L"
-        ],
-        "style": "casual",
-        "rating": 4.2,
-        "stock": 27,
-        "isActive": true,
-        "reviews": [
-            {
-                "id": 64,
-                "productId": 309,
-                "userName": "Jeffrey",
-                "rating": 4,
-                "comment": "Lightweight and perfect for hot summer days.",
-                "createdAt": "2026-01-14T10:40:00Z"
-            },
-            {
-                "id": 65,
-                "productId": 309,
-                "userName": "Ryan",
-                "rating": 3,
-                "comment": "Simple but practical summer shorts.",
-                "createdAt": "2026-01-17T12:55:00Z"
-            },
-            {
-                "id": 66,
-                "productId": 309,
-                "userName": "Gary",
-                "rating": 4,
-                "comment": "Comfortable fit, suitable fabric.",
-                "createdAt": "2026-01-20T15:30:00Z"
-            }
-        ]
-    },
-    {
         "id": 310,
         "name": "Tailored shorts",
         "slug": "Tailored shorts",
