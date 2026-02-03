@@ -1,7 +1,7 @@
 # 🛒 E-Commerce Web Project
 
 E-Commerce web project built using HTML + CSS (Tailwind CLI) + JavaScript (ES Modules), with support for Light / Dark Theme.
-
+/////////////////////////////
 
 # 🧱 tools
 
