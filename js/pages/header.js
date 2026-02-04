@@ -4,8 +4,8 @@
     return products;
 }
 
-const resultsBox = document.querySelector(".result-box");
-const inputBox = document.getElementById("input-box");
+const resultsBox = document.querySelector("#search-resualts");
+const inputBox = document.getElementById("search-input");
 
 export async function getProductNames() {
     const products = await getAllProducts();
@@ -37,16 +37,16 @@ function display(){
 function selectInput(list){
     inputBox.value = list.innerHTML;
     resultsBox.innerHTML = '';
-} */
-
+}
+ */
 /* export async function getAllProducts() {
     const response = await fetch(`./data/product.json`);
     const products = await response.json();
     return products; // Assuming this is an array of strings or objects
 }
 
-const resultsBox = document.querySelector(".result-box");
-const inputBox = document.getElementById("input-box");
+const resultsBox = document.querySelector("#search-resualts");
+const inputBox = document.getElementById("search-input");
 
 // Key Fix: Use async/await inside the event listener
 inputBox.onkeyup = async function() {
@@ -88,8 +88,8 @@ window.selectInput = function(list) {
 // js/pages/autocompelet.js
 
 /* export async function initAutocomplete() {
-    const resultsBox = document.querySelector(".result-box");
-    const inputBox = document.getElementById("input-box");
+    const resultsBox = document.getElementById("search-results");
+    const inputBox = document.getElementById("search-input");
 
     if (!inputBox) return; // Guard clause
 
@@ -129,36 +129,45 @@ initAutocomplete(); */
 
 async function loadLocalData() {
   try {
-    // Fetch the local file
-    const response = await fetch('product.json'); 
+    const response = await fetch('../data/product.json'); 
+    if (!response.ok) throw new Error("Network response was not ok");
+    
     allProducts = await response.json();
-    displayProducts(allProducts);
+    displayProducts(allProducts); // Initial render
   } catch (error) {
     console.error("Could not load local JSON:", error);
   }
 }
 
 function displayProducts(products) {
-  const pl = document.getElementById('search-resualts');
+  // Double-check this ID matches your HTML!
+  const pl = document.getElementById('search-results'); 
+  
+  if (!pl) return; // Safety check
+
   if (products.length === 0) {
     pl.innerHTML = "<li>No results found...</li>";
     return;
   }
+  
   pl.innerHTML = products.map(p => `<li>${p.name}</li>`).join('');
 }
 
 function filterProducts() {
   const query = document.getElementById('search-input').value.toLowerCase();
-  const filtered = allProducts.filter(products => 
-    products.name.toLowerCase().includes(query)
+  
+  const filtered = allProducts.filter(product => 
+    product.name.toLowerCase().includes(query)
   );
+  
   displayProducts(filtered);
 }
 
+// Start the data load
 loadLocalData();
 filterProducts(); */
 
-/* import { getAllProducts } from "../services/product_services.js"
+import { getAllProducts } from "../services/product_services.js"
 
 const searchInput = document.getElementById("search-input");
 const resultsContainer = document.getElementById("search-results");
@@ -182,7 +191,7 @@ searchInput.addEventListener("input", () => {
         const div = document.createElement("div");
         div.textContent = product.name;
         div.setAttribute("data-value", product.id)
-        div.classList.add(...["p-2", "cursor-pointer", "hover:bg-gray-100", "z-10"])
+        div.classList.add(...["p-2", "cursor-pointer", "hover:bg-sky-700", "z-10"])
         resultsContainer.appendChild(div);
         div.addEventListener("click", function () {
             window.location.href = `/index.html#product?id=${div.dataset.value}` //product?id=102
@@ -190,4 +199,4 @@ searchInput.addEventListener("input", () => {
             searchInput.value = ""
         })
     });
-}); */
+});

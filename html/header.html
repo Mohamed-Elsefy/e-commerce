@@ -30,8 +30,12 @@
           class="fas fa-search absolute right-3 top-1/2 -translate-y-1/2 opacity-40 group-focus-within:opacity-100 transition-opacity"></i>
         <input type="search"
           class="bg-(--bgsecond) text-(--onbg) rounded-full py-2 pl-4 pr-10 outline-none border border-transparent focus:border-(--onbg)/20 transition-all w-48 lg:w-64"
-          id="search-input" placeholder="Search products..." />
+          id="search-input"
+          autocomplete="off"
+          placeholder="Search products..." />
+          <div id="search-results" class="bg-white absolute w-full z-50 rounded-xl mt-1"></div>
       </form>
+      
 
       <!-- Theme -->
       <button id="theme-toggle"
