@@ -168,11 +168,11 @@
         "categoryId": 1,
         "price": 359,
         "discountPercentage": 11,
-        "mainImage": "assets\\images\\product\\Striped T-Shirt.webp",
+        "mainImage": "../assets/images/product/Striped T-Shirt.webp",
         "images": [
-            "assets\\images\\product\\Striped T-Shirt1.webp",
-            "assets\\images\\product\\Striped T-Shirt2.webp",
-            "assets\\images\\product\\Striped T-Shirt3.webp"
+            "../assets/images/product/Striped T-Shirt.webp",
+            "../assets/images/product/Striped T-Shirt.webp",
+            "../assets/images/product/Striped T-Shirt.webp"
         ],
         "sizes": [
             "M",
