@@ -10,34 +10,6 @@ const mobileLink = document.querySelectorAll(".mobile-link")
 const allProducts = await getAllProducts();
 console.log(allProducts);
 
-// searchInput.addEventListener("input", () => {
-//     console.log("hii");
-
-//     const query = searchInput.value.toLowerCase().trim();
-//     resultsContainer.innerHTML = "";
-
-//     if (!query) return;
-
-//     const limit = 5;
-//     const filteredProducts = allProducts.filter(product =>
-//         product.name.toLowerCase().includes(query)
-//     ).slice(0, limit);
-
-//     filteredProducts.forEach(product => {
-//         const div = document.createElement("div");
-//         div.textContent = product.name;
-//         div.setAttribute("data-value", product.id)
-//         div.classList.add(...["p-2", "cursor-pointer", "hover:bg-sky-700", "z-10"])
-//         resultsContainer.appendChild(div);
-//         div.addEventListener("click", function () {
-//             window.location.href = `/index.html#product?id=${div.dataset.value}` //product?id=102
-//             resultsContainer.innerHTML = ''
-//             searchInput.value = ""
-//         })
-//     });
-// });
-
-
 // function for search handing to get product by name
 function handleSearch(inputElement, resultsContainer) {
     const query = inputElement.value.toLowerCase().trim();
