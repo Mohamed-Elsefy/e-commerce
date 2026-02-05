@@ -103,6 +103,7 @@ window.updateQuantity = function (productId, change) {
 
 document.getElementById('applyPromo')?.addEventListener('click', () => {
     const code = document.getElementById('promoCode')?.value;
+    const promoCode = document.getElementById('promoMessage');
 
     if (code === "ITI2026") {
         currentDiscount = 0.10;
@@ -112,13 +113,14 @@ document.getElementById('applyPromo')?.addEventListener('click', () => {
     } else if (code === "ITI.NET") {
         currentDiscount = 0.20;
         localStorage.setItem('appliedDiscount', JSON.stringify(currentDiscount));
-
-        massage('Promo code applied! 20% off', 'success');
+        promoCode.innerHTML = 'Promo code applied! 20% off';
+        //massage('Promo code applied! 20% off', 'success');
     }
 
     else {
         currentDiscount = 0;
-        massage('Invalid promo code', 'error');
+        promoCode.innerHTML = '<span class="text-red-500">Invalid promo code</span>';
+        //massage('Invalid promo code', 'error');
 
     }
     updateSummary();
