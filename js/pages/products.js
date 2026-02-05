@@ -424,6 +424,8 @@ showFilter.addEventListener("click", function () {
 var closeBtn = document.getElementById("closeBtn");
 closeBtn.addEventListener("click", function () {
     filterSideBar.classList.remove("show-filter")
+    overlay.classList.remove("overlay");
+
 
 })
 

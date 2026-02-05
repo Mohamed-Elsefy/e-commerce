@@ -10,7 +10,7 @@ const mobileLink = document.querySelectorAll(".mobile-link")
 const allProducts = await getAllProducts();
 console.log(allProducts);
 
-// function for search handing to get product by name
+// function for search handling to get product by name
 function handleSearch(inputElement, resultsContainer) {
     const query = inputElement.value.toLowerCase().trim();
     resultsContainer.innerHTML = "";
